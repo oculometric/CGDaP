@@ -8,12 +8,26 @@
         "type": "tabs",
         "children": [
           {
-            "id": "5a64fc3c3af2726d",
+            "id": "f8666e8e517dec54",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
+                "file": "Programming Fundamentals/lecture 1.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f652950d8caee88e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "course people.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+                "file": "Programming Fundamentals/lecture 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+                "file": "Programming Fundamentals/lecture 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
+                "file": "Programming Fundamentals/lecture 1.md"
               }
             }
           }
@@ -146,12 +160,17 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "5a64fc3c3af2726d",
+  "active": "f8666e8e517dec54",
   "lastOpenFiles": [
-    "Computational Methods/idk.md",
-    "Computational Methods/GDEV40015 CRG.pdf",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "course people.md",
+    "Programming Fundamentals/lecture 1.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/lecture 1.md",
+    "Programming Fundamentals",
+    "Excalidraw/Drawing 2023-10-02 13.56.19.excalidraw.md",
+    "Untitled.canvas",
+    "Excalidraw",
+    "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods"
   ]
 }
