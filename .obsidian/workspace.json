@@ -11,11 +11,9 @@
             "id": "5a64fc3c3af2726d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Computational Methods/idk.md",
-                "mode": "source",
-                "source": false
+                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
               }
             }
           }
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/idk.md",
+                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/idk.md",
+                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/idk.md"
+                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
               }
             }
           }
@@ -148,10 +146,11 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "5a64fc3c3af2726d",
+  "active": "a1934e59e533fd16",
   "lastOpenFiles": [
-    "course people.md",
     "Computational Methods/idk.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "course people.md",
     "Computational Methods"
   ]
 }
