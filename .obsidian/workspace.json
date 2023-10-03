@@ -13,9 +13,43 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming Fundamentals/lecture 1.md",
+                "file": "Computational Methods/lecture 1 (021023).md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "4c635a5b53c25307",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "lecture 2 (021023).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9cc29651c9076327",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computational Methods/tutorial 1 (031023).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5b9a6bc62a2c0db7",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Computational Methods/CPU Diagram.excalidraw.md"
               }
             }
           },
@@ -31,7 +65,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -97,7 +132,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/lecture 1.md",
+                "file": "Computational Methods/tutorial 1 (031023).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +149,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/lecture 1.md",
+                "file": "Computational Methods/tutorial 1 (031023).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +172,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/lecture 1.md"
+                "file": "Computational Methods/tutorial 1 (031023).md"
               }
             }
           }
@@ -160,16 +195,20 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "f8666e8e517dec54",
+  "active": "9cc29651c9076327",
   "lastOpenFiles": [
     "course people.md",
-    "Programming Fundamentals/lecture 1.md",
+    "Computational Methods/tutorial 1 (031023).md",
+    "Untitled.md",
+    "lecture 2 (021023).md",
+    "Computational Methods/CPU Diagram.excalidraw.md",
+    "Excalidraw",
+    "Computational Methods/lecture 1 (021023).md",
+    "Programming Fundamentals/lecture 1 (021023).md",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
-    "Computational Methods/lecture 1.md",
     "Programming Fundamentals",
     "Excalidraw/Drawing 2023-10-02 13.56.19.excalidraw.md",
     "Untitled.canvas",
-    "Excalidraw",
     "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods"
   ]
