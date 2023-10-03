@@ -4,69 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "49fa12e30425e224",
+        "id": "b591cbe701e76ae7",
         "type": "tabs",
         "children": [
           {
-            "id": "f8666e8e517dec54",
+            "id": "1c81fd224925a48b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computational Methods/lecture 1 (021023).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4c635a5b53c25307",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "lecture 2 (021023).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9cc29651c9076327",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computational Methods/tutorial 1 (031023).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "5b9a6bc62a2c0db7",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Computational Methods/CPU Diagram.excalidraw.md"
-              }
-            }
-          },
-          {
-            "id": "f652950d8caee88e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "course people.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -116,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 275.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -132,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/tutorial 1 (031023).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -149,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/tutorial 1 (031023).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -171,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Computational Methods/tutorial 1 (031023).md"
-              }
+              "state": {}
             }
           }
         ]
@@ -195,17 +140,23 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "9cc29651c9076327",
+  "active": "1c81fd224925a48b",
   "lastOpenFiles": [
-    "course people.md",
+    "Programming Fundamentals/tutorial 1 (031023).md",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/tutorial 1 (031023).md",
-    "Untitled.md",
-    "lecture 2 (021023).md",
+    "Programming Fundamentals/lecture 2 (031023).md",
+    "Computational Methods/Assignment planets diagram.md",
+    "Computational Methods/brute_force_script.py",
+    "Computational Methods/brute_force.csv",
+    "Computational Methods/lecture 2 (021023).md",
+    "course people.md",
     "Computational Methods/CPU Diagram.excalidraw.md",
+    "Untitled.md",
     "Excalidraw",
     "Computational Methods/lecture 1 (021023).md",
     "Programming Fundamentals/lecture 1 (021023).md",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Programming Fundamentals",
     "Excalidraw/Drawing 2023-10-02 13.56.19.excalidraw.md",
     "Untitled.canvas",
