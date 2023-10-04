@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "d80c4d71c3a26141",
+        "id": "ecb934e2976c9508",
         "type": "tabs",
         "children": [
           {
-            "id": "af4a414e70f1b7ad",
+            "id": "ed01b7569625bcb4",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -128,12 +128,21 @@
                 "file": "Programming Fundamentals/Programming Fundamentals Assignment.md"
               }
             }
+          },
+          {
+            "id": "9dbbc0193b498e12",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -145,31 +154,34 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "obsidian-advanced-slides:Show Slide Preview": false
+      "obsidian-advanced-slides:Show Slide Preview": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "af4a414e70f1b7ad",
+  "active": "ed01b7569625bcb4",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2023-10-04 16.25.26.excalidraw.md",
     "Programming Fundamentals/Programming Fundamentals Assignment.md",
-    "Programming Fundamentals/tutorial 1 (031023).md",
     "Computational Methods/Computational Methods Assignment.md",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
-    "Computational Methods/tutorial 1 (031023).md",
-    "Programming Fundamentals/lecture 2 (031023).md",
     "Computational Methods/Assignment planets diagram.md",
+    "Computational Methods/CPU Diagram.excalidraw.md",
+    "Programming Fundamentals/lecture 2 (031023).md",
+    "Programming Fundamentals/lecture 1 (021023).md",
+    "Computational Methods/lecture 2 (021023).md",
+    "Computational Methods/lecture 1 (021023).md",
+    "Computational Methods/tutorial 1 (031023).md",
+    "Programming Fundamentals/tutorial 1 (031023).md",
+    "temp.md",
+    "Excalidraw/Drawing 2023-10-03 22.55.28.excalidraw.md",
+    "course people.md",
+    "Untitled.canvas",
+    "Excalidraw",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods/brute_force_script.py",
     "Computational Methods/brute_force.csv",
-    "Computational Methods/lecture 2 (021023).md",
-    "course people.md",
-    "Computational Methods/CPU Diagram.excalidraw.md",
-    "Untitled.md",
-    "Excalidraw",
-    "Computational Methods/lecture 1 (021023).md",
-    "Programming Fundamentals/lecture 1 (021023).md",
     "Programming Fundamentals",
     "Excalidraw/Drawing 2023-10-02 13.56.19.excalidraw.md",
-    "Untitled.canvas",
-    "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods"
   ]
 }
