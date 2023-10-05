@@ -13,13 +13,50 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "Computational Methods/Computational Methods Assignment.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e67e886fc664d5dc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computational Methods/tutorial 2 (051023).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9114071d3364981c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computational Methods/lecture 1 (021023).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e2804bef23752d2f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
+                "file": "Computational Methods/tutorial 2 (051023).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
+                "file": "Computational Methods/tutorial 2 (051023).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md"
+                "file": "Computational Methods/tutorial 2 (051023).md"
               }
             }
           },
@@ -158,25 +195,27 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "ed01b7569625bcb4",
+  "active": "e67e886fc664d5dc",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2023-10-04 16.25.26.excalidraw.md",
+    "Computational Methods/lecture 1 (021023).md",
+    "Computational Methods/tutorial 2 (051023).md",
     "Programming Fundamentals/Programming Fundamentals Assignment.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/brute_force.xlsx",
+    "Computational Methods/lecture 2 (021023).md",
+    "Programming Fundamentals/tutorial 1 (031023).md",
+    "Computational Methods/tutorial 1 (031023).md",
     "Computational Methods/Assignment planets diagram.md",
+    "Excalidraw/Drawing 2023-10-04 16.25.26.excalidraw.md",
     "Computational Methods/CPU Diagram.excalidraw.md",
     "Programming Fundamentals/lecture 2 (031023).md",
     "Programming Fundamentals/lecture 1 (021023).md",
-    "Computational Methods/lecture 2 (021023).md",
-    "Computational Methods/lecture 1 (021023).md",
-    "Computational Methods/tutorial 1 (031023).md",
-    "Programming Fundamentals/tutorial 1 (031023).md",
     "temp.md",
     "Excalidraw/Drawing 2023-10-03 22.55.28.excalidraw.md",
     "course people.md",
     "Untitled.canvas",
     "Excalidraw",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods/brute_force_script.py",
     "Computational Methods/brute_force.csv",

@@ -1,4 +1,3 @@
-
 ## task 1
 ![[Assignment planets diagram]]
 
@@ -235,6 +234,6 @@ While changed = True:
 End While
 ```
 
-this is an implementation of the bubble sort algorithm, which works by going through a list in pairs (bubbles), and swapping the items in the pair according to the sorting rule (e.g. smallest first). by iterating over a list again and again until an iteration is completed without changing the list (at which point it must be sorted). complexity of O(n^2), since the algorithm must pass through the list (of length `n`) at most `n` times (i.e. moving the smallest value from the opposite end of the list), `n*n` gives `n^2` as the complexity.
+this is an implementation of the bubble sort algorithm, which works by going through a list in pairs (bubbles), and swapping the items in the pair according to the sorting rule (e.g. smallest first). by iterating over a list again and again until an iteration is completed without changing the list (at which point it must be sorted). complexity of `O(n^2)`, since the algorithm must pass through the list (of length `n`) at most `n` times (i.e. moving the smallest value from the opposite end of the list), `n*n` gives `O(n^2)` as the complexity.
 
 ## task 3
