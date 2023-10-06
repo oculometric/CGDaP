@@ -20,18 +20,6 @@
             }
           },
           {
-            "id": "e67e886fc664d5dc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computational Methods/tutorial 2 (051023).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "9114071d3364981c",
             "type": "leaf",
             "state": {
@@ -56,7 +44,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -122,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/tutorial 2 (051023).md",
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/tutorial 2 (051023).md",
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/tutorial 2 (051023).md"
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md"
               }
             }
           },
@@ -195,13 +183,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e67e886fc664d5dc",
+  "active": "e2804bef23752d2f",
   "lastOpenFiles": [
     "Computational Methods/lecture 1 (021023).md",
+    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/tutorial 2 (051023).md",
     "Programming Fundamentals/Programming Fundamentals Assignment.md",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
-    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/brute_force.xlsx",
     "Computational Methods/lecture 2 (021023).md",
     "Programming Fundamentals/tutorial 1 (031023).md",
