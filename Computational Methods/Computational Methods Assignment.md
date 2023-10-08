@@ -237,3 +237,153 @@ End While
 this is an implementation of the bubble sort algorithm, which works by going through a list in pairs (bubbles), and swapping the items in the pair according to the sorting rule (e.g. smallest first). by iterating over a list again and again until an iteration is completed without changing the list (at which point it must be sorted). complexity of `O(n^2)`, since the algorithm must pass through the list (of length `n`) at most `n` times (i.e. moving the smallest value from the opposite end of the list), `n*n` gives `O(n^2)` as the complexity.
 
 ## task 3
+![[Greedy strategy]]
+```
+Let all_nodes = {"alpha", "beta", "gamma", "delta", "epsilon"}
+Let cargo_weights = {20, 40, 70, 10, 30}
+Let adjacency_matrix = {{0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0}}
+
+// State variables
+Let unvisited_nodes = {"alpha", "beta", "gamma", "delta", "epsilon"}
+Let weight = 0
+Let fuel_cost = 0
+Let path = {}
+
+// Bubble sort unvisited nodes according to their cargo weights
+Let changed = True
+While changed = True:
+	Let counter = 0
+	changed = False
+	While counter < size of sorted_list:
+		Let first_node_index = Index of unvisited_nodes[counter] in all_nodes
+		Let second_node_index = Index of unvisited_nodes[counter+1] in all_nodes
+		If cargo_weights[first_node_index] > cargo_weights[second_node_index]:
+			changed = True
+			Let temp = unvisited_nodes[counter]
+			unvisited_nodes[counter] = unvisited_nodes[counter+1]
+			unvisited_nodes[counter+1] = temp
+		End If
+		Increment counter
+	End While
+End While
+
+// Enter graph
+Append unvisited_nodes[0] to path
+weight = cargo_weights[Index of unvisited_nodes[0] in all_nodes]
+
+// Traverse graph
+Let index = 1
+While index < Length of unvisited_nodes:
+	Let next_node = unvisited_nodes[index]
+	
+	Let next_node_index = Index of next_node in all_nodes
+	Let last_node_index = Index of (Last of path) in all_nodes
+	
+	Let journey_cost = adjacency_matrix[next_node_index][last_node_index] * weight
+	fuel_cost = fuel_cost + journey_cost
+	
+	weight = weight + cargo_weights[next_node_index]
+	
+	Append next_node to path
+	Remove next_node from unvisited_nodes
+End While
+
+Output "Total fuel cost:"
+Output fuel_cost * 25
+Output path
+```
+
+```
+#include <iostream>
+#include <vector>
+#include <string>
+#include <queue>
+
+using namespace std;
+
+int find_index(string value, vector<string> list)
+{
+	for (int i = 0; i < list.size(); i++) if (value == list[i]) return i;
+	return -1;
+}
+
+int main()
+{
+	vector<string> all_nodes = { "alpha", "beta", "gamma", "delta", "epsilon" };
+	vector<int> cargo_weights = { 20, 40, 70, 10, 30 };
+	vector<vector<int>> adjacency_matrix = { {0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0} };
+
+	// state variables
+	vector<string> unvisited_nodes = all_nodes;
+	int weight = 0;
+	int fuel_cost = 0;
+	vector<string> path = {};
+
+	// sort unvisited_nodes
+	bool changed = true;
+	while (changed)
+	{
+		changed = false;
+		for (int i = 0; i < unvisited_nodes.size() - 1; i++)
+		{
+			int first_node_index = find_index(unvisited_nodes[i], all_nodes);
+			int second_node_index = find_index(unvisited_nodes[i + 1], all_nodes);
+			if (cargo_weights[first_node_index] > cargo_weights[second_node_index])
+			{
+				string swap = unvisited_nodes[i];
+				unvisited_nodes[i] = unvisited_nodes[i + 1];
+				unvisited_nodes[i + 1] = swap;
+				changed = true;
+			}
+		}
+	}
+
+	// enter graph
+	path.push_back(unvisited_nodes[0]);
+	weight = cargo_weights[find_index(unvisited_nodes[0], all_nodes)];
+
+	// traverse graph
+	for (int index = 1; index < unvisited_nodes.size(); index++)
+	{
+		string next_node = unvisited_nodes[index];
+
+		int next_node_index = find_index(next_node, all_nodes);
+		int last_node_index = find_index(path.back(), all_nodes);
+
+		int journey_cost = adjacency_matrix[next_node_index][last_node_index];
+		fuel_cost += journey_cost * weight;
+
+		weight += cargo_weights[next_node_index];
+
+		path.push_back(next_node);
+	}
+
+	int total_fuel_cost = fuel_cost * 25;
+
+	cout << "Found a route costing " << total_fuel_cost << endl;
+	cout << "Path: " << endl;
+	cout << "  ";
+	for (string s : path) cout << s << " ";
+	cout << endl;
+
+	return 0;
+}
+```
+output:
+```
+Found a route costing 69000
+Path:
+  delta alpha epsilon beta gamma
+```
+
+bearing in mind a greedy strategy chooses the best option in the short term and does not look ahead, i experimented with two different techniques: first, to traverse the graph choosing to move along the **cheapest weighted edge** (excluding any which lead to already visited nodes) at every node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node.
+the second of these produced a resulting route (starting at delta, since it has the lowest cargo mass to collect) of `delta -> alpha -> epsilon -> beta -> gamma`, costing **69000** intergalactic Vbucks, which happens to also be the optimal path found by the brute-force method.
+the first approach by contrast, starting at the same place, ended up choosing a `delta -> gamma -> beta -> alpha -> epsilon` route, which cost almost double the other method at **126500** intergalactic Vbucks.
+it makes sense that a mass-focussed route is better, since mass accumulates during the graph traversal, whereas the edge weightings (distances between planets) do not.
+
+using this approach, i wrote an algorithm in pseudocode which follows the mass-focussed traversal method, with the slight improvement of pre-sorting the unvisited nodes list to be ordered by low mass first (saving searching for the next lowest mass planet each step of traversal). i also then converted the algorithm to C++, and verified that it gave the correct result.
+it's worth noting that i could have handled referencing planets in this the same as in my python script for brute-forcing in the first task, considerably reducing the cost of managing the 5 planets' data, but i decided to use the string names for clarity.
+
+since this algorithm includes the bubble sort, it must be at least `O(n^2)`. since we have to find the index of a planet from its string name, which could require counting all the way through the `n` planets, the worst-case complexity is raised to `O(n^3)`. the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that `O(n^2)`. we can simplify the overall complexity of approximately `O(n^3 + n^2 + n^2)` (there are two index lookups in the final loop) down to `O(n^3 + n^2)` or just `O(n^3)`. using indices to reference planets, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, we could reduce the complexity to `O(n^2)` at worst.
+
+## task 4
