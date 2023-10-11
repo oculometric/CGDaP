@@ -19,8 +19,10 @@ void main()
 }
 ```
 
-i wrote this 
-i had to make sure to replace all backslashes with double-backslashes (i.e. escape character backslash). i used a multi-line string to keep it tidy.
+- to simplify and keep the code tidy, i wrote the title as a multi-line string, rather than `cout`ing numerous lines
+- since backslash is treated as the indicator of an escape character, i had to replace each with a double backslash in order to produce a single backslash in the output
+- i found this easy, as i'm already very familiar with C++ syntax
+- the ASCII art text was generated using https://patorjk.com/software/taag
 
 ## challenge 2
 ```
@@ -60,7 +62,10 @@ void main()
 }
 ```
 
-this is mostly just lots of `cout` and `cin`, the only issue i had was that I missed out the `<< endl` on a lot of lines initially, meaning the output would be all crushed onto one line.
+- this task is mostly just making use of `cout` and `cin` as well as the `<<` and `>>` stream operators to assemble multiple parts of a single console line
+- i was making sure to use `endl` rather than just `"\n"` because i think it reads more clearly and it ensures consistency across platforms
+- i used the builtin function `int stoi(string)` to convert the age text input from the user into an integer
+- again i found this task easy since i'm already familiar with C++
 
 ## challenge 3
 ```
@@ -82,7 +87,8 @@ void main()
 }
 ```
 
-simply getting input from the user with `cin`, nothing super difficult with this, just using the builtin `stof` function to get a float and squaring it, then outputting it again.
+- similar to the previous challenge in that it primarily involves getting input from the user via `cin`, though this time i used `float stof(string)` to get a floating point number from the user's text input
+- i could have used the `float powf(float, float)` function to square the number, but i used `num*num` instead since this is faster in a instance like this with a pre-determined integer power (i.e. 2)
 
 ## challenge 4
 ```
@@ -134,7 +140,12 @@ void main()
 }
 ```
 
-my code just gets the length of the input from the user and repeatedly outputs a star based on the length of that (with spacing at the ends) for the first and last lines. i used bracketless for loops since they each contain only one line. i construct a string of the right length (input length + padding + stars) for padding the box at the top and bottom. then inserting the user's input between, with stars at each end to form the box.
+- i split my box-making code off into its own function for modularity; it takes two arguments: the text to put in the box, and the padding amount
+- the length of the string plus padding and box edges is stored as a local variable to simplify conditions on for loops later
+- the code then passes over multiple for loops to do things like generating a whole line of stars for the top, generate a line of spaces bounded by stars (and then output that a number of times based on the padding amount), and output the padding around the actual text
+- i used inline for loops for all of these loops, since each one only contains a single `cout << <something>;` statement, which considerably shortens the code and makes it easier to read
+- i generated the padding line (i.e. line of spaces with a star at each end) as a string and then repeatedly outputted that string, rather than building the padding line again each time, avoiding the use of nested for loops
+- i also discovered over the course of this challenge that `cin >>` supports automatically converting its result to an integer if the destination variable is an integer, which would slightly simplify some code in previous challenges
 
 ## challenge 5
 ```
@@ -204,8 +215,16 @@ void main()
 }
 ```
 
-i wrote three functions, one for capitalising the first letter of sentences, one for capitalising all letters, and one for lowercasing all letters. the only complex one is the first of these, which keeps track of whether the next character should be uppercase (this state is set when a '.' '!' or '?' is encountered) and will keep this state until it finds a alphabetical character (i.e. not a space) to capitalise.
-i had one problem, which was that `cin >> text` will only pull the first word from the input from the user; i solved this by using `getline(cin, text)` instead.
+- my code is broken into three functions, one for fully capitalising a string, one for full decapitalising it, and one for capitalising it on only the first letter of a sentence
+- the code primarily makes use of the builtin `char toupper(char)` and `char tolower(char)` functions to capitalise and decapitalise characters
+- the first two functions are simple `for` loops where we loop over the input and add the capitalised/decapitalised letter to the output buffer, before we return this buffer at the end
+- the latter function is more complex: 
+	- we keep track of the current state of the text, with a local variable telling the program whether it is waiting to capitalise the first letter of a new sentence
+	- while this flag is set, we check to see if the current character is an alphabetical letter, by comparing it to capital and lowercase 'A' and 'Z' (since alphabetical letters in the ASCII character set are laid out, very sensibly, contiguously, though capital and lowercase are separated). doing this with the `chr >= 'A' && chr <= 'Z'` condition format is great because it makes it easy to see what is actually being checked
+	- if the flag is set and the current character is an alphabetical letter, we must capitalise it, add it to the output buffer, and clear the end-of-sentence flag
+	- if the flag is set but there is no alphabetical letter (e.g. a space after a fullstop), we add the letter to the output buffer but don't clear the flag
+	- otherwise, we just add the character to the output buffer, checking to see if the character we're adding is a fullstop, exclamation mark, or question mark, and if it is then we set the end-of-sentence flag
+- the main problem i encountered was that `cin >> text` only gets up to the next whitespace character and puts it in text, meaning that strings with spaces in (i.e. most sentences written by normal people) would only get their first word read. this was fixed by using the `void getline(istream &, string)` function, which pulls an entire line up until it reads a newline character into the provided string variable
 
 ## challenge 6
 ```
@@ -253,7 +272,15 @@ void main()
 }
 ```
 
-i was somewhat unsure of what ranges should be labelled with "freezing", "colder", etc, since the challenge does not specify (it specifies exact points where "freezing" should be outputted). this meant i had to add an extra range for being less than 2 away from the target number, which i labelled "super duper boiling". the rest of the ranges are "freezing" if distance from target number is greater or equal to 50, "cold" if greater or equal to 25 but less than 50, etc.
+- this task was made a lot easier by the fact that the random function is already written for us, so just calling it with appropriate arguments was simple. however, since the function defined in main.h is not documented, it required a little bit of experimentation to prove whether or not the upper and lower bounds were inclusive (they are both inclusive)
+- we can use a simple `while (true) { }` loop with a `break` statement when the player guesses the number
+- inside this `while` loop we prompt the user for a guess with `cout` and `cin`, check how far away from the secret number it is, break if its equal, or otherwise give the user a hint as to how warm they are
+	- we first calculate the absolute difference from the secret number to the user guess, making the following `if` statements much simpler
+	- this was the trickiest part, since the description of the challenge talks about the player guessing **exactly 50 away** for the 'freezing' response for instance, and does not specify if the range of difference values covered by 'freezing' should therefore be 50-100 or 35-50. after somewhat clarifying with a tutor, i treated the challenge description as meaning **50 or more away** from the secret number
+	- this did mean adjusting the 'boiling' range to also cover being 1 away from the secret number, previously i had an extra condition for being this close named 'super duper boiling'
+	- i used a chain of inline `if...else if...else` statements to implement these ranges in order to keep the code concise and the conditions on the `if` statements simple, and to avoid nesting
+- each iteration of the `while` loop also increments the guess counter variable
+- when we escape the loop, the user is told what the number was and how many guesses they took to find it
 
 ## challenge 7
 
@@ -328,7 +355,15 @@ void main()
     describe_character(player_character);
 }
 ```
-i made use of a `vector<string>` for storing the character classes as this makes it easier to get its length (and thus easier to extend). i wrote a short dedicated function for displaying the character details for clarity. i used a simple `while` loop when inputting character class, which breaks when the player selects a valid class. when the player inputs their name, i wanted to make sure that the player could input a name in multiple parts (i.e. with a space in the middle) so i used `getline(cin, name)`. however, i initially had problems with this as it would appear to skip over without waiting for user input. with the help of stack overflow i discovered this is because `getline` was seeing the trailing newline from the user's previous input and deciding to stop reading characters (thus causing `name` to be blank); the solution to this was to add a `cin.ignore()` before `getline` to ignore the trailing whitespace. i used a pointer to my struct containing character data, rather than a simple object, since it might make it easier to pass the structure back and forwards to other functions (such as the `describe_character` function).
+
+- i made use of a `const vector<string>` to store the character classes, since it's easy to get the length of this data type
+- i wrote a utility function which outputs a description of my character details struct. i could have written this as an overload of the `<<` operator, but chose not to for now
+- my character details struct contains two fields, a name as a string, and a class ID as an integer (where the integer indexes the character class vector)
+- when getting the user's player class, i used a simple `while (true) { }` loop, which prompts the user with the list of character classes each iteration, reads their input as an integer, and breaks only if the user's input was within the valid range
+	- the user is also told if their input is valid or invalid, and which class they picked
+- when getting the user's character name i used `getline` in order to ensure the player could enter multi-word names (like, maybe, 'Argoth the destroyer', or whatever)
+- i initially had problems with this however, since `getline` would return nothing (leading to a blank character name), skipping immediately due to it detecting the trailing newline from the previous user input. i resolved this by using `cin.ignore()` just before `getline`, to tell it to ignore the trailing newline (as suggested by stack overflow)
+- i used a pointer to my character details struct, rather than a reference, so that a character could be passed easily into functions such as the `describe_character` function, and written back to by those functions potentially
 
 ## challenge 8
 ```
@@ -568,8 +603,24 @@ void main()
     }
 }
 ```
-i wrapped my list of inventory slots in a class in order to make managing it cleaner. the actual `vector` holding the inventory slots is private, and the class simply exposes methods with appropriate input validation to the rest of the program. once the inventory size is configured, the program enters a main loop, containing the command processing code. i wrote a simple function to split a string at a delimiting character, abstracting away the splitting of the user's input (e.g. `set 3 6`) into its constituent parts (`set`, `3`, `6`). throughout the command processing code, there is input validation, checking if the command has been given the right number of arguments, checking if those arguments are in range, and responding accordingly (before continuing to the start of the loop again to get fresh user input). i tested my input validation with a variety of different inputs, (valid, invalid, and edge case).
 
+- my struct representing an inventory slot contains two fields: an item ID int, which indexes the `item_descriptions` vector (where -1 represents an empty slot), and an item description string
+- i again used a `const vector<string>` to store the list of item descriptions, as it's easily expandable and has a useful `.size()` method
+- i also developed a few utility functions:
+	- a function which just gets an item description from an id (an unsigned int), and just contains a protective `if` statement to prevent indexing the item descriptions vector out of range
+	- a `split_string` function which takes in a string and a char, and will use the `string.find` and `string.substr` methods to split the input into a `vector<string>` at the delimiting character. this method is only used once but is very important to the command processing code and makes sense to have it abstracted as a separate function for clarity and modularity
+- the 'inventory' itself is managed by a class
+	- this allows us to hide the actual backing data for the inventory, a `vector<inventory_slot>`, which can be protected by only allowing access through methods (the field is made private)
+	- these methods allow for setting the contents of slots to particular item IDs, clearing slots, getting the contents of an inventory slot, setting the size of the inventory, and getting the size
+	- each of these methods has the appropriate validation, including checking for indexing the inventory out of range
+- the user is prompted for a positive integer to initialise the inventory size, in a loop which repeats until a valid input is received. the only new thing to note here is handling exceptions from the `stoi` function using a `try...catch` block
+- after initialising the inventory, we start a main program loop in which commands are processed, this is a `while` loop predicated on the `continue_mainloop` variable which allows us to break out
+- when getting the user's command input, i had some problems again with `getline` being tripped up by a trailing newline, but having multiple inputs previously seemed to cause unpredictable behaviour. i solved this by repeatedly calling `getline` until it manages to get some input (i.e. a string of length > 0)
+- after the string is split at the space character, the only thing left is a lot of `if` statements to perform validation and branch depending upon the command entered
+- depending on the command, we must check the number of arguments provided (by looking at the number of elements in the `split_command`), and check that the numerical values entered are valid and in range for what they're indexing (e.g. the inventory or the list of items)
+- whenever a breaking condition is encountered, such as a 'set' command not having enough arguments, the `continue` keyword is used to skip back to the top of the loop and ask the user for a fresh command
+- i tested my input validation with a variety of different inputs, (valid, invalid, and edge case), so i'm confident that it should catch all invalid inputs
+- although i didn't have any real problems with this challenge besides the `getline` shenanigans, it was a more interesting challenge than previous ones
 ## challenge 9
 main.h
 ```
@@ -664,7 +715,16 @@ void main()
     
 }
 ```
-i decided to write operator overrides for the main four (+ - * /) for my `Vector2` class. this enabled my methods to use simpler looking maths. i wrote two methods inside the class, `float magnitude()` which returns the magnitude of the instance, and `float distance(Vector2 other)` which subtracts `other` from the self instance (resulting in the vector from `other` to `this`), and returning the magnitude of this. i did this because it's nicer to have methods embedded in a class like this, but i wrapped this in the `float GetDistanceBetweenPoints(Vector2 a, Vector2 b)` function as instructed. declaring operators required the `Vector2` class and its properties to be defined, however it's methods use the operators, creating a dependency loop. to solve this, i first wrote a minimal class definition with the method stubs and fields, then the operators, then finally the implementations of the `Vector2` methods.
+
+- the `Vector2` class itself is very simple, with `float x, y` variables. however, for some OOP practice i embedded `magnitude` and `distance` methods in the class, as well as a constructor which takes two `float`s for x and y
+- the `magnitude` method does exactly what it sounds like, and its implementation uses the same approach of `x * x` instead of `powf(x, 2)` for a slight speed boost, and the `sqrt` function to complete Euclid's formula
+- the `distance` method takes another `Vector2` as input and subtracts the self `Vector2` from it, before returning the magnitude of the resulting `Vector2`
+- in order to do this subtraction, i wrote a set of operator overloads accepting `Vector2` types: adding, subtracting, multiplying and dividing two `Vector2`s, and also multiplying and dividing a `Vector2` by a `float`
+- i also wrote a `<<` stream operator overload so that i could easily output my `Vector2` type to the console
+- however, these operators created a problem: they need the `Vector2` class to be declared, including x and y fields, meanwhile the class methods, mainly the `distance` method require the operators to already be declared (subtraction specifically), leading to a dependency loop. i solved this by declaring the class as a stub, then defining the operators, then finally implementing the methods from the `Vector2` class. ideally these implementations would be done in a dedicated file (to form a pair of 'vector2.h' and 'vector2.cpp')
+- as instructed by the challenge description, i also wrote a `GetDistanceBetweenPoints` function which simply calls the `Vector2::distance` method and returns the result
+- the rest of the code back in `main` is just constructing a pair of `Vector2`s and calling `GetDistanceBetweenPoints` and outputting the result
+- this was an interesting challenge! i've had practice writing operators and mathematical classes before so this was a reminder for me
 
 ## challenge 10
 ```
@@ -846,4 +906,15 @@ void main()
     cout << endl;
 }
 ```
-this task was mostly lots of structure design and a lot of output. i wrote several utility functions to do things like getting the mark band for a given mark in a more self-contained way. one of these functions was one which repeatedly prompts the user for input until they enter a value within range, which would have been a useful function from about challenge 4 onwards. i tested this with various correct and incorrect inputs, and it appeared to give correct results according to the CRG.
+
+- i came up with two `struct`s one for the marking information of each assessment, with the appropriate fields based on reading the CRG
+- i had the idea of having the structs initialised with values equal to the maximum mark for those grades, meaning that to find the maximum marks for things (e.g. for finding percentage marks), i can just instantiate a new struct and read its default values
+- i wrote a few utility functions:
+	- one for adding up all the marks in the different challenges of the first criterion in assessment 1
+	- one for getting the total, weighted score for assessment 1, using the 70-30 split as described by the CRG
+	- one for getting the total, weighted score for assessment 2, using the 60-20-20 split as described by the CRG
+	- one which abstracts away the process of getting a validated integer input from the user. this gets used **a lot** in `main`, and since we want to do a little `while` loop to repeat until we get valid input, it makes sense to have this as a self-contained function. it even supports having custom upper and lower bound limits and a specific prompt for the user
+	- one which returns a number from 0-5 for which CRG band a percentage score falls into, based on the ranges defined in the CRG
+- the rest of the program is lots of getting input from the user to populate the structs `a1g` and `a2g`. once all this is done, we can calculate extra information like the total assessment 1 criterion 1 score, the total percentage score of assessment 1, the total percetnage score of assessment 2, and the CRG grade bands for both of these and individual criteria within
+- we can then output all of this information, nicely formatted to the user
+- again, i tested this with various correct inputs (as well as checking the error checking with invalid inputs) and the output matched what was expected from what is written in the CRG

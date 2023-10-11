@@ -32,16 +32,6 @@
             }
           },
           {
-            "id": "f86e662de972b985",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Computational Methods/Greedy strategy.md"
-              }
-            }
-          },
-          {
             "id": "fff2c62d04395451",
             "type": "leaf",
             "state": {
@@ -50,6 +40,16 @@
                 "file": "beacon codes.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "f86e662de972b985",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Computational Methods/Greedy strategy.md"
               }
             }
           }
@@ -104,7 +104,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 275.5
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -195,11 +196,11 @@
   },
   "active": "308bae243c303fef",
   "lastOpenFiles": [
-    "Programming Fundamentals/tutorial 3 (101023).md",
+    "beacon codes.md",
     "Programming Fundamentals/Programming Fundamentals Assignment.md",
     "Computational Methods/Greedy strategy.md",
+    "Programming Fundamentals/tutorial 3 (101023).md",
     "Computational Methods/Computational Methods Assignment.md",
-    "beacon codes.md",
     "Programming Fundamentals/lecture 4 (101023).md",
     "Programming Fundamentals/tutorial 1 (031023).md",
     "Computational Methods/Assignment planets diagram.md",
