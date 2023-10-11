@@ -1,6 +1,106 @@
 ## task 1
 ![[Assignment planets diagram]]
 
+```
+Let adjacency_matrix = {{0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0}}
+Let cargo_pickup_weights = [20,40,70,10,30]
+
+Function get_distance(a, b):
+	Return adjacency_matrix[a][b]
+End Function
+
+Function calculate_fuel_cost(a, b, c, d, e):
+	Let total_fuel = 0
+	Let total_weight = 0
+
+	total_weight = total_weight + cargo_pickup_weights[a]
+	total_fuel = total_fuel + get_distance(a,b)*total_weight
+
+	total_weight = total_weight + cargo_pickup_weights[b]
+	total_fuel = total_fuel + get_distance(b,c)*total_weight
+
+	total_weight = total_weight + cargo_pickup_weights[c]
+	total_fuel = total_fuel + get_distance(c,d)*total_weight
+
+	total_weight = total_weight + cargo_pickup_weights[d]
+	total_fuel = total_fuel + get_distance(d,e)*total_weight
+
+	total_weight = total_weight + cargo_pickup_weights[e]
+
+	Return total_fuel*25
+End Function
+
+Let all_possible_sequences = []
+
+Let a = 0
+While a < 5:
+	Let sequence = [a]
+
+	Let b = 0
+	While b < 5:
+		If sequence Contains b:
+			Continue
+		End If
+		Append b to sequence
+
+		Let c = 0
+		While c < 5:
+			If sequence Contains c:
+				Continue
+			End If
+			Append c to sequence
+
+			Let d = 0
+			While d < 5:
+				If sequence Contains d:
+					Continue
+				End If
+				Append d to sequence
+
+				Let e = 0
+				While e < 5:
+					If sequence Contains e:
+						Continue
+					End If
+					Append e to sequence
+
+					Append sequence to all_possible_sequences
+					sequence = [a,b,c,d]
+					Increment e
+				End While
+				sequence = [a,b,c]
+				Increment d
+			End While
+			sequence = [a,b]
+			Increment c
+		End While
+		sequence = [a]
+		Increment b
+	End While
+
+	Increment a
+End While
+
+Open "brute_force.csv" as file
+Let index = 0
+While index < Length of all_possible_sequences:
+	Let seq = all_possible_sequences[index]
+	Output seq[0] to file
+	Output "," to file
+	Output seq[1] to file
+	Output "," to file
+	Output seq[2] to file
+	Output "," to file
+	Output seq[3] to file
+	Output "," to file
+	Output seq[4] to file
+	Output "," to file
+	Output calculate_fuel_cost(seq[0], seq[1], seq[2], seq[3], seq[4]) to file
+	Output "\n" to file
+End While
+
+Close file
+```
 brute_force_script.py:
 ```
 alpha = 0
@@ -384,6 +484,6 @@ it makes sense that a mass-focussed route is better, since mass accumulates duri
 using this approach, i wrote an algorithm in pseudocode which follows the mass-focussed traversal method, with the slight improvement of pre-sorting the unvisited nodes list to be ordered by low mass first (saving searching for the next lowest mass planet each step of traversal). i also then converted the algorithm to C++, and verified that it gave the correct result.
 it's worth noting that i could have handled referencing planets in this the same as in my python script for brute-forcing in the first task, considerably reducing the cost of managing the 5 planets' data, but i decided to use the string names for clarity.
 
-since this algorithm includes the bubble sort, it must be at least `O(n^2)`. since we have to find the index of a planet from its string name, which could require counting all the way through the `n` planets, the worst-case complexity is raised to `O(n^3)`. the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that `O(n^2)`. we can simplify the overall complexity of approximately `O(n^3 + n^2 + n^2)` (there are two index lookups in the final loop) down to `O(n^3 + n^2)` or just `O(n^3)`. using indices to reference planets, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, we could reduce the complexity to `O(n^2)` at worst.
+since this algorithm includes the bubble sort, it must be at least `O(n^2)`. since we have to find the index of a planet from its string name each time, which could require counting all the way through the `n` planets, the worst-case complexity is raised to `O(n^3)`. the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that `O(n^2)`. we can simplify the overall complexity of approximately `O(n^3 + n^2 + n^2)` (there are two index lookups in the final loop) down to `O(n^3 + n^2)` or just `O(n^3)`. using indices to reference planets, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, we could reduce the complexity to `O(n^2)` at worst.
 
 ## task 4

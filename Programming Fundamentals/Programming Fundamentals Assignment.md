@@ -19,6 +19,7 @@ void main()
 }
 ```
 
+i wrote this 
 i had to make sure to replace all backslashes with double-backslashes (i.e. escape character backslash). i used a multi-line string to keep it tidy.
 
 ## challenge 2
@@ -89,27 +90,51 @@ simply getting input from the user with `cin`, nothing super difficult with this
 
 using namespace std;
 
+void boxify_text(string text, int padding)
+{
+    int length = text.length() + 2 + (2 * padding);
+
+    // first line of stars
+    for (int i = 0; i < length; i++) cout << "*";
+    cout << endl;
+
+    // padding lines
+    string padding_line = "*";
+    for (int i = 0; i < length-2; i++) padding_line += " ";
+    padding_line += "*";
+
+    for (int i = 0; i < padding; i++) cout << padding_line << endl;
+
+    // text
+    cout << "*";
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << text;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "*" << endl;
+
+    // padding lines
+    for (int i = 0; i < padding; i++) cout << padding_line << endl;
+
+    // second line of stars
+    for (int i = 0; i < length; i++) cout << "*";
+}
+
 void main()
 {
     string text;
     cout << "enter some text: ";
     cin >> text;
 
-    int length = text.length();
+    int padding;
+    cout << "how much padding? ";
+    cin >> padding;
 
-    // first line of stars
-    for (int i = 0; i < length + 4; i++) cout << "*";
-    cout << endl;
-
-    // text
-    cout << "* " << text << " *" << endl;
-
-    // second line of stars
-    for (int i = 0; i < length + 4; i++) cout << "*";
+    boxify_text(text, padding);
+    
 }
 ```
 
-this just gets the length of the input from the user and repeatedly outputs a star based on that (with spacing at the ends) for the first and last lines. bracketless for loops since they each contain only one line. then inserting the user's input between, with stars at each end to form the box.
+my code just gets the length of the input from the user and repeatedly outputs a star based on the length of that (with spacing at the ends) for the first and last lines. i used bracketless for loops since they each contain only one line. i construct a string of the right length (input length + padding + stars) for padding the box at the top and bottom. then inserting the user's input between, with stars at each end to form the box.
 
 ## challenge 5
 ```
@@ -217,8 +242,7 @@ void main()
             else if (difference >= 15) cout << "warm";
             else if (difference >= 10) cout << "warmer";
             else if (difference >= 5) cout << "hot";
-            else if (difference >= 2) cout << "boiling";
-            else cout << "super duper boiling";
+            else cout << "boiling";
             cout << endl;
         }
     }

@@ -8,14 +8,36 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e2ed06371ffea004",
+            "id": "a4ba4012721be676",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computational Methods/lecture 4 (091023).md",
+                "file": "Programming Fundamentals/tutorial 3 (101023).md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "308bae243c303fef",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f86e662de972b985",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Computational Methods/Greedy strategy.md"
               }
             }
           },
@@ -31,7 +53,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -97,7 +120,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/lecture 4 (091023).md",
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +137,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/lecture 4 (091023).md",
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +160,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/lecture 4 (091023).md"
+                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md"
               }
             }
           },
@@ -170,24 +193,27 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e2ed06371ffea004",
+  "active": "308bae243c303fef",
   "lastOpenFiles": [
+    "Programming Fundamentals/tutorial 3 (101023).md",
+    "Programming Fundamentals/Programming Fundamentals Assignment.md",
+    "Computational Methods/Greedy strategy.md",
+    "Computational Methods/Computational Methods Assignment.md",
     "beacon codes.md",
+    "Programming Fundamentals/lecture 4 (101023).md",
+    "Programming Fundamentals/tutorial 1 (031023).md",
+    "Computational Methods/Assignment planets diagram.md",
+    "Computational Methods/tutorial 3 (101023).md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/lecture 4 (091023).md",
     "Computational Methods/lecture 3 (091023).md",
     "Programming Fundamentals/lecture 3 (091023).md",
     "temp.md",
     "Computational Methods/lecture 2 (021023).md",
-    "Computational Methods/Computational Methods Assignment.md",
-    "Computational Methods/Assignment planets diagram.md",
-    "Computational Methods/Greedy strategy.md",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Excalidraw/Drawing 2023-10-08 11.05.55.excalidraw.md",
     "Computational Methods/lecture 1 (021023).md",
-    "Programming Fundamentals/Programming Fundamentals Assignment.md",
     "Computational Methods/tutorial 2 (051023).md",
     "Computational Methods/brute_force.xlsx",
-    "Programming Fundamentals/tutorial 1 (031023).md",
     "Computational Methods/tutorial 1 (031023).md",
     "Excalidraw/Drawing 2023-10-04 16.25.26.excalidraw.md",
     "Computational Methods/CPU Diagram.excalidraw.md",
