@@ -166,7 +166,7 @@ for seq in all_possible_sequences:
     csv_data += str(seq[2]) + ","
     csv_data += str(seq[3]) + ","
     csv_data += str(seq[4]) + ","
-    csv_data += str(calculate_fuel_cost(seq[0], seq[1], seq[2], seq[3], seq[4])) + "\n"
+    csv_data += str(calculate_fuel_cost(seq[0], seql[1], seq[2], seq[3], seq[4])) + "\n"
 
 print("generated " + str(len(all_possible_sequences)) + " sequences")
 
@@ -304,15 +304,15 @@ cheapest route:
 3 0 4 1 2 = Delta -> Alpha -> Epsilon -> Beta -> Gamma
 Costs 69000 intergalactic currency
 
-This approach isn't a good way to find the shortest path since it requires checking the cost of `n!` possible routes, `n` being the number of planets. Factorial time, O(n!) is a very very bad time complexity and building a route with many destinations would take a very long time.
+This approach isn't a good way to find the shortest path since it requires checking the cost of an enourmous and rapidly increasing search space. Specifically `n!` possible routes, `n` being the number of planets. Factorial time, O(n!) is a very very bad time complexity and building a route with many destinations would take a very long time.
 
 ## task 2
 
 10 15 12 12 25 16 20 14 28 17
-10 12 12 15 16 20 14 25 17 28
-10 12 12 15 16 14 20 17 25 28
-10 12 12 15 14 16 17 20 25 28
-10 12 12 14 15 16 17 20 25 28
+10 12 12 **15** 16 20 14 **25** 17 **28**
+10 12 12 15 16 14 **20** 17 **25** 28
+10 12 12 15 14 **16** 17 **20** 25 28
+10 12 12 14 **15** 16 17 20 25 28
 
 sorted using bubble sort
 
