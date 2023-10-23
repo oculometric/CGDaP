@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming Fundamentals/lecture 6 (171023).md",
+                "file": "Computational Methods/lecture 8 (231023).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/lecture 6 (171023).md",
+                "file": "Computational Methods/lecture 8 (231023).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/lecture 6 (171023).md",
+                "file": "Computational Methods/lecture 8 (231023).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/lecture 6 (171023).md"
+                "file": "Computational Methods/lecture 8 (231023).md"
               }
             }
           },
@@ -158,8 +158,14 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "a1934e59e533fd16",
+  "active": "fff2c62d04395451",
   "lastOpenFiles": [
+    "Programming Fundamentals/lecture 7 (231023).md",
+    "Computational Methods/lecture 8 (231023).md",
+    "Computational Methods/lecture 7 (231023).md",
+    "Computational Methods/tutorial 5 (191023).md",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Programming Fundamentals/lecture 6 (171023).md",
     "housing things.docx",
     "housing things.html",
     "Pasted image 20231017180611.png",
@@ -167,10 +173,8 @@
     "Pasted image 20231017174526.png",
     "Pasted image 20231017173329.png",
     "Pasted image 20231017172304.png",
-    "Programming Fundamentals/lecture 6 (171023).md",
     "housing things.md",
     "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
-    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/lecture 6 (161023).md",
     "Programming Fundamentals/lecture 5 (161023).md",
     "beacon codes.md",
@@ -190,10 +194,7 @@
     "temp.md",
     "Computational Methods/lecture 2 (021023).md",
     "Excalidraw/Drawing 2023-10-08 11.05.55.excalidraw.md",
-    "Computational Methods/lecture 1 (021023).md",
-    "Computational Methods/tutorial 2 (051023).md",
     "Computational Methods/brute_force.xlsx",
-    "Computational Methods/tutorial 1 (031023).md",
     "Untitled.canvas",
     "Excalidraw",
     "Computational Methods/GDEV40015 CRG.pdf",
