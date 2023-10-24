@@ -304,38 +304,146 @@ cheapest route:
 3 0 4 1 2 = Delta -> Alpha -> Epsilon -> Beta -> Gamma
 Costs 69000 intergalactic currency
 
-This approach isn't a good way to find the shortest path since it requires checking the cost of an enourmous and rapidly increasing search space. Specifically `n!` possible routes, `n` being the number of planets. Factorial time, O(n!) is a very very bad time complexity and building a route with many destinations would take a very long time.
+This approach isn't a good way to find the shortest path since it requires checking the cost of an enourmous and rapidly increasing search space. Specifically `n!` possible routes, `n` being the number of planets. Factorial time, $O(n!)$ is a very very bad time complexity and building a route with many destinations would take a very long time.
 
 ## task 2
 
-10 15 12 12 25 16 20 14 28 17
-10 12 12 **15** 16 20 14 **25** 17 **28**
-10 12 12 15 16 14 **20** 17 **25** 28
-10 12 12 15 14 **16** 17 **20** 25 28
-10 12 12 14 **15** 16 17 20 25 28
+| 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | start | end | i   | j   | pivot value | notes                                                          |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ----- | --- | --- | --- | ----------- | -------------------------------------------------------------- |
+| 10  | 15  | 12  | 12  | 25  | 16  | 20  | 14  | 28  | 17  | 0     | 9   | -1  | 10  | 25          | partition the whole list                                       |
+|     |     |     |     |     |     |     |     |     |     |       |     | 0   | 10  |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 10  |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 10  |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 3   | 10  |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 10  |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 9   |             |                                                                |
+| 10  | 15  | 12  | 12  | 17  | 16  | 20  | 14  | 28  | 25  |       |     |     |     |             | swap 4 and 9                                                   |
+|     |     |     |     |     |     |     |     |     |     |       |     | 5   | 9   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 6   | 9   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 7   | 9   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 8   | 9   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 8   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 8   | 7   |             | partitioning finished                                          |
+| 10  | 15  | 12  | 12  | 17  | 16  | 20  | 14  |     |     | 0     | 7   | -1  | 8   | 12          | subsort first half                                             |
+|     |     |     |     |     |     |     |     |     |     |       |     | 0   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 7   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 6   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 5   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 4   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 1   | 3   |             |                                                                |
+| 10  | 12  | 12  | 15  | 17  | 16  | 20  | 14  |     |     |       |     |     |     |             | swap 1 and 3                                                   |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 3   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 2   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 1   |             | partitioning finished                                          |
+| 10  | 12  |     |     |     |     |     |     |     |     | 0     | 1   | -1  | 2   | 10          | subsort first half of first half                               |
+|     |     |     |     |     |     |     |     |     |     |       |     | 0   | 2   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 0   | 1   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 0   | 0   |             | subsort done                                                   |
+|     |     | 12  | 15  | 17  | 16  | 20  | 14  |     |     | 2     | 7   | 1   | 8   | 17          | subsort second half of first half                              |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 3   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 7   |             |                                                                |
+|     |     | 12  | 15  | 14  | 16  | 20  | 17  |     |     |       |     |     |     |             | swap 4 and 7                                                   |
+|     |     |     |     |     |     |     |     |     |     |       |     | 5   | 7   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 6   | 7   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 6   | 6   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 6   | 5   |             | partitioning finished                                          |
+|     |     | 12  | 15  | 14  | 16  |     |     |     |     | 2     | 5   | 1   | 6   | 15          | subsort first half of second half of first half                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 6   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 3   | 6   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 3   | 5   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 3   | 4   |             |                                                                |
+|     |     | 12  | 14  | 15  | 16  |     |     |     |     |       |     |     |     |             | swap 3 and 4                                                   |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 4   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 3   |             | partitioning finished                                          |
+|     |     | 12  | 14  |     |     |     |     |     |     | 2     | 3   | 1   | 4   | 12          | subsort first half of first half of second half of first half  |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 4   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 3   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 2   | 2   |             | subsort done                                                   |
+|     |     |     |     | 15  | 16  |     |     |     |     | 4     | 5   | 3   | 6   | 15          | subsort second half of first half of second half of first half |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 6   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 5   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 4   | 4   |             | subsort done                                                   |
+|     |     |     |     |     |     | 20  | 17  |     |     | 6     | 7   | 5   | 8   | 20          | subsort second half of second half of first half               |
+|     |     |     |     |     |     |     |     |     |     |       |     | 6   | 8   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 6   | 7   |             |                                                                |
+|     |     |     |     |     |     | 17  | 20  |     |     |       |     |     |     |             | swap 6 and 7                                                   |
+|     |     |     |     |     |     |     |     |     |     |       |     | 7   | 7   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 7   | 6   |             | subsort done                                                   |
+|     |     |     |     |     |     |     |     | 28  | 25  | 8     | 9   | 7   | 10  | 28          | subsort second half                                            |
+|     |     |     |     |     |     |     |     |     |     |       |     | 8   | 10  |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 8   | 9   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     |     |     |             | swap 8 and 9                                                   |
+|     |     |     |     |     |     |     |     | 25  | 28  |       |     |     |     |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 9   | 9   |             |                                                                |
+|     |     |     |     |     |     |     |     |     |     |       |     | 9   | 8   |             | subsort done                                                   |
+| 10  | 12  | 12  | 14  | 15  | 16  | 17  | 20  | 25  | 28  |       |     |     |     |             | sort done                                                      | 
 
-sorted using bubble sort
+sorted using quick sort
 
 ```
-Let edge_weights = [10, 15, 12, 12, 25, 16, 20, 14, 28, 17]
-Let changed = True
-While changed = True:
-	Let counter = 0
-	changed = False
-	While counter < 9:
-		If edge_weights[counter] > edge_weights[counter+1]:
-			changed = True
-			Let temp = edge_weights[counter]
-			edge_weights[counter] = edge_weights[counter+1]
-			edge_weights[counter+1] = temp
+Procedure swap(array, first, second) Being:
+	Let temp = array[first]
+	array[first] = array[second]
+	array[second] = temp
+End Procedure
+
+Function partition_array(array, start, end) Begin:
+	// Place the pivot in the middle, this tends to have better performance
+	Let pivot_index = ((end - start)/2 Rounded Down) + start
+	Let pivot = array[pivot_index]
+	
+	// Initialise pointers
+	Let i = start - 1
+	Let j = end + 1
+	
+	While True:
+		// Increment i then break if the targeted element is swappable
+		While True:
+			Increment i
+			If array[i] >= pivot:
+				Break
+			End If
+		End While
+		
+		// Decrement j then break if the targeted element is swappable
+		While True:
+			Decrement j
+			If array[j] <= pivot:
+				Break
+			End If
+		End While
+		
+		// Return the partition point if i and j meet/cross, otherwise swap their values
+		If i >= j:
+			Return j
+		Else:
+			swap(array, i, j)
 		End If
-		Increment counter
 	End While
-End While
+End Function
+
+Procedure quick_sort(array, start, end) Begin:
+	// Return if there is nothing to sort
+	If start >= end:
+		Return
+	End If
+	
+	// Perform first sorting pass over current whole array
+	Let split_index = partition_array(array, start, end)
+	
+	// Perform subsorts on partitioned arrays
+	quick_sort(array, start, split_index)
+	quick_sort(array, split_index + 1, end)
+End Procedure
 ```
 
-this is an implementation of the bubble sort algorithm, which works by going through a list in pairs (bubbles), and swapping the items in the pair according to the sorting rule (e.g. smallest first). by iterating over a list again and again until an iteration is completed without changing the list (at which point it must be sorted). complexity of `O(n^2)`, since the algorithm must pass through the list (of length `n`) at most `n` times (i.e. moving the smallest value from the opposite end of the list), `n*n` gives `O(n^2)` as the complexity.
-
+- this is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method
+- it makes use of recursive quicksorts to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the base case)
+- this is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised
+- quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$, however with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$ 
 ## task 3
 ![[Greedy strategy]]
 ```
@@ -484,6 +592,6 @@ it makes sense that a mass-focussed route is better, since mass accumulates duri
 using this approach, i wrote an algorithm in pseudocode which follows the mass-focussed traversal method, with the slight improvement of pre-sorting the unvisited nodes list to be ordered by low mass first (saving searching for the next lowest mass planet each step of traversal). i also then converted the algorithm to C++, and verified that it gave the correct result.
 it's worth noting that i could have handled referencing planets in this the same as in my python script for brute-forcing in the first task, considerably reducing the cost of managing the 5 planets' data, but i decided to use the string names for clarity.
 
-since this algorithm includes the bubble sort, it must be at least `O(n^2)`. since we have to find the index of a planet from its string name each time, which could require counting all the way through the `n` planets, the worst-case complexity is raised to `O(n^3)`. the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that `O(n^2)`. we can simplify the overall complexity of approximately `O(n^3 + n^2 + n^2)` (there are two index lookups in the final loop) down to `O(n^3 + n^2)` or just `O(n^3)`. using indices to reference planets, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, we could reduce the complexity to `O(n^2)` at worst.
+since this algorithm includes the bubble sort (i chose this sort because it has a $O(n)$ space complexity, and is easy to implement for a situation where we need to compare values in one list and use that to swap values in another list), it must have time complexity of at least $O(n^2)$. since we have to find the index of a planet from its string name each iteration, which could require counting all the way through the `n` planets, the worst-case complexity is raised to $O(n^3)$, though this could be improved with the use of proper data structures (i.e. limited by pseudocode). the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that also $O(n^2)$. we can simplify the overall time complexity of approximately $O(n^3 + n^2 + n^2)$ (there are two index lookups in the final loop) down to $O(n^3 + 2n^2)$ or just $O(n^3)$ if we take only the greatest time complexity. using indices to reference planets, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, and also making use of a better sorting algorithm such as quicksort, we could reduce the worst-case time complexity to $O(n\log_2(n))$ .
 
 ## task 4

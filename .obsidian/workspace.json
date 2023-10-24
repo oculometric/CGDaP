@@ -13,7 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "50d0c488ad800284",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computational Methods/tutorial 6 (241023).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment.md"
+                "file": "Computational Methods/Computational Methods Assignment.md"
               }
             }
           },
@@ -160,10 +172,12 @@
   },
   "active": "fff2c62d04395451",
   "lastOpenFiles": [
-    "Programming Fundamentals/lecture 8 (241023).md",
-    "Computational Methods/Computational Methods Assignment.md",
-    "Computational Methods/CPU Diagram.excalidraw.md",
     "Computational Methods/tutorial 6 (241023).md",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/Assignment planets diagram.md",
+    "Programming Fundamentals/Programming Fundamentals Assignment.md",
+    "Programming Fundamentals/lecture 8 (241023).md",
+    "Computational Methods/CPU Diagram.excalidraw.md",
     "Computational Methods/lecture 8 (231023).md",
     "Programming Fundamentals/lecture 7 (231023).md",
     "Computational Methods/lecture 7 (231023).md",
@@ -189,9 +203,7 @@
     "Computational Methods/Greedy strategy.md",
     "Computational Methods/lecture 3 (091023).md",
     "Computational Methods/lecture 4 (091023).md",
-    "Programming Fundamentals/Programming Fundamentals Assignment.md",
     "Programming Fundamentals/lecture 4 (101023).md",
-    "Computational Methods/Assignment planets diagram.md",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Programming Fundamentals/lecture 3 (091023).md",
     "Computational Methods/brute_force.xlsx",
