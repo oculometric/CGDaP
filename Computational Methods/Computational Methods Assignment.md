@@ -443,7 +443,7 @@ End Procedure
 - this is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method
 - it makes use of recursive quicksorts to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the base case)
 - this is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised
-- quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$, however with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$ 
+- quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$, however with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$
 ## task 3
 ![[Greedy strategy]]
 ```

@@ -4,28 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "ea1be74032fbf7fe",
+        "id": "0d1066b704c9845a",
         "type": "tabs",
         "children": [
           {
-            "id": "fff2c62d04395451",
+            "id": "23fe63e5a2eff6bd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "50d0c488ad800284",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computational Methods/tutorial 6 (241023).md",
+                "file": "Computational Methods/tutorial 7 (261023).md",
                 "mode": "source",
                 "source": false
               }
@@ -97,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Computational Methods/tutorial 7 (261023).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Computational Methods/tutorial 7 (261023).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md"
+                "file": "Computational Methods/tutorial 7 (261023).md"
               }
             }
           },
@@ -170,17 +158,20 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "fff2c62d04395451",
+  "active": "23fe63e5a2eff6bd",
   "lastOpenFiles": [
-    "Computational Methods/tutorial 6 (241023).md",
     "Computational Methods/Computational Methods Assignment.md",
-    "Computational Methods/Assignment planets diagram.md",
+    "Computational Methods/tutorial 7 (261023).md",
+    "Computational Methods/lecture 4 (091023).md",
+    "Computational Methods/lecture 7 (231023).md",
+    "Computational Methods/lecture 6 (161023).md",
+    "Computational Methods/lecture 5 (161023).md",
     "Programming Fundamentals/Programming Fundamentals Assignment.md",
     "Programming Fundamentals/lecture 8 (241023).md",
     "Computational Methods/CPU Diagram.excalidraw.md",
+    "Computational Methods/tutorial 6 (241023).md",
     "Computational Methods/lecture 8 (231023).md",
     "Programming Fundamentals/lecture 7 (231023).md",
-    "Computational Methods/lecture 7 (231023).md",
     "Computational Methods/tutorial 5 (191023).md",
     "Programming Fundamentals/lecture 6 (171023).md",
     "housing things.docx",
@@ -192,20 +183,17 @@
     "Pasted image 20231017172304.png",
     "housing things.md",
     "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
-    "Computational Methods/lecture 6 (161023).md",
     "Programming Fundamentals/lecture 5 (161023).md",
     "beacon codes.md",
-    "Computational Methods/lecture 5 (161023).md",
     "Computational Methods/tutorial 3 (101023).md",
     "Computational Methods/tutorial 4 (121023).md",
     "Programming Fundamentals/tutorial 3 (101023).md",
     "Programming Fundamentals/tutorial 1 (031023).md",
     "Computational Methods/Greedy strategy.md",
     "Computational Methods/lecture 3 (091023).md",
-    "Computational Methods/lecture 4 (091023).md",
     "Programming Fundamentals/lecture 4 (101023).md",
+    "Computational Methods/Assignment planets diagram.md",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
-    "Programming Fundamentals/lecture 3 (091023).md",
     "Computational Methods/brute_force.xlsx",
     "Untitled.canvas",
     "Excalidraw",
