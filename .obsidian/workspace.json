@@ -8,14 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "23fe63e5a2eff6bd",
+            "id": "536a0ad6fb4afc17",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diagram-edit",
               "state": {
-                "file": "Computational Methods/Art Gallery Problem.md",
-                "mode": "source",
-                "source": false
+                "file": "Programming Fundamentals/Game Flowchart.drawio"
               }
             }
           }
@@ -64,6 +62,18 @@
               "type": "bookmarks",
               "state": {}
             }
+          },
+          {
+            "id": "f72ad0d558ccea30",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ]
       }
@@ -85,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/Art Gallery Problem.md",
+                "file": "Programming Fundamentals/Game Flowchart.drawio",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/Art Gallery Problem.md",
+                "file": "Programming Fundamentals/Game Flowchart.drawio",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/Art Gallery Problem.md"
+                "file": "Programming Fundamentals/Game Flowchart.drawio"
               }
             }
           },
@@ -158,23 +168,38 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "23fe63e5a2eff6bd",
+  "active": "536a0ad6fb4afc17",
   "lastOpenFiles": [
-    "Computational Methods/tutorial 7 (261023).md",
+    "Programming Fundamentals/Console Game Redesign.md",
+    "Programming Fundamentals/Game Flowchart.drawio",
+    "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
+    "Computational Methods/lecture notes/lecture 1 (021023).md",
+    "Computational Methods/lecture notes/lecture 2 (021023).md",
+    "Programming Fundamentals/lecture notes/lecture 7 (231023).md",
+    "Programming Fundamentals/lecture notes/lecture 6 (171023).md",
+    "Programming Fundamentals/lecture notes/lecture 5 (161023).md",
+    "Programming Fundamentals/lecture notes/lecture 4 (101023).md",
+    "Programming Fundamentals/lecture notes/lecture 3 (091023).md",
+    "Programming Fundamentals/lecture notes/lecture 1 (021023).md",
+    "Programming Fundamentals/lecture notes/lecture 2 (031023).md",
+    "Programming Fundamentals/Programming Fundamentals Assignment 1.md",
+    "Programming Fundamentals/lecture notes/lecture 10 (311023).md",
+    "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
+    "Programming Fundamentals/tutorial notes/tutorial 1 (031023).md",
+    "Programming Fundamentals/tutorial notes",
+    "Computational Methods/tutorial notes/tutorial 1 (031023).md",
+    "Programming Fundamentals/lecture notes",
+    "Computational Methods/tutorial notes",
+    "Computational Methods/lecture notes",
     "Computational Methods/Art Gallery Problem.md",
     "Computational Methods/Computational Methods Assignment.md",
-    "Computational Methods/lecture 4 (091023).md",
-    "Computational Methods/lecture 7 (231023).md",
-    "Computational Methods/lecture 6 (161023).md",
-    "Computational Methods/lecture 5 (161023).md",
-    "Programming Fundamentals/Programming Fundamentals Assignment.md",
-    "Programming Fundamentals/lecture 8 (241023).md",
-    "Computational Methods/CPU Diagram.excalidraw.md",
-    "Computational Methods/tutorial 6 (241023).md",
-    "Computational Methods/lecture 8 (231023).md",
-    "Programming Fundamentals/lecture 7 (231023).md",
-    "Computational Methods/tutorial 5 (191023).md",
-    "Programming Fundamentals/lecture 6 (171023).md",
+    "Computational Methods/Complicated Gallery.excalidraw.md",
+    "Computational Methods/Assignment planets diagram.md",
+    "Computational Methods/lecture notes/lecture 10 (301023).md",
+    "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
+    "Programming Fundamentals/lecture notes/lecture 8 (241023).md",
+    "!Complicated Gallery.excalidraw.md",
+    "Computational Methods/lecture notes/lecture 9 (301023).md",
     "housing things.docx",
     "housing things.html",
     "Pasted image 20231017180611.png",
@@ -182,25 +207,9 @@
     "Pasted image 20231017174526.png",
     "Pasted image 20231017173329.png",
     "Pasted image 20231017172304.png",
-    "housing things.md",
-    "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
-    "Programming Fundamentals/lecture 5 (161023).md",
-    "beacon codes.md",
-    "Computational Methods/tutorial 3 (101023).md",
-    "Computational Methods/tutorial 4 (121023).md",
-    "Programming Fundamentals/tutorial 3 (101023).md",
-    "Programming Fundamentals/tutorial 1 (031023).md",
-    "Computational Methods/Greedy strategy.md",
-    "Computational Methods/lecture 3 (091023).md",
-    "Programming Fundamentals/lecture 4 (101023).md",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/brute_force.xlsx",
     "Untitled.canvas",
-    "Excalidraw",
-    "Computational Methods/GDEV40015 CRG.pdf",
-    "Computational Methods/brute_force_script.py",
-    "Computational Methods/brute_force.csv",
-    "Programming Fundamentals",
-    "Computational Methods"
+    "Excalidraw"
   ]
 }
