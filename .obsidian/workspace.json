@@ -11,9 +11,11 @@
             "id": "536a0ad6fb4afc17",
             "type": "leaf",
             "state": {
-              "type": "diagram-edit",
+              "type": "markdown",
               "state": {
-                "file": "Programming Fundamentals/Game Flowchart.drawio"
+                "file": "Computational Methods/tutorial notes/tutorial 7 (261023).md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -79,7 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 235.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -95,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/Game Flowchart.drawio",
+                "file": "Computational Methods/tutorial notes/tutorial 7 (261023).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/Game Flowchart.drawio",
+                "file": "Computational Methods/tutorial notes/tutorial 7 (261023).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -135,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/Game Flowchart.drawio"
+                "file": "Computational Methods/tutorial notes/tutorial 7 (261023).md"
               }
             }
           },
@@ -170,8 +172,12 @@
   },
   "active": "536a0ad6fb4afc17",
   "lastOpenFiles": [
-    "Programming Fundamentals/Console Game Redesign.md",
+    "Computational Methods/tutorial notes/tutorial 6 (241023).md",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/Assignment planets diagram.md",
     "Programming Fundamentals/Game Flowchart.drawio",
+    "Programming Fundamentals/Console Game Redesign.md",
     "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
     "Computational Methods/lecture notes/lecture 1 (021023).md",
     "Computational Methods/lecture notes/lecture 2 (021023).md",
@@ -192,9 +198,7 @@
     "Computational Methods/tutorial notes",
     "Computational Methods/lecture notes",
     "Computational Methods/Art Gallery Problem.md",
-    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/Complicated Gallery.excalidraw.md",
-    "Computational Methods/Assignment planets diagram.md",
     "Computational Methods/lecture notes/lecture 10 (301023).md",
     "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
     "Programming Fundamentals/lecture notes/lecture 8 (241023).md",
@@ -207,7 +211,6 @@
     "Pasted image 20231017174526.png",
     "Pasted image 20231017173329.png",
     "Pasted image 20231017172304.png",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/brute_force.xlsx",
     "Untitled.canvas",
     "Excalidraw"
