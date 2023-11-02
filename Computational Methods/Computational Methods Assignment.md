@@ -594,4 +594,255 @@ it's worth noting that i could have handled referencing planets in this the same
 
 since this algorithm includes the bubble sort (i chose this sort because it has a $O(n)$ space complexity, and is easy to implement for a situation where we need to compare values in one list and use that to swap values in another list), it must have time complexity of at least $O(n^2)$. since we have to find the index of a planet from its string name each iteration, which could require counting all the way through the `n` planets, the worst-case complexity is raised to $O(n^3)$, though this could be improved with the use of proper data structures (i.e. limited by pseudocode). the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that also $O(n^2)$. we can simplify the overall time complexity of approximately $O(n^3 + n^2 + n^2)$ (there are two index lookups in the final loop) down to $O(n^3 + 2n^2)$ or just $O(n^3)$ if we take only the greatest time complexity. using indices to reference planets and a binary search method, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, and also making use of a better sorting algorithm such as quicksort, we could reduce the worst-case time complexity to $O(n\log_2(n))$ .
 
+
+i decided to come back to this exercise during a seminar (and after it), since i wasn't happy with $O(n^3)$ complexity, and the general unclearness of the algorithm. i rewrote the greedy strategy using the same basic method, but with a better algorithm. now planets are stored as **structures**, containing all the information about them and how they connect. meaning the amount of look-ups in lists is significantly reduced.
+
+i found that, surprisingly, when constructing the list of connections one node (i.e. planet) has with other nodes, it's actually better to not bother sorting the list by cargo mass (i.e. to reduce searching later). this is because in the later code not only do we need to find the next lowest cargo mass planet, we need to find one which has not already been visited, which means we end up doing a linear search through the connected planets anyway. we would be choosing between either an $O(n^3)$ sorting pass with an $O(n^2)$ traversal pass, or an $O(n^2)$ preparation pass with an $O(n^2)$ traversal pass, the latter of which is clearly much better. pseudocode and C++ implementation are below.
+
+```
+Let NUM_PLANETS = 5
+Let FUEL_COST = 25
+
+// structure holding data about a planet (i.e. a node)
+Structure planet
+	Let name = ""
+	Let index = 0
+	Let cargo_mass = 0
+	Let links = {}
+End Structure
+
+// starting data about the planets
+Let node_names = { "alpha", "beta", "gamma", "delta", "epsilon" }
+Let cargo_masses = { 20,40,70,10,30 }
+Let adjacency_matrix = { {0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0} }
+
+// initialise the nodes in the graph
+Let planets = {}
+Let i = 0
+While i < NUM_PLANETS
+	Let p = Create planet
+	name Of p = node_names[i]
+	cargo_mass Of p = cargo_masses[i]
+	index Of p = i
+	Append p To planets
+	
+	Increment i
+End While
+
+Let p_minimum = planets[0]
+
+// setup links between nodes
+For p_origin In planets
+
+	// update the lowest cargo mass planet
+	// since we want to start at this planet
+	// and this saves using a second loop
+	If cargo_mass Of p_origin < cargo_mass Of p_minimum
+		p_minimum = p_origin
+	End If
+
+	// add links from this node to all other nodes
+	// but not itself
+	Let i = 0
+	While i < NUM_PLANETS
+		If planets[i] Not p_origin
+			Let distance = adjacency_matrix[i][index Of p_origin]
+			Append {planets[i], distance} To links Of p_origin
+		End If
+		Increment i
+	End While
+End For
+
+// traverse the graph, keeping track of which planets
+// have been visited, and which haven't
+Let visited = {}
+Fill visited With False NUM_PLANETS Times
+
+Let spaceship_mass = 0
+Let fuel_cost = 0
+Let sequence = ""
+
+Let p_current = p_minimum
+Let p_next Be Empty
+
+Loop Forever
+
+	// find the unvisited planet from the current
+	// with the lowest cargo mass, via linear search
+	Let minimum_mass = Infinity
+	Let d_min_mass = -1
+	Let p_min_mass Be Empty
+
+	For l_candidate In links Of p_current
+		Let p_candidate = l_candidate[0]
+		If visited[index Of p_candidate] = False
+			If cargo_mass Of p_candidate < minimum_mass
+				minimum_mass = cargo_mass Of p_candidate
+				p_min_mass = p_candidate
+				d_min_mass = l_candidate[1]
+			End If
+		End If
+	End For
+
+	// if there were no unvisited planets
+	// other than the current one, break from the loop
+	If p_min_mass Is Empty
+		Break Loop
+	End If
+
+	// update the next planet we want to visit
+	// this will be the one with the next lowest cargo mass
+	p_next = p_min_mass
+	d_next = d_min_mass
+
+	// add on the calculate fuel cost for the journey between
+	// the current planet and the next
+	spaceship_mass = spaceship_mass + cargo_mass Of p_current
+	fuel_cost = fuel_cost + spaceship_mass * d_next * FUEL_COST
+
+	// update the sequence string
+	sequence = sequence + name Of p_current + " -> "
+
+	// mark this planet as visited
+	visited[index Of p_current] = true
+
+	// move onto the next planet
+	p_current = p_next
+End Loop
+
+// finalise and output the result
+sequence = sequence + name Of p_current
+
+Output "Found sequence: " + sequence
+Output "Costing: " + fuel_cost
+```
+
+```
+#include <string>
+#include <vector>
+#include <iostream>
+
+#define NUM_PLANETS 5
+#define FUEL_COST 25
+
+using namespace std;
+
+// data about a planet
+struct planet
+{
+	string name;
+	int index;
+	int cargo_mass;
+	vector<pair<planet*, int>> links;
+};
+
+int main()
+{
+	// starting data about planets
+	string node_names[NUM_PLANETS] = { "alpha", "beta", "gamma", "delta", "epsilon" };
+	int cargo_masses[NUM_PLANETS] = { 20,40,70,10,30 };
+	int adjacency_matrix[NUM_PLANETS][NUM_PLANETS] = { {0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0} };
+
+	// create nodes
+	vector<planet*> planets;
+	for (int i = 0; i < NUM_PLANETS; i++)
+	{
+		planet* p = new planet();
+		p->name = node_names[i];
+		p->cargo_mass = cargo_masses[i];
+		p->index = i;
+
+		planets.push_back(p);
+	}
+
+	planet* p_minimum = planets[0];
+
+	// setup links between nodes
+	for (planet* p_origin : planets)
+	{
+		// update lowest cargo planet while we're here
+		// saves having another loop
+		if (p_origin->cargo_mass < p_minimum->cargo_mass)
+		{
+			p_minimum = p_origin;
+		}
+
+		// add links to other nodes
+		// not sorted, since sorting them would
+		// actually take more time (O(n^2) inside an n-loop)
+		for (int i = 0; i < NUM_PLANETS; i++)
+		{
+			if (planets[i] == p_origin) continue;
+
+			p_origin->links.push_back(pair<planet*, int>(planets[i], adjacency_matrix[i][p_origin->index]));
+		}
+	}
+
+	// traverse, keep list of visited
+	bool visited[NUM_PLANETS] = { false };
+
+	int spaceship_mass = 0;
+	int fuel_cost = 0;
+	string sequence = "";
+
+	planet* p_current = p_minimum;
+	planet* p_next = NULL;
+	int d_next = 0;
+
+	while (true)
+	{
+		// find the unvisited planet with the lowest cargo mass
+		int minimum_mass = INT_MAX;
+		int d_min_mass = -1;
+		planet* p_min_mass = NULL;
+		for (pair<planet*, int> l_candidate : p_current->links)
+		{
+			planet* p_candidate = l_candidate.first;
+			if (visited[p_candidate->index]) continue;
+			if (p_candidate->cargo_mass < minimum_mass)
+			{
+				minimum_mass = p_candidate->cargo_mass;
+				p_min_mass = p_candidate;
+				d_min_mass = l_candidate.second;
+			}
+		}
+
+		// if there were no unvisited planets,
+		// other than the current one, break out
+		if (p_min_mass == NULL) break;
+
+		// set the planet we intend to visit
+		// next (the one with the lowest cargo mass)
+		p_next = p_min_mass;
+		d_next = d_min_mass;
+
+		// add on the calculated fuel cost
+		spaceship_mass += p_current->cargo_mass;
+		fuel_cost += spaceship_mass * d_next * FUEL_COST;
+
+		// update the sequence string
+		sequence += p_current->name;
+		sequence += " -> ";
+
+		// mark it as visited
+		visited[p_current->index] = true;
+
+		// move onto the next
+		p_current = p_next;
+	}
+
+	// output the result
+	sequence += p_current->name;
+
+	cout << "Found sequence: " << sequence << endl;
+	cout << "Costing: " << fuel_cost << endl;
+
+	return 0;
+}
+```
+
+the output from the second version of the algorithm is, aside from cosmetic modification, exactly the same. the resulting algorithmic complexity of this solution is $O(n^2)$, due to the two occurrences of traversing lists of length `n`, `n` times over.
+
+the only further optimisation i think could be made would be using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet. this might reduce complexity to $O(n\log_2(n))$ in the best case if sorted with quicksort.
+
 ## task 4
