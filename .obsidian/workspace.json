@@ -11,13 +11,38 @@
             "id": "c7b63fbb218400d0",
             "type": "leaf",
             "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computational Methods/tutorial notes/tutorial 9 (071123).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ed50b72d932e5bdc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Programming Fundamentals/lecture notes/lecture 12 (071123).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c280e2746cde4a9c",
+            "type": "leaf",
+            "state": {
               "type": "diagram-edit",
               "state": {
                 "file": "Programming Fundamentals/Game Flowchart.drawio"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -79,7 +104,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 235.5
+    "width": 217.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -168,19 +193,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c7b63fbb218400d0",
+  "active": "c280e2746cde4a9c",
   "lastOpenFiles": [
-    "Computational Methods/Computational Methods Assignment.md",
+    "Programming Fundamentals/lecture notes/lecture 12 (071123).md",
+    "Programming Fundamentals/Game Flowchart.drawio",
+    "Computational Methods/tutorial notes/tutorial 9 (071123).md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Programming Fundamentals/Programming Fundamentals Assignment 1.md",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/lecture notes/lecture 12 (061123).md",
+    "Programming Fundamentals/Console Game Redesign.md",
+    "Programming Fundamentals/lecture notes/lecture 11 (061123).md",
+    "Computational Methods/lecture notes/lecture 11 (061123).md",
+    "Computational Methods/Greedy strategy.md",
     "Computational Methods/tutorial notes/tutorial 8 (021123).md",
     "Pasted image 20231102122921.png",
-    "Computational Methods/Greedy strategy.md",
     "Computational Methods/tutorial notes/tutorial 7 (261023).md",
     "Computational Methods/tutorial notes/tutorial 6 (241023).md",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/Assignment planets diagram.md",
-    "Programming Fundamentals/Game Flowchart.drawio",
-    "Programming Fundamentals/Console Game Redesign.md",
     "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
     "Computational Methods/lecture notes/lecture 1 (021023).md",
     "Computational Methods/lecture notes/lecture 2 (021023).md",
@@ -193,15 +223,10 @@
     "Programming Fundamentals/lecture notes/lecture 2 (031023).md",
     "Programming Fundamentals/lecture notes/lecture 10 (311023).md",
     "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
-    "Programming Fundamentals/tutorial notes/tutorial 1 (031023).md",
     "Programming Fundamentals/tutorial notes",
-    "Computational Methods/tutorial notes/tutorial 1 (031023).md",
     "Programming Fundamentals/lecture notes",
     "Computational Methods/tutorial notes",
     "Computational Methods/lecture notes",
-    "Computational Methods/Art Gallery Problem.md",
-    "Computational Methods/Complicated Gallery.excalidraw.md",
-    "Computational Methods/lecture notes/lecture 10 (301023).md",
     "housing things.docx",
     "housing things.html",
     "Pasted image 20231017180611.png",
