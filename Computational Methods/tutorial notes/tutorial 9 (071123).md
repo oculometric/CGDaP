@@ -5,3 +5,5 @@
 - only carry forward to the next block the best scenario for each set of planets (i.e.  each permutation)
 - repeat until we've reached a total of 5 planets, and pick the best route that starts at A  
 - repeat all of that again from a different starting point
+- **DYNAMIC PROGRAMMING BUILDS UP SOLUTIONS FROM PREVIOUS ANSWERS**
+
