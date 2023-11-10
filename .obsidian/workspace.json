@@ -50,16 +50,6 @@
                 "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
               }
             }
-          },
-          {
-            "id": "c280e2746cde4a9c",
-            "type": "leaf",
-            "state": {
-              "type": "diagram-edit",
-              "state": {
-                "file": "Programming Fundamentals/Game Flowchart.drawio"
-              }
-            }
           }
         ],
         "currentTab": 1
@@ -215,11 +205,16 @@
   },
   "active": "afa2c0538b5d76fa",
   "lastOpenFiles": [
-    "Computational Methods/tutorial notes/tutorial 9 (071123).md",
-    "Computational Methods/Computational Methods Assignment.md",
-    "Programming Fundamentals/Game Flowchart.drawio",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/GDEV40015 CRG.pdf",
+    "gamma.csv",
+    "epsilon.csv",
+    "delta.csv",
+    "beta.csv",
+    "alpha.csv",
+    "Programming Fundamentals/Game Flowchart.drawio",
+    "Computational Methods/tutorial notes/tutorial 9 (071123).md",
     "Computational Methods/Greedy strategy.md",
     "Programming Fundamentals/lecture notes/lecture 12 (071123).md",
     "Programming Fundamentals/Programming Fundamentals Assignment 1.md",
@@ -246,16 +241,11 @@
     "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
     "Programming Fundamentals/tutorial notes",
     "Programming Fundamentals/lecture notes",
-    "Computational Methods/tutorial notes",
-    "Computational Methods/lecture notes",
-    "housing things.docx",
-    "housing things.html",
     "Pasted image 20231017180611.png",
     "Pasted image 20231017174919.png",
     "Pasted image 20231017174526.png",
     "Pasted image 20231017173329.png",
     "Pasted image 20231017172304.png",
-    "Computational Methods/brute_force.xlsx",
     "Untitled.canvas"
   ]
 }

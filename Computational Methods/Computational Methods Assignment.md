@@ -846,3 +846,314 @@ the output from the second version of the algorithm is, aside from cosmetic modi
 the only further optimisation i think could be made would be using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet. this might reduce complexity to $O(n\log_2(n))$ in the best case if sorted with quicksort.
 
 ## task 4
+
+![[alpha.csv]]
+
+![[beta.csv]]
+
+![[delta.csv]]
+
+![[epsilon.csv]]
+
+![[gamma.csv]]
+
+i wrote a short C++ program to produce these tables, in other words i not only followed the dynamic programming approach but also implemented the algorithm.
+my code primarily makes use of a **tree structure** which represents the data which is eventually placed in the table, but which is **more compact and easier to traverse**. i made use of a `std::queue` to keep track of the next block of possible sequences to test, and a `std::map` to keep track of the cheapest version of similar routes (used for carrying forward only the better routes). my tree structure makes use of **pointers** to other nodes allocated on the heap. code is below:
+```
+#include <map>
+#include <string>
+#include <queue>
+#include <iostream>
+#include <fstream>
+
+#define NODE_ZERO 65
+
+using namespace std;
+
+// only supports up to 255 nodes
+#define NUM_NODES 5
+
+const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
+												{ 10,  0, 12, 25, 14 },
+												{ 15, 12,  0, 16, 28 },
+												{ 12, 25, 16,  0, 17 },
+												{ 20, 14, 28, 17,  0 }
+};
+
+const int weight[NUM_NODES] = { 20, 40, 70, 10, 30 };
+const string names[NUM_NODES] = { "alpha", "beta", "gamma", "delta", "epsilon" };
+
+int weight_dist_precalc[NUM_NODES][NUM_NODES][NUM_NODES];
+
+void precalc_weight_dist()
+{
+	for (int i = 0; i < NUM_NODES; i++)
+	{
+		for (int j = 0; j < NUM_NODES; j++)
+		{
+			if (j == i) continue;
+			for (int k = 0; k < 5; k++)
+			{
+				weight_dist_precalc[i][j][k] = adjacency[i][j] * weight[k];
+			}
+		}
+	}
+}
+
+int calculate_cost(string sequence)
+{
+	int total_weight = 0;
+	int total_cost = 0;
+	for (int i = 0; i < sequence.length() - 1; i++)
+	{
+		unsigned char last = sequence[i];
+		unsigned char next = sequence[i + 1];
+		total_weight += weight[last-NODE_ZERO];
+		total_cost += adjacency[last-NODE_ZERO][next-NODE_ZERO] * total_weight;
+	}
+	return total_cost;
+}
+
+int extend_cost(string sequence, unsigned char next)
+{
+	int cost_extension = 0;
+	unsigned char last = sequence[sequence.length() - 1];
+	for (unsigned char c : sequence)
+	{
+		cost_extension += weight_dist_precalc[last - NODE_ZERO][next - NODE_ZERO][c - NODE_ZERO];
+	}
+	return cost_extension;
+}
+
+bool compare_planets_sequence(string seq_0, string seq_1)
+{
+	return false;
+}
+
+struct cost_tree_node
+{
+	int cumulative_cost = 0;
+	int cumulative_weight = 0;
+	string planets_sequence = "";
+	unsigned char last_planet = 0;
+	cost_tree_node** children = NULL;
+	cost_tree_node* parent = NULL;
+};
+
+string sort_sequence(string seq)
+{
+	if (seq.length() <= 3) return seq;
+
+	string start = seq.substr(0, 1);
+	string end = seq.substr(seq.length() - 1, 1);
+	string to_sort = seq.substr(1, seq.length() - 2);
+
+	bool changed = true;
+	while (changed)
+	{
+		changed = false;
+		for (int i = 0; i < to_sort.length() - 1; i++)
+		{
+			if (to_sort[i] > to_sort[i + 1])
+			{
+				changed = true;
+				unsigned char tmp = to_sort[i];
+				to_sort[i] = to_sort[i + 1];
+				to_sort[i + 1] = tmp;
+			}
+		}
+	}
+	return start + to_sort + end;
+}
+
+void write_out_table(cost_tree_node* root, int nodes_total)
+{
+	string output = "prefix,";
+	for (int i = NODE_ZERO; i < NODE_ZERO + NUM_NODES; i++)
+	{
+		output += names[i - NODE_ZERO];
+		output += ",";
+	}
+	output += "\n";
+
+	queue<cost_tree_node*> row_queue;
+	row_queue.push(root);
+
+	int block = 0;
+	while (!row_queue.empty())
+	{
+		cost_tree_node* row_starter = row_queue.front();
+		row_queue.pop();
+		
+		if (row_starter->children == NULL) continue;
+
+		if (row_starter->planets_sequence.length() - 1 > block)
+		{
+			for (int i = 0; i < NUM_NODES+1; i++)
+			{
+				output += " ,";
+			}
+			output += "\n";
+			block = row_starter->planets_sequence.length() - 1;
+		}
+
+		for (unsigned char c : row_starter->planets_sequence)
+			output += toupper(names[c - NODE_ZERO][0]);
+		output += ",";
+
+		for (int i = 0; i < NUM_NODES; i++)
+		{
+			if (row_starter->children[i] == NULL)
+			{ 
+				output += "-,";
+				continue;
+			}
+			output += to_string(row_starter->children[i]->cumulative_cost);
+			output += ",";
+			row_queue.push(row_starter->children[i]);
+		}
+		output += "\n";
+	}
+
+	ofstream file;
+	file.open(names[root->planets_sequence[0]-NODE_ZERO] + ".csv");
+	file << output;
+	file.close();
+}
+
+cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
+{
+	string root_sequence; root_sequence.push_back(start_node_index);
+	cost_tree_node* root = new cost_tree_node
+	{
+		0,
+		weight[start_node_index-NODE_ZERO],
+		root_sequence,
+		start_node_index,
+		NULL,
+		NULL
+	};
+	
+	queue<cost_tree_node*> this_block_nodes; // nodes that need to have their children populated
+	map<string, cost_tree_node*> next_block_routes; // new child nodes which are the best route starting at string[0] and ending at string[-1]
+
+	int total_nodes = 0;
+
+	this_block_nodes.push(root);
+
+	for (int block = 0; block < NUM_NODES - 1; block++)
+	{
+		// current block, i.e. a level in the tree
+		while (!this_block_nodes.empty())
+		{
+			total_nodes++;
+			// populate the children of a node
+			cost_tree_node* parent = this_block_nodes.front();
+			this_block_nodes.pop();
+
+			parent->children = new cost_tree_node*[NUM_NODES];
+
+			for (unsigned char c = NODE_ZERO; c < NUM_NODES + NODE_ZERO; c++)
+			{
+				if (parent->planets_sequence.find(c) != string::npos)
+				{
+					parent->children[c - NODE_ZERO] = NULL;
+				}
+				else
+				{
+					string node_sequence = parent->planets_sequence;
+					node_sequence += c;
+					cost_tree_node* node = new cost_tree_node
+					{
+						parent->cumulative_cost + (parent->cumulative_weight * adjacency[parent->last_planet - NODE_ZERO][c - NODE_ZERO]),
+						parent->cumulative_weight + weight[c - NODE_ZERO],
+						node_sequence,
+						c,
+						NULL,
+						parent
+					};
+					parent->children[c - NODE_ZERO] = node;
+					string sorted_seq = sort_sequence(node->planets_sequence);
+					if (block >= 2)
+					{
+						auto current_best = next_block_routes.find(sorted_seq);
+						if (current_best == next_block_routes.end()) next_block_routes.insert({ sorted_seq, node });
+						else if (node->cumulative_cost < (*current_best).second->cumulative_cost) next_block_routes[sorted_seq] = node;
+					}
+					else
+					{
+						next_block_routes.insert({ sorted_seq, node });
+					}
+				}
+			}
+
+		}
+		
+		// queue up the best routes from the last block for the next one
+		for (pair<string, cost_tree_node*> pr : next_block_routes)
+		{
+			this_block_nodes.push(pr.second);
+		}
+
+		next_block_routes.clear();
+	}
+
+	write_out_table(root, total_nodes);
+
+	cost_tree_node* best_route_through_table = this_block_nodes.front();
+	while (!this_block_nodes.empty())
+	{
+		cost_tree_node* front = this_block_nodes.front();
+		this_block_nodes.pop();
+		if (front->cumulative_cost < best_route_through_table->cumulative_cost)
+		{
+			best_route_through_table = front;
+		}
+	}
+
+	return best_route_through_table;
+}
+
+int main()
+{
+	precalc_weight_dist();
+
+	for (int i = NODE_ZERO; i < NUM_NODES + NODE_ZERO; i++)
+	{
+		cost_tree_node* res =  build_dynamic_cost_tree(i);
+		cout << res->cumulative_cost * 25 << endl;
+		for (unsigned char c : res->planets_sequence) cout << names[c - NODE_ZERO] << " ";
+		cout << endl << endl;
+	}
+}
+```
+
+as can be seen from the console output of the code, by looking at the lowest cost table cell in the last block of each table (i'm defining a block as a set of rows which have the same number of previously visited planets shown in the far left column), we can find the cheapest route starting at the origin node of the table:
+- starting at alpha: 69750 (alpha -> delta -> epsilon -> beta -> gamma)
+- starting at beta: 105250 (beta -> epsilon -> delta -> alpha -> gamma)
+- starting at gamma: 12600 (gamma -> delta -> alpha -> beta -> epsilon)
+- starting at delta: 69000 (delta -> alpha -> epsilon -> beta -> gamma)
+- starting at epsilon: 69750 (epsilon -> delta -> alpha -> beta -> gamma)
+and then the best route overall can be found by taking the cheapest of these optimal routes, DAEBG for 69000. this is the same optimal route found by brute force, as we would expect (in fact, we can verify that the optimal route costs starting from other planets are also the best routes found starting from those planets by the brute force method).
+
+we can see that this dynamic approach is guaranteed to find the optimal route, because we only prune routes which visit the **same planets** (and thus have the same weight) but with a **worse cost than other routes covering the same planets**.
+
+in terms of complexity, it's evident to see that this is faster than the brute force approach, for two reasons, which correspond to the two main techniques the dynamic approach uses:
+1. memoisation - each time we want to calculate the cost of traversing from one node to another, we don't recalculate the entire cost, just the progressive cost, and previous calculations are saved and reused (reduces time cost to calculate multiple branching routes)
+2. pruning - by pruning provably inferior routes at early stages, we massively reduce the search space. in fact, we reduce our search space all the way down to just 60 full routes covered, from 120 before. as tested below with different numbers of nodes:
+
+| nodes | routes checked to completion | total possible routes |
+| ----- | ---------------------------- | --------------------- |
+| 5     | 60                           | 120                   |
+| 6     | 120                          | 720                   |
+| 7     | 210                          | 5040                  |
+| 8     | 336                          | 40320                 |
+| 9     | 504                          | 362880                |
+
+with this table we can see the huge benefit to pruning compared with the brute force approach. we can also see that the pattern formed is that the number of routes checked to completion is $O(n(n-1)(n-2))$. in fact this makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
+
+since we do not need to iteratively calculate the cost of routes at the end, it's done at each step progressively instead, we only need to include the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD') uses a simple $O(n^2)$ bubble sort, we can say that this implementation has an overall time complexity of $O(n^3(n-1)(n-2))$, or on the order of $O(n^5)$. generally however this algorithm can be considered $O(n(n-1)(n-2))$ as above.
+
+## task 5
+
+![[Art Gallery Problem]]
