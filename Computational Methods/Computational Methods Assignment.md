@@ -925,11 +925,6 @@ int extend_cost(string sequence, unsigned char next)
 	return cost_extension;
 }
 
-bool compare_planets_sequence(string seq_0, string seq_1)
-{
-	return false;
-}
-
 struct cost_tree_node
 {
 	int cumulative_cost = 0;
@@ -944,15 +939,13 @@ string sort_sequence(string seq)
 {
 	if (seq.length() <= 3) return seq;
 
-	string start = seq.substr(0, 1);
-	string end = seq.substr(seq.length() - 1, 1);
-	string to_sort = seq.substr(1, seq.length() - 2);
+	string to_sort = seq;
 
 	bool changed = true;
 	while (changed)
 	{
 		changed = false;
-		for (int i = 0; i < to_sort.length() - 1; i++)
+		for (int i = 1; i < to_sort.length() - 2; i++)
 		{
 			if (to_sort[i] > to_sort[i + 1])
 			{
@@ -963,7 +956,7 @@ string sort_sequence(string seq)
 			}
 		}
 	}
-	return start + to_sort + end;
+	return to_sort;
 }
 
 void write_out_table(cost_tree_node* root, int nodes_total)
