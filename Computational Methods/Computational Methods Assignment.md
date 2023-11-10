@@ -883,48 +883,6 @@ const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
 const int weight[NUM_NODES] = { 20, 40, 70, 10, 30 };
 const string names[NUM_NODES] = { "alpha", "beta", "gamma", "delta", "epsilon" };
 
-int weight_dist_precalc[NUM_NODES][NUM_NODES][NUM_NODES];
-
-void precalc_weight_dist()
-{
-	for (int i = 0; i < NUM_NODES; i++)
-	{
-		for (int j = 0; j < NUM_NODES; j++)
-		{
-			if (j == i) continue;
-			for (int k = 0; k < 5; k++)
-			{
-				weight_dist_precalc[i][j][k] = adjacency[i][j] * weight[k];
-			}
-		}
-	}
-}
-
-int calculate_cost(string sequence)
-{
-	int total_weight = 0;
-	int total_cost = 0;
-	for (int i = 0; i < sequence.length() - 1; i++)
-	{
-		unsigned char last = sequence[i];
-		unsigned char next = sequence[i + 1];
-		total_weight += weight[last-NODE_ZERO];
-		total_cost += adjacency[last-NODE_ZERO][next-NODE_ZERO] * total_weight;
-	}
-	return total_cost;
-}
-
-int extend_cost(string sequence, unsigned char next)
-{
-	int cost_extension = 0;
-	unsigned char last = sequence[sequence.length() - 1];
-	for (unsigned char c : sequence)
-	{
-		cost_extension += weight_dist_precalc[last - NODE_ZERO][next - NODE_ZERO][c - NODE_ZERO];
-	}
-	return cost_extension;
-}
-
 struct cost_tree_node
 {
 	int cumulative_cost = 0;
@@ -977,12 +935,12 @@ void write_out_table(cost_tree_node* root, int nodes_total)
 	{
 		cost_tree_node* row_starter = row_queue.front();
 		row_queue.pop();
-		
+
 		if (row_starter->children == NULL) continue;
 
 		if (row_starter->planets_sequence.length() - 1 > block)
 		{
-			for (int i = 0; i < NUM_NODES+1; i++)
+			for (int i = 0; i < NUM_NODES + 1; i++)
 			{
 				output += " ,";
 			}
@@ -997,7 +955,7 @@ void write_out_table(cost_tree_node* root, int nodes_total)
 		for (int i = 0; i < NUM_NODES; i++)
 		{
 			if (row_starter->children[i] == NULL)
-			{ 
+			{
 				output += "-,";
 				continue;
 			}
@@ -1009,7 +967,7 @@ void write_out_table(cost_tree_node* root, int nodes_total)
 	}
 
 	ofstream file;
-	file.open(names[root->planets_sequence[0]-NODE_ZERO] + ".csv");
+	file.open(names[root->planets_sequence[0] - NODE_ZERO] + ".csv");
 	file << output;
 	file.close();
 }
@@ -1020,13 +978,13 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 	cost_tree_node* root = new cost_tree_node
 	{
 		0,
-		weight[start_node_index-NODE_ZERO],
+		weight[start_node_index - NODE_ZERO],
 		root_sequence,
 		start_node_index,
 		NULL,
 		NULL
 	};
-	
+
 	queue<cost_tree_node*> this_block_nodes; // nodes that need to have their children populated
 	map<string, cost_tree_node*> next_block_routes; // new child nodes which are the best route starting at string[0] and ending at string[-1]
 
@@ -1044,7 +1002,7 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 			cost_tree_node* parent = this_block_nodes.front();
 			this_block_nodes.pop();
 
-			parent->children = new cost_tree_node*[NUM_NODES];
+			parent->children = new cost_tree_node * [NUM_NODES];
 
 			for (unsigned char c = NODE_ZERO; c < NUM_NODES + NODE_ZERO; c++)
 			{
@@ -1081,7 +1039,7 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 			}
 
 		}
-		
+
 		// queue up the best routes from the last block for the next one
 		for (pair<string, cost_tree_node*> pr : next_block_routes)
 		{
@@ -1109,11 +1067,9 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 
 int main()
 {
-	precalc_weight_dist();
-
 	for (int i = NODE_ZERO; i < NUM_NODES + NODE_ZERO; i++)
 	{
-		cost_tree_node* res =  build_dynamic_cost_tree(i);
+		cost_tree_node* res = build_dynamic_cost_tree(i);
 		cout << res->cumulative_cost * 25 << endl;
 		for (unsigned char c : res->planets_sequence) cout << names[c - NODE_ZERO] << " ";
 		cout << endl << endl;
@@ -1135,17 +1091,19 @@ in terms of complexity, it's evident to see that this is faster than the brute f
 1. memoisation - each time we want to calculate the cost of traversing from one node to another, we don't recalculate the entire cost, just the progressive cost, and previous calculations are saved and reused (reduces time cost to calculate multiple branching routes)
 2. pruning - by pruning provably inferior routes at early stages, we massively reduce the search space. in fact, we reduce our search space all the way down to just 60 full routes covered, from 120 before. as tested below with different numbers of nodes:
 
-| nodes | routes checked to completion | total possible routes |
-| ----- | ---------------------------- | --------------------- |
-| 5     | 60                           | 120                   |
-| 6     | 120                          | 720                   |
-| 7     | 210                          | 5040                  |
-| 8     | 336                          | 40320                 |
-| 9     | 504                          | 362880                |
+| nodes | routes checked to completion | nodes evaluated | total possible routes | nodes evaluated in brute force (equivalent) |
+| ----- | ---------------------------- | --------------- | --------------------- | ------------------------------------------- |
+| 5     | 60                           | 145             | 120                   | 600                                         |
+| 6     | 120                          | 456             | 720                   | 4320                                        |
+| 7     | 210                          | 1309            | 5040                  | 35280                                       |
+| 8     | 336                          | 3536            | 40320                 | 322560                                      |
+| 9     | 504                          | 9153            | 362880                | 3265920                                     |
 
-with this table we can see the huge benefit to pruning compared with the brute force approach. we can also see that the pattern formed is that the number of routes checked to completion is $O(n(n-1)(n-2))$. in fact this makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
+with this table we can see the huge benefit to pruning compared with the brute force approach. we can also see that the pattern formed is that the number of routes checked to completion is $n(n-1)(n-2)$. in fact this makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
 
-since we do not need to iteratively calculate the cost of routes at the end, it's done at each step progressively instead, we only need to include the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD') uses a simple $O(n^2)$ bubble sort, we can say that this implementation has an overall time complexity of $O(n^3(n-1)(n-2))$, or on the order of $O(n^5)$. generally however this algorithm can be considered $O(n(n-1)(n-2))$ as above.
+we can also see, with some calculation, that the number of actual evaluations (i.e. calculating the cost of a node, and deciding if we should prune it or carry it forward) is equal to $\sum_{r=1}^{n-1} \frac{n!}{(r-2)!(n-r)!}$, this represents the total number of rows in the table plus the number of filled cells in the last block. the equivalent in brute-force is just the number of routes multiplied by the number of nodes to represent the time taken to calculate the cost of a particular route ($n!$ routes, each of length $n$). again we can see that our algorithm is much, much better than brute force in terms of complexity
+
+since we do not need to iteratively calculate the cost of routes at the end, it's done at each step progressively instead, we only need to include the complexity of the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD'). my implementation uses a simple $O(n^2)$ bubble sort, so we can say that this implementation has an overall time complexity of $O(n^3\times\sum_{r=1}^{n-1} \frac{n!}{(r-2)!(n-r)!})$, or on the order of $O(n^5)$. generally however this algorithm can be considered $O(\sum_{r=1}^{n-1} \frac{n!}{(r-2)!(n-r)!})$ as described above.
 
 ## task 5
 

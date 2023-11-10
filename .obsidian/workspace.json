@@ -30,26 +30,6 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "bdd1aaa190629391",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Computational Methods/GDEV40015 CRG.pdf"
-              }
-            }
-          },
-          {
-            "id": "53dc02317de73522",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
-              }
-            }
           }
         ],
         "currentTab": 1
@@ -205,9 +185,9 @@
   },
   "active": "afa2c0538b5d76fa",
   "lastOpenFiles": [
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
-    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/GDEV40015 CRG.pdf",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "gamma.csv",
     "epsilon.csv",
     "delta.csv",
