@@ -299,7 +299,7 @@ brute_force.csv:
 4,3,2,0,1,102500
 4,3,2,1,0,99250
 ```
-
+![[brute_force.xlsx]]
 cheapest route:
 3 0 4 1 2 = Delta -> Alpha -> Epsilon -> Beta -> Gamma
 Costs 69000 intergalactic currency
@@ -857,7 +857,8 @@ the only further optimisation i think could be made would be using a system of s
 
 ![[gamma.csv]]
 
-i wrote a short C++ program to produce these tables, in other words i not only followed the dynamic programming approach but also implemented the algorithm.
+i wrote a short C++ program to produce these tables, in other words i not only followed the dynamic programming approach but also implemented the algorithm. the raw exported CSV files are attached above, and then the assembled and formatted Excel spreadsheet is below:
+![[dynamic_programming.xlsx]]
 my code primarily makes use of a **tree structure** which represents the data which is eventually placed in the table, but which is **more compact and easier to traverse**. i made use of a `std::queue` to keep track of the next block of possible sequences to test, and a `std::map` to keep track of the cheapest version of similar routes (used for carrying forward only the better routes). my tree structure makes use of **pointers** to other nodes allocated on the heap. code is below:
 ```
 #include <map>
@@ -866,13 +867,15 @@ my code primarily makes use of a **tree structure** which represents the data wh
 #include <iostream>
 #include <fstream>
 
+// allows for much easier debugging
 #define NODE_ZERO 65
 
 using namespace std;
 
-// only supports up to 255 nodes
+// only supports up to 255 nodes, since each node reference is only a single byte/char
 #define NUM_NODES 5
 
+// data describing the network
 const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
 												{ 10,  0, 12, 25, 14 },
 												{ 15, 12,  0, 16, 28 },
@@ -883,6 +886,7 @@ const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
 const int weight[NUM_NODES] = { 20, 40, 70, 10, 30 };
 const string names[NUM_NODES] = { "alpha", "beta", "gamma", "delta", "epsilon" };
 
+// struct containing information about a node in the tree
 struct cost_tree_node
 {
 	int cumulative_cost = 0;
@@ -893,6 +897,7 @@ struct cost_tree_node
 	cost_tree_node* parent = NULL;
 };
 
+// sort a string sequence alphabetically, but excluding the first and last characters
 string sort_sequence(string seq)
 {
 	if (seq.length() <= 3) return seq;
@@ -917,7 +922,8 @@ string sort_sequence(string seq)
 	return to_sort;
 }
 
-void write_out_table(cost_tree_node* root, int nodes_total)
+// output the cost tree as a table to a file
+void write_out_table(cost_tree_node* root)
 {
 	string output = "prefix,";
 	for (int i = NODE_ZERO; i < NODE_ZERO + NUM_NODES; i++)
@@ -972,8 +978,10 @@ void write_out_table(cost_tree_node* root, int nodes_total)
 	file.close();
 }
 
+// build the cost tree, this is the actual dynamic programming bit
 cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 {
+	// make the specified starting node be the root of the tree
 	string root_sequence; root_sequence.push_back(start_node_index);
 	cost_tree_node* root = new cost_tree_node
 	{
@@ -985,33 +993,39 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 		NULL
 	};
 
-	queue<cost_tree_node*> this_block_nodes; // nodes that need to have their children populated
-	map<string, cost_tree_node*> next_block_routes; // new child nodes which are the best route starting at string[0] and ending at string[-1]
+	// nodes that need to have their children populated in this block
+	queue<cost_tree_node*> this_block_nodes;
 
-	int total_nodes = 0;
+	// new child nodes which are the best route starting at string[0] and ending at string[-1]
+	// i.e. these are the best (cheapest) permutations of a sequence of planets
+	map<string, cost_tree_node*> next_block_routes;
 
 	this_block_nodes.push(root);
 
+	// repeat until we reach a block containing cells representing entire routes through the network
 	for (int block = 0; block < NUM_NODES - 1; block++)
 	{
-		// current block, i.e. a level in the tree
+		// populate all the rows in the current block
 		while (!this_block_nodes.empty())
 		{
-			total_nodes++;
 			// populate the children of a node
+			// the parent represents the row label on the left side of a table
 			cost_tree_node* parent = this_block_nodes.front();
 			this_block_nodes.pop();
 
 			parent->children = new cost_tree_node * [NUM_NODES];
 
+			// calculate the costs of each possible child node (table cell) from the current parent (table row)
 			for (unsigned char c = NODE_ZERO; c < NUM_NODES + NODE_ZERO; c++)
 			{
 				if (parent->planets_sequence.find(c) != string::npos)
 				{
+					// discard if the sequence has duplicate planets
 					parent->children[c - NODE_ZERO] = NULL;
 				}
 				else
 				{
+					// create a new child node (table cell) and calculate its cumulative weight and cost
 					string node_sequence = parent->planets_sequence;
 					node_sequence += c;
 					cost_tree_node* node = new cost_tree_node
@@ -1027,12 +1041,19 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 					string sorted_seq = sort_sequence(node->planets_sequence);
 					if (block >= 2)
 					{
+						// check to see if this node represents the cheapest way to travel between
+						// its set of planets, with the same start and end points
 						auto current_best = next_block_routes.find(sorted_seq);
+						// if there are no other routes like this, it must be the best
 						if (current_best == next_block_routes.end()) next_block_routes.insert({ sorted_seq, node });
+						// if there are other routes and this one is the cheapest, update it as the cheapest
+						// so that it gets computed in the next block
 						else if (node->cumulative_cost < (*current_best).second->cumulative_cost) next_block_routes[sorted_seq] = node;
+						// otherwise discard it
 					}
 					else
 					{
+						// add the node to the map so that we will compute its children in the next block
 						next_block_routes.insert({ sorted_seq, node });
 					}
 				}
@@ -1040,17 +1061,21 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 
 		}
 
-		// queue up the best routes from the last block for the next one
+		// queue up the best routes (table cells) from the last block for evaluation in the next one
+		// where they now become the table rows
 		for (pair<string, cost_tree_node*> pr : next_block_routes)
 		{
 			this_block_nodes.push(pr.second);
 		}
 
+		// clear and start again
 		next_block_routes.clear();
 	}
 
-	write_out_table(root, total_nodes);
+	// write the node tree out as a table to a file
+	write_out_table(root);
 
+	// finally iterate over the list of best routes (table cells) in the last block and find the cheapest one
 	cost_tree_node* best_route_through_table = this_block_nodes.front();
 	while (!this_block_nodes.empty())
 	{
@@ -1062,6 +1087,7 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 		}
 	}
 
+	// return the node describing the best (cheapest) way of traversing the graph, starting at the specified starting point
 	return best_route_through_table;
 }
 
@@ -1085,7 +1111,7 @@ as can be seen from the console output of the code, by looking at the lowest cos
 - starting at epsilon: 69750 (epsilon -> delta -> alpha -> beta -> gamma)
 and then the best route overall can be found by taking the cheapest of these optimal routes, DAEBG for 69000. this is the same optimal route found by brute force, as we would expect (in fact, we can verify that the optimal route costs starting from other planets are also the best routes found starting from those planets by the brute force method).
 
-we can see that this dynamic approach is guaranteed to find the optimal route, because we only prune routes which visit the **same planets** (and thus have the same weight) but with a **worse cost than other routes covering the same planets**.
+we can see that this dynamic approach is guaranteed to find the optimal route, because we only prune routes which visit the **same planets** (and thus have the same weight), and **end at the same planet** (i.e. have the same options/edge costs for future traversal steps) but with a **worse cost than other routes covering the same planets**.
 
 in terms of complexity, it's evident to see that this is faster than the brute force approach, for two reasons, which correspond to the two main techniques the dynamic approach uses:
 1. memoisation - each time we want to calculate the cost of traversing from one node to another, we don't recalculate the entire cost, just the progressive cost, and previous calculations are saved and reused (reduces time cost to calculate multiple branching routes)
@@ -1093,18 +1119,17 @@ in terms of complexity, it's evident to see that this is faster than the brute f
 
 | nodes | routes checked to completion | nodes evaluated | total possible routes | nodes evaluated in brute force (equivalent) |
 | ----- | ---------------------------- | --------------- | --------------------- | ------------------------------------------- |
-| 5     | 60                           | 145             | 120                   | 600                                         |
-| 6     | 120                          | 456             | 720                   | 4320                                        |
-| 7     | 210                          | 1309            | 5040                  | 35280                                       |
-| 8     | 336                          | 3536            | 40320                 | 322560                                      |
-| 9     | 504                          | 9153            | 362880                | 3265920                                     |
+| 5     | 60                           | 260             | 120                   | 600                                         |
+| 6     | 120                          | 990             | 720                   | 4320                                        |
+| 7     | 210                          | 3402            | 5040                  | 35280                                       |
+| 8     | 336                          | 10808           | 40320                 | 322560                                      |
+| 9     | 504                          | 32328           | 362880                | 3265920                                     |
 
-with this table we can see the huge benefit to pruning compared with the brute force approach. we can also see that the pattern formed is that the number of routes checked to completion is $n(n-1)(n-2)$. in fact this makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
+with this table we can see the huge benefit to pruning compared with the brute force approach. the pattern formed is that the number of routes checked to completion is $n(n-1)(n-2)$ when $n=5$. this makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, then thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
 
-we can also see, with some calculation, that the number of actual evaluations (i.e. calculating the cost of a node, and deciding if we should prune it or carry it forward) is equal to $\sum_{r=1}^{n-1} \frac{n!}{(r-2)!(n-r)!}$, this represents the total number of rows in the table plus the number of filled cells in the last block. the equivalent in brute-force is just the number of routes multiplied by the number of nodes to represent the time taken to calculate the cost of a particular route ($n!$ routes, each of length $n$). again we can see that our algorithm is much, much better than brute force in terms of complexity
+we can also see, with some calculation, that the number of actual evaluations (i.e. calculating the cost of a node, and deciding if we should prune it or carry it forward) is equal to $\sum_{r=0}^{r=n-2} \frac{n!}{(n-(r+2))!|r-1|!}$; this represents the total number of rows in the table multiplied by the number of filled cells in each row, done block by block (where $r$ is the index of the block). this can be simplified to $n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!}$, and our pruning becomes even clearer, as we're multiplying the $n!$ total number of routes by summed fractions, where each fraction is representing the 1 divided by the ratio of nodes we can prune at each step in the table. the equivalent in brute-force is just the number of routes multiplied by the number of nodes to represent the time taken to calculate the cost of a particular route ($n!$ routes, each of length $n$), so $n!\times n$. again we can see that our algorithm is much, much better than brute force in terms of complexity.
 
-since we do not need to iteratively calculate the cost of routes at the end, it's done at each step progressively instead, we only need to include the complexity of the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD'). my implementation uses a simple $O(n^2)$ bubble sort, so we can say that this implementation has an overall time complexity of $O(n^3\times\sum_{r=1}^{n-1} \frac{n!}{(r-2)!(n-r)!})$, or on the order of $O(n^5)$. generally however this algorithm can be considered $O(\sum_{r=1}^{n-1} \frac{n!}{(r-2)!(n-r)!})$ as described above.
-
+since we do not need to iteratively calculate the cost of routes at the end, it's done at each step progressively instead, we only need to include the complexity of the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD'). my implementation uses a simple $O(n^2)$ bubble sort, so we can say that this implementation has an overall time complexity of $O(n^2\times n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!})$, which is hard to simplify further. the algorithm could be improved with the use of a better method for detecting permutated sequences of planets (ABGD vs AGBD).
 ## task 5
 
 ![[Art Gallery Problem]]

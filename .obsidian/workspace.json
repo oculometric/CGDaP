@@ -13,26 +13,23 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computational Methods/tutorial notes/tutorial 9 (071123).md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "afa2c0538b5d76fa",
+            "id": "df6176c19efccded",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
-                "mode": "source",
-                "source": false
+                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -94,7 +91,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 217.5
+    "width": 231.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -183,18 +180,20 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "afa2c0538b5d76fa",
+  "active": "c7b63fbb218400d0",
   "lastOpenFiles": [
-    "Computational Methods/GDEV40015 CRG.pdf",
-    "Computational Methods/Computational Methods Assignment.md",
     "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/Computational Methods Assignment.md",
+    "dynamic_programming.xlsx",
+    "brute_force.xlsx",
+    "Computational Methods/tutorial notes/tutorial 9 (071123).md",
+    "Computational Methods/GDEV40015 CRG.pdf",
     "gamma.csv",
     "epsilon.csv",
     "delta.csv",
     "beta.csv",
     "alpha.csv",
     "Programming Fundamentals/Game Flowchart.drawio",
-    "Computational Methods/tutorial notes/tutorial 9 (071123).md",
     "Computational Methods/Greedy strategy.md",
     "Programming Fundamentals/lecture notes/lecture 12 (071123).md",
     "Programming Fundamentals/Programming Fundamentals Assignment 1.md",
@@ -219,8 +218,6 @@
     "Programming Fundamentals/lecture notes/lecture 2 (031023).md",
     "Programming Fundamentals/lecture notes/lecture 10 (311023).md",
     "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
-    "Programming Fundamentals/tutorial notes",
-    "Programming Fundamentals/lecture notes",
     "Pasted image 20231017180611.png",
     "Pasted image 20231017174919.png",
     "Pasted image 20231017174526.png",
