@@ -4,29 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "0d1066b704c9845a",
+        "id": "13722f3a3a86439e",
         "type": "tabs",
         "children": [
           {
-            "id": "c7b63fbb218400d0",
+            "id": "c0e37e2618ab422f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "df6176c19efccded",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -107,7 +93,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +109,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,9 +130,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md"
-              }
+              "state": {}
             }
           },
           {
@@ -180,10 +162,15 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c7b63fbb218400d0",
+  "active": "c0e37e2618ab422f",
   "lastOpenFiles": [
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/Art Gallery Problem.md",
+    "Computational Methods/lecture notes/lecture 14 (131123).md",
+    "Programming Fundamentals/lecture notes/lecture 13 (131123).md",
+    "Computational Methods/lecture notes/lecture 13 (131123).md",
     "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/Complicated Gallery.excalidraw.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "dynamic_programming.xlsx",
     "brute_force.xlsx",
     "Computational Methods/tutorial notes/tutorial 9 (071123).md",
@@ -214,10 +201,6 @@
     "Programming Fundamentals/lecture notes/lecture 5 (161023).md",
     "Programming Fundamentals/lecture notes/lecture 4 (101023).md",
     "Programming Fundamentals/lecture notes/lecture 3 (091023).md",
-    "Programming Fundamentals/lecture notes/lecture 1 (021023).md",
-    "Programming Fundamentals/lecture notes/lecture 2 (031023).md",
-    "Programming Fundamentals/lecture notes/lecture 10 (311023).md",
-    "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
     "Pasted image 20231017180611.png",
     "Pasted image 20231017174919.png",
     "Pasted image 20231017174526.png",
