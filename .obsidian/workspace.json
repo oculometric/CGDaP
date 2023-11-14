@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "13722f3a3a86439e",
+        "id": "b163e0b0afa01744",
         "type": "tabs",
         "children": [
           {
-            "id": "c0e37e2618ab422f",
+            "id": "7e6c0eda35a20cdb",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Computational Methods/Computational Methods Assignment.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -77,7 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 231.5
+    "width": 435.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -93,6 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,6 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +136,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Computational Methods/Computational Methods Assignment.md"
+              }
             }
           },
           {
@@ -162,15 +170,27 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c0e37e2618ab422f",
+  "active": "7e6c0eda35a20cdb",
   "lastOpenFiles": [
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/Computational Methods Assignment.pdf",
+    "temp.md",
+    "Computational Methods/diagrams/Pasted image 20231102122921.png",
+    "Pasted image 20231017180611.png",
+    "Pasted image 20231017174919.png",
+    "Pasted image 20231017174526.png",
+    "Pasted image 20231017173329.png",
+    "Pasted image 20231017172304.png",
     "Computational Methods/Art Gallery Problem.md",
+    "Computational Methods/diagrams/Assignment planets diagram.md",
+    "Computational Methods/diagrams/Greedy strategy.md",
+    "Computational Methods/diagrams",
+    "Computational Methods/Computational Methods Assignment.tex",
     "Computational Methods/lecture notes/lecture 14 (131123).md",
     "Programming Fundamentals/lecture notes/lecture 13 (131123).md",
     "Computational Methods/lecture notes/lecture 13 (131123).md",
-    "Computational Methods/Computational Methods Assignment.md",
-    "Computational Methods/Complicated Gallery.excalidraw.md",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/diagrams/Complicated Gallery.excalidraw.md",
     "dynamic_programming.xlsx",
     "brute_force.xlsx",
     "Computational Methods/tutorial notes/tutorial 9 (071123).md",
@@ -178,10 +198,6 @@
     "gamma.csv",
     "epsilon.csv",
     "delta.csv",
-    "beta.csv",
-    "alpha.csv",
-    "Programming Fundamentals/Game Flowchart.drawio",
-    "Computational Methods/Greedy strategy.md",
     "Programming Fundamentals/lecture notes/lecture 12 (071123).md",
     "Programming Fundamentals/Programming Fundamentals Assignment 1.md",
     "Computational Methods/lecture notes/lecture 12 (061123).md",
@@ -189,23 +205,14 @@
     "Programming Fundamentals/lecture notes/lecture 11 (061123).md",
     "Computational Methods/lecture notes/lecture 11 (061123).md",
     "Computational Methods/tutorial notes/tutorial 8 (021123).md",
-    "Pasted image 20231102122921.png",
     "Computational Methods/tutorial notes/tutorial 7 (261023).md",
     "Computational Methods/tutorial notes/tutorial 6 (241023).md",
-    "Computational Methods/Assignment planets diagram.md",
     "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
     "Computational Methods/lecture notes/lecture 1 (021023).md",
     "Computational Methods/lecture notes/lecture 2 (021023).md",
     "Programming Fundamentals/lecture notes/lecture 7 (231023).md",
     "Programming Fundamentals/lecture notes/lecture 6 (171023).md",
     "Programming Fundamentals/lecture notes/lecture 5 (161023).md",
-    "Programming Fundamentals/lecture notes/lecture 4 (101023).md",
-    "Programming Fundamentals/lecture notes/lecture 3 (091023).md",
-    "Pasted image 20231017180611.png",
-    "Pasted image 20231017174919.png",
-    "Pasted image 20231017174526.png",
-    "Pasted image 20231017173329.png",
-    "Pasted image 20231017172304.png",
     "Untitled.canvas"
   ]
 }

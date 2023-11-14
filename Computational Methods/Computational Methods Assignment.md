@@ -1,6 +1,12 @@
-## task 1
-![[Assignment planets diagram]]
+---
+geometry:
+  - left=30mm
+  - right=30mm
+---
+## Task 1
 
+![[Assignment planets diagram]]
+I decided to write a program to brute-force this, rather than do it by hand. Here is the pseudocode:
 ```
 Let adjacency_matrix = {{0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0}}
 Let cargo_pickup_weights = [20,40,70,10,30]
@@ -101,7 +107,7 @@ End While
 
 Close file
 ```
-brute_force_script.py:
+And the equivalent python code:
 ```
 alpha = 0
 beta = 1
@@ -175,138 +181,17 @@ file = open("brute_force.csv", "w")
 file.write(csv_data)
 file.close()
 ```
+Here is the CSV file which is produced by the python program, and a more formatted Excel conversion:
+[[brute_force.csv]]
+[[brute_force.xlsx]]
 
-brute_force.csv:
-```
-0,1,2,3,4,134500
-0,1,2,4,3,182000
-0,1,3,2,4,168500
-0,1,3,4,2,142250
-0,1,4,2,3,153000
-0,1,4,3,2,104250
-0,2,1,3,4,175250
-0,2,1,4,3,148000
-0,2,3,1,4,155000
-0,2,3,4,1,131500
-0,2,4,1,3,212500
-0,2,4,3,1,202750
-0,3,1,2,4,143750
-0,3,1,4,2,119250
-0,3,2,1,4,97000
-0,3,2,4,1,133500
-0,3,4,1,2,69750
-0,3,4,2,1,99750
-0,4,1,2,3,118500
-0,4,1,3,2,123750
-0,4,2,1,3,181000
-0,4,2,3,1,174250
-0,4,3,1,2,98750
-0,4,3,2,1,94250
-1,0,2,3,4,144000
-1,0,2,4,3,191500
-1,0,3,2,4,154000
-1,0,3,4,2,127750
-1,0,4,2,3,167000
-1,0,4,3,2,118250
-1,2,0,3,4,151750
-1,2,0,4,3,186250
-1,2,3,0,4,162000
-1,2,3,4,0,182000
-1,2,4,0,3,207000
-1,2,4,3,0,193500
-1,3,0,2,4,164250
-1,3,0,4,2,145000
-1,3,2,0,4,160000
-1,3,2,4,0,204000
-1,3,4,0,2,123750
-1,3,4,2,0,158500
-1,4,0,2,3,146750
-1,4,0,3,2,116000
-1,4,2,0,3,163500
-1,4,2,3,0,164000
-1,4,3,0,2,105250
-1,4,3,2,0,132000
-2,0,1,3,4,189500
-2,0,1,4,3,162250
-2,0,3,1,4,164750
-2,0,3,4,1,141250
-2,0,4,1,3,213250
-2,0,4,3,1,203500
-2,1,0,3,4,147000
-2,1,0,4,3,181500
-2,1,3,0,4,195750
-2,1,3,4,0,215750
-2,1,4,0,3,177500
-2,1,4,3,0,164000
-2,3,0,1,4,126000
-2,3,0,4,1,147500
-2,3,1,0,4,178000
-2,3,1,4,0,195000
-2,3,4,0,1,149500
-2,3,4,1,0,138000
-2,4,0,1,3,229000
-2,4,0,3,1,216250
-2,4,1,0,3,167000
-2,4,1,3,0,216500
-2,4,3,0,1,157000
-2,4,3,1,0,197750
-3,0,1,2,4,129500
-3,0,1,4,2,105000
-3,0,2,1,4,93250
-3,0,2,4,1,129750
-3,0,4,1,2,69000
-3,0,4,2,1,99000
-3,1,0,2,4,143000
-3,1,0,4,2,123750
-3,1,2,0,4,136250
-3,1,2,4,0,180250
-3,1,4,0,2,101250
-3,1,4,2,0,136000
-3,2,0,1,4,108000
-3,2,0,4,1,129500
-3,2,1,0,4,128000
-3,2,1,4,0,145000
-3,2,4,0,1,147500
-3,2,4,1,0,136000
-3,4,0,1,2,69250
-3,4,0,2,1,85750
-3,4,1,0,2,75750
-3,4,1,2,0,98500
-3,4,2,0,1,106000
-3,4,2,1,0,102750
-4,0,1,2,3,118500
-4,0,1,3,2,123750
-4,0,2,1,3,169750
-4,0,2,3,1,163000
-4,0,3,1,2,97500
-4,0,3,2,1,93000
-4,1,0,2,3,125750
-4,1,0,3,2,95000
-4,1,2,0,3,132000
-4,1,2,3,0,132500
-4,1,3,0,2,115750
-4,1,3,2,0,142500
-4,2,0,1,3,188500
-4,2,0,3,1,175750
-4,2,1,0,3,134000
-4,2,1,3,0,183500
-4,2,3,0,1,126500
-4,2,3,1,0,167250
-4,3,0,1,2,69750
-4,3,0,2,1,86250
-4,3,1,0,2,95250
-4,3,1,2,0,118000
-4,3,2,0,1,102500
-4,3,2,1,0,99250
-```
-![[brute_force.xlsx]]
-cheapest route:
+Reading from these we can see that the cheapest route is:
 3 0 4 1 2 = Delta -> Alpha -> Epsilon -> Beta -> Gamma
 Costs 69000 intergalactic currency
 
-This approach isn't a good way to find the shortest path since it requires checking the cost of an enourmous and rapidly increasing search space. Specifically `n!` possible routes, `n` being the number of planets. Factorial time, $O(n!)$ is a very very bad time complexity and building a route with many destinations would take a very long time.
+This approach isn't a good way to find the shortest path since it requires checking the cost of an enormous and rapidly increasing search space. Specifically $n!$ possible routes, $n$ being the number of planets. Factorial time, $O(n!)$ is a very very bad time complexity and building a route with many destinations would take a very long time. In order to evaluate the cost of each route, we also have to traverse the whole list of planets representing the route, which is length $n$, so the real time complexity is $O(n\times n!)$.
 
-## task 2
+## Task 2
 
 | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | start | end | i   | j   | pivot value | notes                                                          |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ----- | --- | --- | --- | ----------- | -------------------------------------------------------------- |
@@ -381,7 +266,7 @@ This approach isn't a good way to find the shortest path since it requires check
 |     |     |     |     |     |     |     |     |     |     |       |     | 9   | 8   |             | subsort done                                                   |
 | 10  | 12  | 12  | 14  | 15  | 16  | 17  | 20  | 25  | 28  |       |     |     |     |             | sort done                                                      | 
 
-sorted using quick sort
+This trace table represents a quicksort, and below is the pseudocode for it.
 
 ```
 Procedure swap(array, first, second) Being:
@@ -440,164 +325,17 @@ Procedure quick_sort(array, start, end) Begin:
 End Procedure
 ```
 
-- this is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method
-- it makes use of recursive quicksorts to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the base case)
-- this is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised
-- quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$, however with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$
-## task 3
+This is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method. It makes use of recursive quicksort calls to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the base case for the recursion). This is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised, since they are independent from one another. Quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$. However with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$.
+## Task 3
 ![[Greedy strategy]]
-```
-Let all_nodes = {"alpha", "beta", "gamma", "delta", "epsilon"}
-Let cargo_weights = {20, 40, 70, 10, 30}
-Let adjacency_matrix = {{0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0}}
+Bearing in mind a greedy strategy chooses the best option in the short term and does not look ahead, I experimented with two different techniques: first, to traverse the graph choosing to move along the **cheapest weighted edge** (excluding any which lead to already visited nodes) at every node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node.
+The second of these produced a resulting route (starting at delta, since it has the lowest cargo mass to collect) of `delta -> alpha -> epsilon -> beta -> gamma`, costing **69000** intergalactic Vbucks, which happens to also be the optimal path found by the brute-force method.
+The first approach by contrast, starting at the same place, ended up choosing a `delta -> gamma -> beta -> alpha -> epsilon` route, which cost almost double the other method at **126500** intergalactic Vbucks.
+It makes sense that a mass-focused route is better, since mass accumulates during the graph traversal, whereas the edge weightings (distances between planets) do not accumulate in the same way.
 
-// State variables
-Let unvisited_nodes = {"alpha", "beta", "gamma", "delta", "epsilon"}
-Let weight = 0
-Let fuel_cost = 0
-Let path = {}
+I originally wrote an implementation which used a bubble sort to pre-sort the planet cargo masses, followed by lots of lookups of planet data, as I was keeping the graph data (edge weights, planet cargo masses, etc) in a set of lists. This resulted in a rather unclear $O(n^3)$ algorithm. I decided to come back to this exercise during a seminar, since I wasn't happy with $O(n^3)$ complexity, and the general unclearness of the algorithm. I rewrote the greedy strategy using the same basic algorithm, but with a better implementation. now planets are stored as **structures**, containing all the information about them and how they connect, meaning the amount of look-ups in lists is significantly reduced.
 
-// Bubble sort unvisited nodes according to their cargo weights
-Let changed = True
-While changed = True:
-	Let counter = 0
-	changed = False
-	While counter < size of sorted_list:
-		Let first_node_index = Index of unvisited_nodes[counter] in all_nodes
-		Let second_node_index = Index of unvisited_nodes[counter+1] in all_nodes
-		If cargo_weights[first_node_index] > cargo_weights[second_node_index]:
-			changed = True
-			Let temp = unvisited_nodes[counter]
-			unvisited_nodes[counter] = unvisited_nodes[counter+1]
-			unvisited_nodes[counter+1] = temp
-		End If
-		Increment counter
-	End While
-End While
-
-// Enter graph
-Append unvisited_nodes[0] to path
-weight = cargo_weights[Index of unvisited_nodes[0] in all_nodes]
-
-// Traverse graph
-Let index = 1
-While index < Length of unvisited_nodes:
-	Let next_node = unvisited_nodes[index]
-	
-	Let next_node_index = Index of next_node in all_nodes
-	Let last_node_index = Index of (Last of path) in all_nodes
-	
-	Let journey_cost = adjacency_matrix[next_node_index][last_node_index] * weight
-	fuel_cost = fuel_cost + journey_cost
-	
-	weight = weight + cargo_weights[next_node_index]
-	
-	Append next_node to path
-	Remove next_node from unvisited_nodes
-End While
-
-Output "Total fuel cost:"
-Output fuel_cost * 25
-Output path
-```
-
-```
-#include <iostream>
-#include <vector>
-#include <string>
-#include <queue>
-
-using namespace std;
-
-int find_index(string value, vector<string> list)
-{
-	for (int i = 0; i < list.size(); i++) if (value == list[i]) return i;
-	return -1;
-}
-
-int main()
-{
-	vector<string> all_nodes = { "alpha", "beta", "gamma", "delta", "epsilon" };
-	vector<int> cargo_weights = { 20, 40, 70, 10, 30 };
-	vector<vector<int>> adjacency_matrix = { {0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0} };
-
-	// state variables
-	vector<string> unvisited_nodes = all_nodes;
-	int weight = 0;
-	int fuel_cost = 0;
-	vector<string> path = {};
-
-	// sort unvisited_nodes
-	bool changed = true;
-	while (changed)
-	{
-		changed = false;
-		for (int i = 0; i < unvisited_nodes.size() - 1; i++)
-		{
-			int first_node_index = find_index(unvisited_nodes[i], all_nodes);
-			int second_node_index = find_index(unvisited_nodes[i + 1], all_nodes);
-			if (cargo_weights[first_node_index] > cargo_weights[second_node_index])
-			{
-				string swap = unvisited_nodes[i];
-				unvisited_nodes[i] = unvisited_nodes[i + 1];
-				unvisited_nodes[i + 1] = swap;
-				changed = true;
-			}
-		}
-	}
-
-	// enter graph
-	path.push_back(unvisited_nodes[0]);
-	weight = cargo_weights[find_index(unvisited_nodes[0], all_nodes)];
-
-	// traverse graph
-	for (int index = 1; index < unvisited_nodes.size(); index++)
-	{
-		string next_node = unvisited_nodes[index];
-
-		int next_node_index = find_index(next_node, all_nodes);
-		int last_node_index = find_index(path.back(), all_nodes);
-
-		int journey_cost = adjacency_matrix[next_node_index][last_node_index];
-		fuel_cost += journey_cost * weight;
-
-		weight += cargo_weights[next_node_index];
-
-		path.push_back(next_node);
-	}
-
-	int total_fuel_cost = fuel_cost * 25;
-
-	cout << "Found a route costing " << total_fuel_cost << endl;
-	cout << "Path: " << endl;
-	cout << "  ";
-	for (string s : path) cout << s << " ";
-	cout << endl;
-
-	return 0;
-}
-```
-output:
-```
-Found a route costing 69000
-Path:
-  delta alpha epsilon beta gamma
-```
-
-bearing in mind a greedy strategy chooses the best option in the short term and does not look ahead, i experimented with two different techniques: first, to traverse the graph choosing to move along the **cheapest weighted edge** (excluding any which lead to already visited nodes) at every node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node.
-the second of these produced a resulting route (starting at delta, since it has the lowest cargo mass to collect) of `delta -> alpha -> epsilon -> beta -> gamma`, costing **69000** intergalactic Vbucks, which happens to also be the optimal path found by the brute-force method.
-the first approach by contrast, starting at the same place, ended up choosing a `delta -> gamma -> beta -> alpha -> epsilon` route, which cost almost double the other method at **126500** intergalactic Vbucks.
-it makes sense that a mass-focussed route is better, since mass accumulates during the graph traversal, whereas the edge weightings (distances between planets) do not.
-
-using this approach, i wrote an algorithm in pseudocode which follows the mass-focussed traversal method, with the slight improvement of pre-sorting the unvisited nodes list to be ordered by low mass first (saving searching for the next lowest mass planet each step of traversal). i also then converted the algorithm to C++, and verified that it gave the correct result.
-it's worth noting that i could have handled referencing planets in this the same as in my python script for brute-forcing in the first task, considerably reducing the cost of managing the 5 planets' data, but i decided to use the string names for clarity.
-
-since this algorithm includes the bubble sort (i chose this sort because it has a $O(n)$ space complexity, and is easy to implement for a situation where we need to compare values in one list and use that to swap values in another list), it must have time complexity of at least $O(n^2)$. since we have to find the index of a planet from its string name each iteration, which could require counting all the way through the `n` planets, the worst-case complexity is raised to $O(n^3)$, though this could be improved with the use of proper data structures (i.e. limited by pseudocode). the final loop traversing the graph has a similar problem, requiring `n` iterations, each time searching the `n` planets to find the right index for mass lookups, making that also $O(n^2)$. we can simplify the overall time complexity of approximately $O(n^3 + n^2 + n^2)$ (there are two index lookups in the final loop) down to $O(n^3 + 2n^2)$ or just $O(n^3)$ if we take only the greatest time complexity. using indices to reference planets and a binary search method, or having each one be a pointer to a struct containing name, cargo mass, and edge weightings, and also making use of a better sorting algorithm such as quicksort, we could reduce the worst-case time complexity to $O(n\log_2(n))$ .
-
-
-i decided to come back to this exercise during a seminar (and after it), since i wasn't happy with $O(n^3)$ complexity, and the general unclearness of the algorithm. i rewrote the greedy strategy using the same basic method, but with a better algorithm. now planets are stored as **structures**, containing all the information about them and how they connect. meaning the amount of look-ups in lists is significantly reduced.
-
-i found that, surprisingly, when constructing the list of connections one node (i.e. planet) has with other nodes, it's actually better to not bother sorting the list by cargo mass (i.e. to reduce searching later). this is because in the later code not only do we need to find the next lowest cargo mass planet, we need to find one which has not already been visited, which means we end up doing a linear search through the connected planets anyway. we would be choosing between either an $O(n^3)$ sorting pass with an $O(n^2)$ traversal pass, or an $O(n^2)$ preparation pass with an $O(n^2)$ traversal pass, the latter of which is clearly much better. pseudocode and C++ implementation are below.
+I found that, surprisingly, when constructing the list of connections that one node (i.e. planet) has with other nodes, it's actually *better* to not bother sorting the list by cargo mass (i.e. to reduce searching later). This is because the later code not only needs to find the next lowest cargo mass planet, it needs to *find one which has not already been visited*, meaning we end up doing a linear search through the connected planets regardless. This means choosing between either an $O(n^3)$ sorting pass with an $O(n^2)$ traversal pass, or an $O(n^2)$ preparation pass with an $O(n^2)$ traversal pass, the latter of which is clearly better. The pseudocode and C++ implementation for the improved method are below.
 
 ```
 Let NUM_PLANETS = 5
@@ -840,26 +578,27 @@ int main()
 	return 0;
 }
 ```
+Output:
+> Found sequence delta -> alpha -> epsilon -> beta -> gamma
+> Costing: 69000
 
-the output from the second version of the algorithm is, aside from cosmetic modification, exactly the same. the resulting algorithmic complexity of this solution is $O(n^2)$, due to the two occurrences of traversing lists of length `n`, `n` times over.
+The output from the second version of the algorithm is, aside from cosmetic modification, exactly the same as from the earlier version. The resulting algorithmic complexity of this solution is $O(n^2)$, due to the two occurrences of traversing lists of length $n$, $n$ times over.
 
-the only further optimisation i think could be made would be using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet. this might reduce complexity to $O(n\log_2(n))$ in the best case if sorted with quicksort.
+The only further optimisation I think could be made would be using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet, which we just step through sequentially, removing the need for linear searching at each iteration. This might reduce complexity to $O(n\log_2(n))$ in the best case if sorted with quicksort.
 
-## task 4
+## Task 4
 
-![[alpha.csv]]
+[[alpha.csv]]
+[[beta.csv]]
+[[delta.csv]]
+[[epsilon.csv]]
+[[gamma.csv]]
 
-![[beta.csv]]
+I wrote a short C++ program to produce these tables, in other words I not only followed the dynamic programming approach but also implemented the algorithm. The raw exported CSV files are linked above, and then the assembled and formatted Excel spreadsheet is below:
 
-![[delta.csv]]
+[[dynamic_programming.xlsx]]
 
-![[epsilon.csv]]
-
-![[gamma.csv]]
-
-i wrote a short C++ program to produce these tables, in other words i not only followed the dynamic programming approach but also implemented the algorithm. the raw exported CSV files are attached above, and then the assembled and formatted Excel spreadsheet is below:
-![[dynamic_programming.xlsx]]
-my code primarily makes use of a **tree structure** which represents the data which is eventually placed in the table, but which is **more compact and easier to traverse**. i made use of a `std::queue` to keep track of the next block of possible sequences to test, and a `std::map` to keep track of the cheapest version of similar routes (used for carrying forward only the better routes). my tree structure makes use of **pointers** to other nodes allocated on the heap. code is below:
+My code primarily makes use of a **tree structure** which represents the data which is eventually placed in the table, but which is **more compact and easier to traverse**. I made use of a `std::queue` to keep track of the next block of possible sequences to test, and a `std::map` to keep track of the cheapest version of similar routes (used for carrying forward only the better routes). My tree structure makes use of **pointers** to other nodes allocated on the heap. Code is below:
 ```
 #include <map>
 #include <string>
@@ -1103,33 +842,35 @@ int main()
 }
 ```
 
-as can be seen from the console output of the code, by looking at the lowest cost table cell in the last block of each table (i'm defining a block as a set of rows which have the same number of previously visited planets shown in the far left column), we can find the cheapest route starting at the origin node of the table:
+As can be seen from the console output of the code, by looking at the *lowest cost table cell* in the *last block of each table* (I'm defining a block as a set of rows which have the same number of previously visited planets shown in the far left column, so block 0 has 'A' in the left column, block 1 will have 'AB', 'AG', 'AD', 'AE'), we can find the cheapest route starting at the origin node of the table:
 - starting at alpha: 69750 (alpha -> delta -> epsilon -> beta -> gamma)
 - starting at beta: 105250 (beta -> epsilon -> delta -> alpha -> gamma)
 - starting at gamma: 12600 (gamma -> delta -> alpha -> beta -> epsilon)
 - starting at delta: 69000 (delta -> alpha -> epsilon -> beta -> gamma)
 - starting at epsilon: 69750 (epsilon -> delta -> alpha -> beta -> gamma)
-and then the best route overall can be found by taking the cheapest of these optimal routes, DAEBG for 69000. this is the same optimal route found by brute force, as we would expect (in fact, we can verify that the optimal route costs starting from other planets are also the best routes found starting from those planets by the brute force method).
+The *best route overall* can be found by taking the cheapest of these optimal routes, DAEBG for 69000. This is the same optimal route found by brute force, as we would expect (in fact, we can verify that the optimal route costs starting from other planets are also the best routes found starting from those planets by looking at the results of the brute force method).
 
-we can see that this dynamic approach is guaranteed to find the optimal route, because we only prune routes which visit the **same planets** (and thus have the same weight), and **end at the same planet** (i.e. have the same options/edge costs for future traversal steps) but with a **worse cost than other routes covering the same planets**.
+This dynamic approach is guaranteed to find the optimal route, because we only prune routes which visit the **same planets** (and thus have the same weight), and **end at the same planet** (i.e. have the same options/edge costs for future traversal steps) but with a **worse cost than other routes covering the same planets**.
 
-in terms of complexity, it's evident to see that this is faster than the brute force approach, for two reasons, which correspond to the two main techniques the dynamic approach uses:
-1. memoisation - each time we want to calculate the cost of traversing from one node to another, we don't recalculate the entire cost, just the progressive cost, and previous calculations are saved and reused (reduces time cost to calculate multiple branching routes)
-2. pruning - by pruning provably inferior routes at early stages, we massively reduce the search space. in fact, we reduce our search space all the way down to just 60 full routes covered, from 120 before. as tested below with different numbers of nodes:
+In terms of complexity, it's evident to see that this is faster than the brute force approach, for two reasons, which correspond to the two main techniques the dynamic approach uses:
+1. Memoisation - each time we want to calculate the cost of traversing from one node to another, we don't recalculate the entire cost, just the progressive cost, and previous calculations are saved and reused (reduces time cost to calculate multiple branching routes)
+2. Pruning - by pruning provably inferior routes at early stages, we massively reduce the search space. in fact, we reduce our search space all the way down to just 60 full routes covered, from 120 before.
 
-| nodes | routes checked to completion | nodes evaluated | total possible routes | nodes evaluated in brute force (equivalent) |
-| ----- | ---------------------------- | --------------- | --------------------- | ------------------------------------------- |
-| 5     | 60                           | 260             | 120                   | 600                                         |
-| 6     | 120                          | 990             | 720                   | 4320                                        |
-| 7     | 210                          | 3402            | 5040                  | 35280                                       |
-| 8     | 336                          | 10808           | 40320                 | 322560                                      |
-| 9     | 504                          | 32328           | 362880                | 3265920                                     |
+Writing code for this allowed me to test with different numbers of nodes:
 
-with this table we can see the huge benefit to pruning compared with the brute force approach. the pattern formed is that the number of routes checked to completion is $n(n-1)(n-2)$ when $n=5$. this makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, then thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
+| n   | routes checked to completion | nodes evaluated | total possible routes | nodes evaluated in brute force (equivalent) |
+| --- | ---------------------------- | --------------- | --------------------- | ------------------------------------------- |
+| 5   | 60                           | 260             | 120                   | 600                                         |
+| 6   | 120                          | 990             | 720                   | 4320                                        |
+| 7   | 210                          | 3402            | 5040                  | 35280                                       |
+| 8   | 336                          | 10808           | 40320                 | 322560                                      |
+| 9   | 504                          | 32328           | 362880                | 3265920                                     |
 
-we can also see, with some calculation, that the number of actual evaluations (i.e. calculating the cost of a node, and deciding if we should prune it or carry it forward) is equal to $\sum_{r=0}^{r=n-2} \frac{n!}{(n-(r+2))!|r-1|!}$; this represents the total number of rows in the table multiplied by the number of filled cells in each row, done block by block (where $r$ is the index of the block). this can be simplified to $n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!}$, and our pruning becomes even clearer, as we're multiplying the $n!$ total number of routes by summed fractions, where each fraction is representing the 1 divided by the ratio of nodes we can prune at each step in the table. the equivalent in brute-force is just the number of routes multiplied by the number of nodes to represent the time taken to calculate the cost of a particular route ($n!$ routes, each of length $n$), so $n!\times n$. again we can see that our algorithm is much, much better than brute force in terms of complexity.
+With this table we can see the huge benefit to pruning compared with the brute force approach. The pattern formed is that the number of routes checked to completion is $n(n-1)(n-2)$ when $n=5$. This makes sense since at each step, we prune such that the number of routes to examine in the next block is halved, then thirded, etc, leaving only $n(n-1)(n-2)=\frac{n!}{(n-3)!}$ routes checked to completion.
 
-since we do not need to iteratively calculate the cost of routes at the end, it's done at each step progressively instead, we only need to include the complexity of the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD'). my implementation uses a simple $O(n^2)$ bubble sort, so we can say that this implementation has an overall time complexity of $O(n^2\times n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!})$, which is hard to simplify further. the algorithm could be improved with the use of a better method for detecting permutated sequences of planets (ABGD vs AGBD).
-## task 5
+We can also see, with some calculation, that the number of actual evaluations (i.e. calculating the cost of a node, and deciding if we should prune it or carry it forward) is equal to $\sum_{r=0}^{r=n-2} \frac{n!}{(n-(r+2))!|r-1|!}$; this represents the total number of rows in the table multiplied by the number of filled cells in each row, block by block (where $r$ is the index of the block). This can be simplified to $n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!}$, and our pruning becomes even clearer, as we're multiplying the $n!$ total number of routes by summed fractions, where each fraction is representing 1 divided by the ratio of nodes we can prune at each step in the table. the equivalent in brute-force is just the number of routes multiplied by the number of nodes to represent the time taken to calculate the cost of a particular route ($n!$ routes, each of length $n$), so $n!\times n$. Again we can see that our algorithm is much, much better than brute force in terms of complexity.
+
+We need to consider the complexity of the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD'). My implementation uses a simple $O(n^2)$ bubble sort, so we can say that overall this implementation has a time complexity of $O(n^2\times n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!})$. The algorithm could be improved with the use of a better method for detecting permutated sequences of planets (ABGD vs AGBD) which doesn't use sorting but instead hashes the sequence (which could be done in linear $O(n)$ )time.
+## Task 5
 
 ![[Art Gallery Problem]]

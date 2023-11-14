@@ -39,11 +39,11 @@ epsilon ^jPfmeRYv
 (17) ^8U8A7ujd
 
 unvisited:
-    alpha
-    beta
-    gamma
-    delta
-    epsilon ^xi6z9i5z
+    delta (visited)
+    alpha (visited)
+    epsilon (visited)
+    beta (visited)
+    gamma (visited) ^xi6z9i5z
 
 route:
  delta -12-> alpha -20-> epsilon -14-> beta -12-> gamma
@@ -1088,8 +1088,8 @@ real cost = 2760 * 25
 		},
 		{
 			"type": "text",
-			"version": 199,
-			"versionNonce": 2000403061,
+			"version": 252,
+			"versionNonce": 257627130,
 			"isDeleted": false,
 			"id": "xi6z9i5z",
 			"fillStyle": "hachure",
@@ -1102,24 +1102,24 @@ real cost = 2760 * 25
 			"y": -126.23032454126019,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 88.916015625,
+			"width": 164.482421875,
 			"height": 138,
 			"seed": 374658928,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696946932422,
+			"updated": 1699962796943,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
 			"fontFamily": 2,
-			"text": "unvisited:\n    alpha\n    beta\n    gamma\n    delta\n    epsilon",
-			"rawText": "unvisited:\n    alpha\n    beta\n    gamma\n    delta\n    epsilon",
+			"text": "unvisited:\n    delta (visited)\n    alpha (visited)\n    epsilon (visited)\n    beta (visited)\n    gamma (visited)",
+			"rawText": "unvisited:\n    delta (visited)\n    alpha (visited)\n    epsilon (visited)\n    beta (visited)\n    gamma (visited)",
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "unvisited:\n    alpha\n    beta\n    gamma\n    delta\n    epsilon",
+			"originalText": "unvisited:\n    delta (visited)\n    alpha (visited)\n    epsilon (visited)\n    beta (visited)\n    gamma (visited)",
 			"lineHeight": 1.15,
 			"baseline": 133
 		},
@@ -1162,8 +1162,8 @@ real cost = 2760 * 25
 		},
 		{
 			"type": "arrow",
-			"version": 106,
-			"versionNonce": 749959611,
+			"version": 107,
+			"versionNonce": 1066529702,
 			"isDeleted": false,
 			"id": "7C1kTA47usr88-3fkh1_M",
 			"fillStyle": "hachure",
@@ -1183,7 +1183,7 @@ real cost = 2760 * 25
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696946930369,
+			"updated": 1699962717483,
 			"link": null,
 			"locked": false,
 			"startBinding": null,
@@ -1208,8 +1208,8 @@ real cost = 2760 * 25
 		},
 		{
 			"type": "arrow",
-			"version": 71,
-			"versionNonce": 1924823707,
+			"version": 72,
+			"versionNonce": 264295270,
 			"isDeleted": false,
 			"id": "UnCipCTsFUGVJ0tIw3gfV",
 			"fillStyle": "hachure",
@@ -1229,7 +1229,7 @@ real cost = 2760 * 25
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696946930364,
+			"updated": 1699962717456,
 			"link": null,
 			"locked": false,
 			"startBinding": null,
@@ -1254,8 +1254,8 @@ real cost = 2760 * 25
 		},
 		{
 			"type": "arrow",
-			"version": 108,
-			"versionNonce": 2026276603,
+			"version": 112,
+			"versionNonce": 767148582,
 			"isDeleted": false,
 			"id": "rtMyP_xr0oG9h965mqAu2",
 			"fillStyle": "hachure",
@@ -1264,18 +1264,18 @@ real cost = 2760 * 25
 			"roughness": 0,
 			"opacity": 100,
 			"angle": 0,
-			"x": -241.85695065225565,
-			"y": -74.02264691231508,
+			"x": -241.85702605066638,
+			"y": -74.0227383554465,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 133.53063785805972,
-			"height": 98.22302326059327,
+			"width": 133.53058583921995,
+			"height": 98.22309676637676,
 			"seed": 1075579760,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696946930370,
+			"updated": 1699962717485,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1297,15 +1297,15 @@ real cost = 2760 * 25
 					0
 				],
 				[
-					-133.53063785805972,
-					98.22302326059327
+					-133.53058583921995,
+					98.22309676637676
 				]
 			]
 		},
 		{
 			"type": "arrow",
-			"version": 152,
-			"versionNonce": 368177051,
+			"version": 154,
+			"versionNonce": 852135270,
 			"isDeleted": false,
 			"id": "xsKgJYfnecbzYdanbsYE_",
 			"fillStyle": "hachure",
@@ -1318,14 +1318,14 @@ real cost = 2760 * 25
 			"y": 12.516706700683812,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
-			"width": 474.0508411338083,
+			"width": 474.0508411338084,
 			"height": 229.41023127271302,
 			"seed": 1185764752,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696946930371,
+			"updated": 1699962717485,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -1355,15 +1355,15 @@ real cost = 2760 * 25
 					-229.41023127271302
 				],
 				[
-					474.0508411338083,
+					474.0508411338084,
 					-171.36684033141958
 				]
 			]
 		},
 		{
 			"type": "arrow",
-			"version": 74,
-			"versionNonce": 1920390427,
+			"version": 75,
+			"versionNonce": 385937510,
 			"isDeleted": false,
 			"id": "u41FQ4YggX95mEEFI5u0q",
 			"fillStyle": "hachure",
@@ -1383,7 +1383,7 @@ real cost = 2760 * 25
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696946930367,
+			"updated": 1699962717480,
 			"link": null,
 			"locked": false,
 			"startBinding": null,
@@ -1422,8 +1422,8 @@ real cost = 2760 * 25
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 640.6071898838804,
-		"scrollY": 239.01905340025687,
+		"scrollX": 615.7923298578387,
+		"scrollY": 284.0190534002568,
 		"zoom": {
 			"value": 0.9
 		},
