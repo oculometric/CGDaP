@@ -1,0 +1,3 @@
+Author, Surname and initials
+Year of publication in ()
+...

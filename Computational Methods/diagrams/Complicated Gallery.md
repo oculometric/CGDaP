@@ -669,7 +669,7 @@ tags: [excalidraw]
 		}
 	],
 	"appState": {
-		"theme": "dark",
+		"theme": "light",
 		"viewBackgroundColor": "#ffffff",
 		"currentItemStrokeColor": "#fedd06",
 		"currentItemBackgroundColor": "#1971c2",
