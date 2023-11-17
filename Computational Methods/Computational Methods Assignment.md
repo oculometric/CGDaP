@@ -3,14 +3,18 @@ geometry:
   - left=30mm
   - right=30mm
 ---
-## Task 1
+## Task 1 - Brute Force
 
-![](diagrams/Assignment planets diagram.png "Diagram of the planets as a graph"){ width=50% }
+![Diagram of the planets as a graph](diagrams/Assignment planets diagram.png){ width=50% }
 
 
 A program was written to brute-force this, as opposed to doing it by hand. Below is the pseudocode.
 ```
-Let adjacency_matrix = {{0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0}}
+Let adjacency_matrix = {{0,10,15,12,20}, 
+						{10,0,12,25,14}, 
+						{15,12,0,16,28}, 
+						{12,25,16,0,17}, 
+						{20,14,28,17,0}}
 Let cargo_pickup_weights = [20,40,70,10,30]
 
 Function get_distance(a, b):
@@ -109,7 +113,7 @@ End While
 
 Close file
 ```
-Below is the equivalent pseudocode.
+Below is the equivalent python code.
 ```
 alpha = 0
 beta = 1
@@ -117,7 +121,11 @@ gamma = 2
 delta = 3
 epsilon = 4
 
-adjacency_matrix = [[0,10,15,12,20], [10,0,12,25,14], [15,12,0,16,28], [12,25,16,0,17], [20,14,28,17,0]]
+adjacency_matrix = [[0,10,15,12,20], 
+					[10,0,12,25,14], 
+					[15,12,0,16,28], 
+					[12,25,16,0,17], 
+					[20,14,28,17,0]]
 
 cargo_pickup_weights = [20,40,70,10,30]
 
@@ -185,15 +193,15 @@ file.close()
 ```
 See the CSV file which is produced by the python program, and a more formatted Excel conversion.
 
-[[brute_force.csv]]
-[[brute_force.xlsx]]
+[brute_force.csv](brute_force.csv)
 
-Reading from the generated files, it can be seen that the cheapest route is `3 0 4 1 2 = Delta -> Alpha -> Epsilon -> Beta -> Gamma`
-Costs 69000 intergalactic currency
+[brute_force.xlsx](brute_force.xlsx)
+
+Reading from the generated files, it can be seen that the cheapest route is `3 0 4 1 2 = Delta -> Alpha -> Epsilon -> Beta -> Gamma`, which costs 69000 intergalactic currency.
 
 This approach isn't a good way to find the shortest path since it requires checking the cost of an enormous and rapidly increasing search space. Specifically $n!$ possible routes, $n$ being the number of planets. Factorial time, $O(n!)$ is a bad time complexity. In order to evaluate the cost of each route, the program also has to traverse the whole list of planets representing each route, which are length $n$, so the real time complexity is $O(n\times n!)$.
 
-## Task 2
+## Task 2 - Sorting
 
 | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | start | end | i   | j   | pivot value | notes                                                          |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ----- | --- | --- | --- | ----------- | -------------------------------------------------------------- |
@@ -329,8 +337,8 @@ End Procedure
 
 This is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method. It makes use of recursive quicksort calls to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the base case for the recursion). This is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised, since they are independent from one another. Quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$. However with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$.
 
-## Task 3
-![](diagrams/Greedy strategy.png "Process of traversing the graph using a mass-focused greedy strategy"){ width=50% }
+## Task 3 - Greedy Strategy
+![Process of traversing the graph using a mass-focused greedy strategy](diagrams/Greedy strategy.png){ width=50% }
 
 
 Bearing in mind a greedy strategy chooses the best option in the short term and does not look ahead, two different techniques were considered: first, to traverse the graph choosing to move along the **cheapest weighted edge** (excluding any which lead to already visited nodes) at every node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node.
@@ -357,7 +365,11 @@ End Structure
 // starting data about the planets
 Let node_names = { "alpha", "beta", "gamma", "delta", "epsilon" }
 Let cargo_masses = { 20,40,70,10,30 }
-Let adjacency_matrix = { {0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0} }
+Let adjacency_matrix = { {0,10,15,12,20}, 
+						 {10,0,12,25,14}, 
+						 {15,12,0,16,28}, 
+						 {12,25,16,0,17}, 
+						 {20,14,28,17,0} }
 
 // initialise the nodes in the graph
 Let planets = {}
@@ -484,7 +496,11 @@ int main()
 	// starting data about planets
 	string node_names[NUM_PLANETS] = { "alpha", "beta", "gamma", "delta", "epsilon" };
 	int cargo_masses[NUM_PLANETS] = { 20,40,70,10,30 };
-	int adjacency_matrix[NUM_PLANETS][NUM_PLANETS] = { {0,10,15,12,20}, {10,0,12,25,14}, {15,12,0,16,28}, {12,25,16,0,17}, {20,14,28,17,0} };
+	int adjacency_matrix[NUM_PLANETS][NUM_PLANETS] = { {0,10,15,12,20}, 
+													   {10,0,12,25,14}, 
+													   {15,12,0,16,28}, 
+													   {12,25,16,0,17}, 
+													   {20,14,28,17,0} };
 
 	// create nodes
 	vector<planet*> planets;
@@ -517,7 +533,12 @@ int main()
 		{
 			if (planets[i] == p_origin) continue;
 
-			p_origin->links.push_back(pair<planet*, int>(planets[i], adjacency_matrix[i][p_origin->index]));
+			p_origin->links.push_back
+				(pair<planet*, int>
+					(planets[i],
+					adjacency_matrix[i][p_origin->index]
+				)
+			);
 		}
 	}
 
@@ -593,19 +614,23 @@ The output from the second version of the algorithm is, aside from cosmetic modi
 
 The only further optimisation that could be made is using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet, instead just stepping through unvisited planets sequentially and removing the need for linear searching at each iteration. This *might* reduce complexity to $O(n\log_2(n))$ in the best case, if sorted with quicksort.
 
-## Task 4
+## Task 4 - Dynamic Programming
 
 For the dynamic programming tables, see the files below.
 
-[[alpha.csv]]
-[[beta.csv]]
-[[delta.csv]]
-[[epsilon.csv]]
-[[gamma.csv]]
+[alpha.csv](alpha.csv)
+
+[beta.csv](beta.csv)
+
+[delta.csv](delta.csv)
+
+[epsilon.csv](epsilon.csv)
+
+[gamma.csv](gamma.csv)
 
 A C++ program was written to produce these tables, again eliminating the need to traverse the graph by hand. The raw exported CSV files are detailed above, and then the assembled and formatted Excel spreadsheet is can be viewed in this file.
 
-[[dynamic_programming.xlsx]]
+[dynamic_programming.xlsx](dynamic_programming.xlsx)
 
 The code primarily makes use of a **tree structure** representing the data which is eventually placed in the table, but which is **more compact and easier to traverse**. A `std::queue` was used to keep track of the next block of possible sequences to test, and a `std::map` was used to keep track of the cheapest version of similar routes (used for carrying forward only the better routes). This tree structure makes use of **pointers** to other nodes allocated on the heap. The program is below.
 ```
@@ -625,10 +650,10 @@ using namespace std;
 
 // data describing the network
 const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
-												{ 10,  0, 12, 25, 14 },
-												{ 15, 12,  0, 16, 28 },
-												{ 12, 25, 16,  0, 17 },
-												{ 20, 14, 28, 17,  0 }
+											  { 10,  0, 12, 25, 14 },
+											  { 15, 12,  0, 16, 28 },
+											  { 12, 25, 16,  0, 17 },
+											  { 20, 14, 28, 17,  0 }
 };
 
 const int weight[NUM_NODES] = { 20, 40, 70, 10, 30 };
@@ -744,13 +769,15 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 	// nodes that need to have their children populated in this block
 	queue<cost_tree_node*> this_block_nodes;
 
-	// new child nodes which are the best route starting at string[0] and ending at string[-1]
+	// new child nodes which are the best route starting 
+	// at string[0] and ending at string[-1]
 	// i.e. these are the best (cheapest) permutations of a sequence of planets
 	map<string, cost_tree_node*> next_block_routes;
 
 	this_block_nodes.push(root);
 
-	// repeat until we reach a block containing cells representing entire routes through the network
+	// repeat until we reach a block containing 
+	// cells representing entire routes through the network
 	for (int block = 0; block < NUM_NODES - 1; block++)
 	{
 		// populate all the rows in the current block
@@ -763,7 +790,8 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 
 			parent->children = new cost_tree_node * [NUM_NODES];
 
-			// calculate the costs of each possible child node (table cell) from the current parent (table row)
+			// calculate the costs of each possible child 
+			// node (table cell) from the current parent (table row)
 			for (unsigned char c = NODE_ZERO; c < NUM_NODES + NODE_ZERO; c++)
 			{
 				if (parent->planets_sequence.find(c) != string::npos)
@@ -773,12 +801,16 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 				}
 				else
 				{
-					// create a new child node (table cell) and calculate its cumulative weight and cost
+					// create a new child node (table cell) and calculate 
+					// its cumulative weight and cost
 					string node_sequence = parent->planets_sequence;
 					node_sequence += c;
 					cost_tree_node* node = new cost_tree_node
 					{
-						parent->cumulative_cost + (parent->cumulative_weight * adjacency[parent->last_planet - NODE_ZERO][c - NODE_ZERO]),
+						parent->cumulative_cost + 
+							(parent->cumulative_weight 
+							* adjacency[parent->last_planet - NODE_ZERO][c - NODE_ZERO]
+							),
 						parent->cumulative_weight + weight[c - NODE_ZERO],
 						node_sequence,
 						c,
@@ -789,19 +821,24 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 					string sorted_seq = sort_sequence(node->planets_sequence);
 					if (block >= 2)
 					{
-						// check to see if this node represents the cheapest way to travel between
-						// its set of planets, with the same start and end points
+						// check to see if this node represents the cheapest way 
+						// to travel between its set of planets, with
+						// the same start and end points
 						auto current_best = next_block_routes.find(sorted_seq);
 						// if there are no other routes like this, it must be the best
-						if (current_best == next_block_routes.end()) next_block_routes.insert({ sorted_seq, node });
-						// if there are other routes and this one is the cheapest, update it as the cheapest
+						if (current_best == next_block_routes.end())
+							next_block_routes.insert({ sorted_seq, node });
+						// if there are other routes and this one is the cheapest, 
+						// update it as the cheapest
 						// so that it gets computed in the next block
-						else if (node->cumulative_cost < (*current_best).second->cumulative_cost) next_block_routes[sorted_seq] = node;
+						else if (node->cumulative_cost < (*current_best).second->cumulative_cost) 
+							next_block_routes[sorted_seq] = node;
 						// otherwise discard it
 					}
 					else
 					{
-						// add the node to the map so that we will compute its children in the next block
+						// add the node to the map so that we will 
+						// compute its children in the next block
 						next_block_routes.insert({ sorted_seq, node });
 					}
 				}
@@ -809,8 +846,9 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 
 		}
 
-		// queue up the best routes (table cells) from the last block for evaluation in the next one
-		// where they now become the table rows
+		// queue up the best routes (table cells) from the last block
+		// for evaluation in the next one where they now
+		// become the table rows
 		for (pair<string, cost_tree_node*> pr : next_block_routes)
 		{
 			this_block_nodes.push(pr.second);
@@ -823,7 +861,8 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 	// write the node tree out as a table to a file
 	write_out_table(root);
 
-	// finally iterate over the list of best routes (table cells) in the last block and find the cheapest one
+	// finally iterate over the list of best routes (table cells) in the 
+	// last block and find the cheapest one
 	cost_tree_node* best_route_through_table = this_block_nodes.front();
 	while (!this_block_nodes.empty())
 	{
@@ -835,7 +874,8 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
 		}
 	}
 
-	// return the node describing the best (cheapest) way of traversing the graph, starting at the specified starting point
+	// return the node describing the best (cheapest) way of traversing 
+	// the graph, starting at the specified starting point
 	return best_route_through_table;
 }
 
@@ -851,7 +891,7 @@ int main()
 }
 ```
 
-By looking at the *lowest cost table cell* in the *last block of each table* (a block can be defined as a set of rows which have the same number of previously visited planets shown in the far left column, so block 0 has 'A' in the left column, block 1 will have 'AB', 'AG', 'AD', 'AE'), the cheapest route starting at the origin node of the table can be found. Thus there will be a single optimal route for each of the 5 generated tables (or however many planets are defined).
+By looking at the *lowest cost table cell* in the *last block of each table* (a block can be defined as a set of rows which have the same number of previously visited planets shown in the far left column, so block 0 has 'A' in the left column, block 1 will have 'AB', 'AG', 'AD', 'AE', etc), the cheapest route starting at the origin node of the table can be found. Thus there will be a single optimal route for each of the 5 generated tables (or however many planets are defined).
 - starting at alpha: 69750 (alpha -> delta -> epsilon -> beta -> gamma)
 - starting at beta: 105250 (beta -> epsilon -> delta -> alpha -> gamma)
 - starting at gamma: 12600 (gamma -> delta -> alpha -> beta -> epsilon)
@@ -894,7 +934,7 @@ However, the maximum number of guards can be reduced by considering that many tr
 Continuing this train of thought, it is true that a polygon can be triangulated and then coloured, such that all triangles have exactly one of each of three colours on it's vertices. Steve Fisk points out that by taking the total number of vertices of a certain colour, specifically the colour with the fewest instances in the polygon (i.e. in a polygon with 2 red, 1 green and 1 blue vertices, take either 1 green or 1 blue) the maximum number of guards required is reduced[^2]. This is a geometric description of the 'sharing vertices' concept described in the previous paragraph.
 
 Both of these geometric proofs are useful for reducing the search space in terms of finding solutions for smaller numbers of guards by setting an upper bound. However, these approaches are somewhat naive as they cannot optimise concave shapes where vertices are not shared, since they really only consider topology, and not the actual shape of the polygon in question. Consider the diagram below.
-![](diagrams/Complicated Gallery.png) { width=50% }
+![An example of a potential gallery layout](diagrams/Complicated Gallery.png){ width=50% }
 Chvatal's proof shows that we need a maximum of three guards (since there are seven total vertices, and the formula must round up), and Fisk's proof and the colouring scheme shows that we need at most two guards; these could be placed at the two green vertices, or the two blue ones. However, looking at the polygon, one can clearly see that only a single guard is needed, placed at the highlighted green vertex. Every part of the polygon that the other green vertex can see, can also be seen by the highlighted vertex, plus a bit more.
 
 An algorithm to optimise this problem (to minimise the number of guards) would need to be able to look at different combinations of guard placements to see if the number of guards can be reduced (i.e. brute-force). Heuristics could be applied, for example by counting around vertices and looking at their corner angles relative to the origin vertex to see if there are occluded (invisible from that point). Approximation methods might use a grid to check the coverage of the polygon from certain vertices in the shape, which could be resolved to smaller granularities to more precisely map the space.
