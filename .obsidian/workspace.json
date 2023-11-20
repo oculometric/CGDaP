@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "mode": "source",
                 "source": false
               }
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md"
+                "file": "Computational Methods/Computational Methods Assignment.md"
               }
             }
           },
@@ -172,9 +172,10 @@
   },
   "active": "3d8f6cdfdeaf8271",
   "lastOpenFiles": [
-    "Computational Methods/lecture notes/lecture 15 (201123).md",
-    "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
+    "harvaard citation order.md",
     "Computational Methods/Computational Methods Assignment.md",
+    "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
+    "Computational Methods/lecture notes/lecture 15 (201123).md",
     "diagrams/Assignment.md",
     "diagrams",
     "Computational Methods/Computational Methods Assignment.synctex.gz",
@@ -189,7 +190,6 @@
     "Computational Methods/test.synctex.gz",
     "Computational Methods/test.pdf",
     "Computational Methods/test.tex",
-    "harvaard citation order.md",
     "Assignment.md",
     "Computational Methods/diagrams/Greedy strategy.md",
     "Computational Methods/diagrams/Greedy strategy.png",

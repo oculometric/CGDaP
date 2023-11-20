@@ -290,10 +290,25 @@ which costs 69000 intergalactic currency.
 This approach isn't a good way to find the shortest path since it
 requires checking the cost of an enormous and rapidly increasing search
 space. Specifically \(n!\) possible routes, \(n\) being the number of
-planets. Factorial time, \(O(n!)\) is a bad time complexity. In order to
-evaluate the cost of each route, the program also has to traverse the
-whole list of planets representing each route, which are length \(n\),
-so the real time complexity is \(O(n\times n!)\).
+planets (Flood, 1956)\footnote{Flood, M. M. (1956), \emph{`The
+  Traveling-Salesman Problem.',} \emph{Operations Research}, 4(1),
+  pp.~61--75. Available at: http://www.jstor.org/stable/167517
+  (Accessed: 20 November 2023).}; this is because there are \(n\)
+possible planets for the first destination, \(n-1\) for the second, etc.
+Factorial time, \(O(n!)\) is a bad time complexity. In order to evaluate
+the cost of each route, the program also has to traverse the whole list
+of planets representing each route, which are length \(n\), so the real
+time complexity is \(O(n\times n!)\). Optimisations which can be applied
+are limited since the problem is analogous to the asymmetric travelling
+salesman problem (i.e.~reversed routes are not equal in cost), however
+we could reduce the number of routes to be checked using a dynamic
+programming approach, by exploring the graph gradually and comparing
+partial routes with the same planets visited and the same end planet.
+This could reduce the time complexity to \(O(n^2 2^{n-1})\), but with
+much worse space complexity (Bellman, 1962)\footnote{Bellman, R. (1962)
+  \emph{`Dynamic programming treatment of the travelling salesman
+  problem'}, \emph{Journal of the ACM}, 9(1), pp.~61--63.
+  doi:10.1145/321105.321111.}.
 
 \subsection{Task 2 - Sorting}\label{task-2---sorting}
 
@@ -1064,7 +1079,8 @@ cost_tree_node* build_dynamic_cost_tree(unsigned char start_node_index)
                         // if there are no other routes like this, it must be the best
                         if (current_best == next_block_routes.end())
                             next_block_routes.insert({ sorted_seq, node });
-                        // if there are other routes and this one is the cheapest, update it as the cheapest
+                        // if there are other routes and this one is the cheapest, 
+                        // update it as the cheapest
                         // so that it gets computed in the next block
                         else if (node->cumulative_cost < (*current_best).second->cumulative_cost) 
                             next_block_routes[sorted_seq] = node;
@@ -1266,9 +1282,9 @@ could be composed of is \(\frac{n}{3}\) , for the case where the polygon
 is made up of a number of disconnected triangles which share no vertices
 with one another. Since we need exactly one guard per triangle, the
 maximum possible number of guards needed is also \(\frac{n}{3}\)
-\footnote{Chvátal, V. (2004) \emph{`A combinatorial theorem in plane
-  geometry'}, \emph{Journal of Combinatorial Theory, Series B}.
-  Available at:
+(Chvatal, 2004)\footnote{Chvátal, V. (2004) \emph{`A combinatorial
+  theorem in plane geometry'}, \emph{Journal of Combinatorial Theory,
+  Series B}. Available at:
   https://www.sciencedirect.com/science/article/pii/0095895675900611
   (Accessed: 29 October 2023).}.
 
@@ -1285,9 +1301,9 @@ of each of three colours on it's vertices. Steve Fisk points out that by
 taking the total number of vertices of a certain colour, specifically
 the colour with the fewest instances in the polygon (i.e.~in a polygon
 with 2 red, 1 green and 1 blue vertices, take either 1 green or 1 blue)
-the maximum number of guards required is reduced\footnote{Aigner, M.,
-  Ziegler, G.M. (2018). \emph{`How to guard a museum. In: Proofs from
-  THE BOOK'}. Springer, Berlin, Heidelberg.
+the maximum number of guards required is reduced (Aigner and Ziegler,
+2018)\footnote{Aigner, M., Ziegler, G.M. (2018). \emph{`How to guard a
+  museum. In: Proofs from THE BOOK'}. Springer, Berlin, Heidelberg.
   https://doi.org/10.1007/978-3-662-57265-8\_40}. This is a geometric
 description of the `sharing vertices' concept described in the previous
 paragraph.
@@ -1298,7 +1314,7 @@ an upper bound. However, these approaches are somewhat naive as they
 cannot optimise concave shapes where vertices are not shared, since they
 really only consider topology, and not the actual shape of the polygon
 in question. Consider the diagram below.
-\includegraphics{diagrams/Complicated Gallery.png} \{ width=50\% \}
+\includegraphics[width=0.5\textwidth,height=\textheight]{diagrams/Complicated Gallery.png}
 Chvatal's proof shows that we need a maximum of three guards (since
 there are seven total vertices, and the formula must round up), and
 Fisk's proof and the colouring scheme shows that we need at most two
@@ -1327,13 +1343,16 @@ possible configurations. // reference for this
 
 One approach presented by Ghosh is to reduce the the overall polygon to
 a set of convex polygons, each of which may be observed by a single
-guard\footnote{Ghosh, S. K. (1987), \emph{`Approximation algorithms for
-  art gallery problems'},~\emph{Proc. Canadian Information Processing
-  Society Congress}, pp.~429--434.}. However, even this may not produce
-optimal results, see the diagram above once again.
+guard (Ghosh, 1987)\footnote{Ghosh, S. K. (1987), \emph{`Approximation
+  algorithms for art gallery problems'},~\emph{Proc. Canadian
+  Information Processing Society Congress}, pp.~429--434.}. However,
+even this may not produce optimal results, see the diagram above again.
 
-The problem, depending on constraints, is considered NP-hard, meaning it
-it's both difficult to solve and difficult to verify in polynomial time.
-// reference for this
+Depending on constraints, this problem has been shown to be NP-hard,
+meaning it's both difficult to solve and difficult to verify in
+polynomial time (Lee and Lin, 1986)\footnote{Lee, D. and Lin, A. (1986)
+  \emph{`Computational complexity of art gallery problems'},~\emph{IEEE
+  Transactions on Information Theory}, 32(2), pp.~276--282.
+  doi:10.1109/TIT.1986.1057165.}.
 
 \end{document}
