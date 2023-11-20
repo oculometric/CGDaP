@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
                 "mode": "source",
                 "source": false
               }
@@ -81,7 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 249.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md"
+                "file": "Programming Fundamentals/lecture notes/lecture 15 (201123).md"
               }
             }
           },
@@ -172,8 +172,10 @@
   },
   "active": "3d8f6cdfdeaf8271",
   "lastOpenFiles": [
-    "diagrams/Assignment.md",
+    "Computational Methods/lecture notes/lecture 15 (201123).md",
+    "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
     "Computational Methods/Computational Methods Assignment.md",
+    "diagrams/Assignment.md",
     "diagrams",
     "Computational Methods/Computational Methods Assignment.synctex.gz",
     "Computational Methods/Computational Methods Assignment.pdf",
@@ -215,8 +217,6 @@
     "Computational Methods/tutorial notes/tutorial 8 (021123).md",
     "Computational Methods/tutorial notes/tutorial 7 (261023).md",
     "Computational Methods/tutorial notes/tutorial 6 (241023).md",
-    "Programming Fundamentals/Drawing 2023-10-17 14.10.48.excalidraw.md",
-    "Computational Methods/lecture notes/lecture 1 (021023).md",
     "Untitled.canvas"
   ]
 }
