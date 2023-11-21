@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Computational Methods/Computational Methods Assignment.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -172,6 +172,12 @@
   },
   "active": "3d8f6cdfdeaf8271",
   "lastOpenFiles": [
+    "Computational Methods/beta.csv",
+    "Computational Methods/alpha.csv",
+    "Computational Methods/gamma.csv",
+    "Computational Methods/epsilon.csv",
+    "Computational Methods/dynamic_programming.xlsx",
+    "Computational Methods/delta.csv",
     "harvaard citation order.md",
     "Computational Methods/Computational Methods Assignment.md",
     "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
@@ -182,14 +188,9 @@
     "Computational Methods/Computational Methods Assignment.pdf",
     "Computational Methods/Computational Methods Assignment.aux",
     "Computational Methods/Computational Methods Assignment.synctex(busy)",
-    "Computational Methods/Computational Methods Assignment.log",
-    "Computational Methods/Computational Methods Assignment.tex",
     "Computational Methods/diagrams/Complicated Gallery.md",
     "Computational Methods/diagrams/Assignment planets diagram.md",
     "Computational Methods/Art Gallery Problem.md",
-    "Computational Methods/test.synctex.gz",
-    "Computational Methods/test.pdf",
-    "Computational Methods/test.tex",
     "Assignment.md",
     "Computational Methods/diagrams/Greedy strategy.md",
     "Computational Methods/diagrams/Greedy strategy.png",
@@ -216,7 +217,6 @@
     "Computational Methods/lecture notes/lecture 11 (061123).md",
     "Computational Methods/tutorial notes/tutorial 8 (021123).md",
     "Computational Methods/tutorial notes/tutorial 7 (261023).md",
-    "Computational Methods/tutorial notes/tutorial 6 (241023).md",
     "Untitled.canvas"
   ]
 }
