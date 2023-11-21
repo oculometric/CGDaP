@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Computational Methods/Computational Methods Assignment.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               }
             }
@@ -33,7 +33,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a1934e59e533fd16",
+            "id": "69b045ff856069ec",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -56,32 +56,12 @@
                 "sortOrder": "alphabetical"
               }
             }
-          },
-          {
-            "id": "9f971db07fff1546",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {}
-            }
-          },
-          {
-            "id": "f72ad0d558ccea30",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 249.5
+    "width": 321.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -148,9 +128,17 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "d1769d9204163f1d",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -172,6 +160,13 @@
   },
   "active": "3d8f6cdfdeaf8271",
   "lastOpenFiles": [
+    "Computational Methods/diagrams/Greedy Diagram New.svg",
+    "Computational Methods/diagrams/Assignment planets diagram.md",
+    "Computational Methods/diagrams/greedy_diagram_new.png",
+    "Computational Methods/Computational Methods Assignment.md",
+    "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
+    "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
+    "Computational Methods/Untitled.md",
     "Computational Methods/beta.csv",
     "Computational Methods/alpha.csv",
     "Computational Methods/gamma.csv",
@@ -179,7 +174,6 @@
     "Computational Methods/dynamic_programming.xlsx",
     "Computational Methods/delta.csv",
     "harvaard citation order.md",
-    "Computational Methods/Computational Methods Assignment.md",
     "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
     "Computational Methods/lecture notes/lecture 15 (201123).md",
     "diagrams/Assignment.md",
@@ -187,9 +181,7 @@
     "Computational Methods/Computational Methods Assignment.synctex.gz",
     "Computational Methods/Computational Methods Assignment.pdf",
     "Computational Methods/Computational Methods Assignment.aux",
-    "Computational Methods/Computational Methods Assignment.synctex(busy)",
     "Computational Methods/diagrams/Complicated Gallery.md",
-    "Computational Methods/diagrams/Assignment planets diagram.md",
     "Computational Methods/Art Gallery Problem.md",
     "Assignment.md",
     "Computational Methods/diagrams/Greedy strategy.md",
@@ -204,7 +196,6 @@
     "Pasted image 20231017174919.png",
     "Pasted image 20231017174526.png",
     "Pasted image 20231017173329.png",
-    "Pasted image 20231017172304.png",
     "Computational Methods/lecture notes/lecture 14 (131123).md",
     "Programming Fundamentals/lecture notes/lecture 13 (131123).md",
     "Computational Methods/lecture notes/lecture 13 (131123).md",
@@ -214,9 +205,6 @@
     "Computational Methods/lecture notes/lecture 12 (061123).md",
     "Programming Fundamentals/Console Game Redesign.md",
     "Programming Fundamentals/lecture notes/lecture 11 (061123).md",
-    "Computational Methods/lecture notes/lecture 11 (061123).md",
-    "Computational Methods/tutorial notes/tutorial 8 (021123).md",
-    "Computational Methods/tutorial notes/tutorial 7 (261023).md",
     "Untitled.canvas"
   ]
 }

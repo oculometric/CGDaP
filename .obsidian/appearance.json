@@ -3,7 +3,7 @@
   "cssTheme": "Obsidian gruvbox",
   "interfaceFontFamily": "",
   "baseFontSize": 19,
-  "enabledCssSnippets": [
-    "latex"
-  ]
+  "enabledCssSnippets": [],
+  "nativeMenus": false,
+  "translucency": false
 }

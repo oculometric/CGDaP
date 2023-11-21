@@ -310,6 +310,8 @@ much worse space complexity (Bellman, 1962)\footnote{Bellman, R. (1962)
   problem'}, \emph{Journal of the ACM}, 9(1), pp.~61--63.
   doi:10.1145/321105.321111.}.
 
+\newpage
+
 \subsection{Task 2 - Sorting}\label{task-2---sorting}
 
 \begin{longtable}[]{@{}
@@ -452,7 +454,7 @@ This trace table represents a quicksort, and below is the pseudocode for
 it.
 
 \begin{verbatim}
-Procedure swap(array, first, second) Being:
+Procedure swap(array, first, second) Begin:
     Let temp = array[first]
     array[first] = array[second]
     array[second] = temp
@@ -509,28 +511,50 @@ End Procedure
 \end{verbatim}
 
 This is an implementation of the quicksort algorithm, using Hoare's
-pivot choice and pair-of-pointers method. It makes use of recursive
+pivot choice and pair-of-pointers method (Hoare, 1962)\footnote{Hoare,
+  C. A. R. (1962) \emph{`Quicksort'},~\emph{The Computer Journal}, 5(1),
+  pp.~10--16. doi: 10.1093/comjnl/5.1.10.}. It makes use of recursive
 quicksort calls to sort a list by swapping items so that they
 effectively end up grouped (in each sublist) in groups of larger and
 smaller items; these sublists can then be sorted using the same method,
-until there is only one item in each sublist (this is the base case for
-the recursion). This is an example of a divide-and-conquer approach, as
-the subsequent quicksorts can be parallelised, since they are
-independent from one another. Quicksort, depending on implementation
-(particularly choice of pivot) as well as how sorted data already is,
-usually has worst-case complexity \(O(n^2)\). However with Hoare's
-partitioning scheme using the middle-pivot (as opposed to pivoting at
-the start or end value) tends to have worst-case complexity of
-\(O(n \log_2(n))\).
+until there is only one item in each sublist (this is the trivial base
+case for the recursion), as described by Hoare, the designer of the
+algorithm. This is an example of a divide-and-conquer approach, as the
+subsequent quicksorts can be parallelised, since they are independent
+from one another (Esau Taiwo et al., 2020)\footnote{Esau Taiwo, O.
+  \emph{et al.} (2020) \emph{`Comparative study of two divide and
+  conquer sorting algorithms: Quicksort and Mergesort'}, \emph{Procedia
+  Computer Science}, 171, pp.~2532--2540.
+  doi:10.1016/j.procs.2020.04.274.}. Quicksort, depending on
+implementation (particularly choice of pivot) as well as how sorted data
+already is, usually has worst-case complexity \(O(n^2)\). Quicksort also
+has the advantage that the pointer loops inside
+\texttt{partition\_array} can be implemented very efficiently on current
+standard computer architecture (Deshmukh \& Bhavsar, 2020)\footnote{Deshmukh,
+  S.M., Bhavsar, A.K. (2020) \emph{`A Review on Different Quicksort
+  Algorithms'}, \emph{International Journal of Science, Spirituality,
+  Business and Technology}, 7(2), pp.~3--7.}. With Hoare's partitioning
+scheme using the middle-pivot (as opposed to pivoting at the start or
+end value) tends to have average-case complexity of \(O(n \log_2(n))\),
+often better, and rare worst-case complexity of \(O(n^2)\); the
+worst-case can be further avoided by pivoting on the median of the
+first, middle, and last elements in the list (Fouz et al.,
+2011)\footnote{Fouz, M. \emph{et al.} (2011) \emph{`On smoothed analysis
+  of~quicksort~and~Hoare's find'}, \emph{Algorithmica}, 62(3--4),
+  pp.~879--905. doi:10.1007/s00453-011-9490-9.}.
+
+\newpage
 
 \subsection{Task 3 - Greedy Strategy}\label{task-3---greedy-strategy}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth,height=\textheight]{diagrams/Greedy strategy.png}
+\includegraphics[width=0.85\textwidth,height=\textheight]{diagrams/greedy_diagram_new.png}
 \caption{Process of traversing the graph using a mass-focused greedy
 strategy}
 \end{figure}
+
+\newpage
 
 Bearing in mind a greedy strategy chooses the best option in the short
 term and does not look ahead, two different techniques were considered:
@@ -853,6 +877,8 @@ removing the need for linear searching at each iteration. This
 \emph{might} reduce complexity to \(O(n\log_2(n))\) in the best case, if
 sorted with quicksort.
 
+\newpage
+
 \subsection{Task 4 - Dynamic
 Programming}\label{task-4---dynamic-programming}
 
@@ -904,8 +930,7 @@ const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
                                               { 10,  0, 12, 25, 14 },
                                               { 15, 12,  0, 16, 28 },
                                               { 12, 25, 16,  0, 17 },
-                                              { 20, 14, 28, 17,  0 }
-};
+                                              { 20, 14, 28, 17,  0 } };
 
 const int weight[NUM_NODES] = { 20, 40, 70, 10, 30 };
 const string names[NUM_NODES] = { "alpha", "beta", "gamma", "delta", "epsilon" };
@@ -1249,6 +1274,8 @@ detecting permutated sequences of planets (ABGD vs AGBD) which doesn't
 use sorting but instead hashes the sequence, which could potentially be
 done in linear \(O(n)\) time.
 
+\newpage
+
 \subsection{Task 5 - Art Gallery
 Problem}\label{task-5---art-gallery-problem}
 
@@ -1314,10 +1341,17 @@ an upper bound. However, these approaches are somewhat naive as they
 cannot optimise concave shapes where vertices are not shared, since they
 really only consider topology, and not the actual shape of the polygon
 in question. Consider the diagram below.
-\includegraphics[width=0.5\textwidth,height=\textheight]{diagrams/Complicated Gallery.png}
-Chvatal's proof shows that we need a maximum of three guards (since
-there are seven total vertices, and the formula must round up), and
-Fisk's proof and the colouring scheme shows that we need at most two
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth,height=\textheight]{diagrams/Complicated Gallery.png}
+\caption{An example of a simple but difficult-to-optimise gallery
+layout}
+\end{figure}
+
+Chvatal's proof shows that a maximum of three guards (since there are
+seven total vertices, and the formula must round up) are needed, and
+Fisk's proof and the colouring scheme reduces that bound to at most two
 guards; these could be placed at the two green vertices, or the two blue
 ones. However, looking at the polygon, one can clearly see that only a
 single guard is needed, placed at the highlighted green vertex. Every

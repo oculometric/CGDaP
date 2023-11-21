@@ -201,6 +201,8 @@ Reading from the generated files, it can be seen that the cheapest route is `3 0
 
 This approach isn't a good way to find the shortest path since it requires checking the cost of an enormous and rapidly increasing search space. Specifically $n!$ possible routes, $n$ being the number of planets (Flood, 1956)[^4]; this is because there are $n$ possible planets for the first destination, $n-1$ for the second, etc. Factorial time, $O(n!)$ is a bad time complexity. In order to evaluate the cost of each route, the program also has to traverse the whole list of planets representing each route, which are length $n$, so the real time complexity is $O(n\times n!)$. Optimisations which can be applied are limited since the problem is analogous to the asymmetric travelling salesman problem (i.e. reversed routes are not equal in cost), however we could reduce the number of routes to be checked using a dynamic programming approach, by exploring the graph gradually and comparing partial routes with the same planets visited and the same end planet. This could reduce the time complexity to $O(n^2 2^{n-1})$, but with much worse space complexity (Bellman, 1962)[^5].
 
+\newpage
+
 ## Task 2 - Sorting
 
 | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | start | end | i   | j   | pivot value | notes                                                          |
@@ -279,7 +281,7 @@ This approach isn't a good way to find the shortest path since it requires check
 This trace table represents a quicksort, and below is the pseudocode for it.
 
 ```
-Procedure swap(array, first, second) Being:
+Procedure swap(array, first, second) Begin:
 	Let temp = array[first]
 	array[first] = array[second]
 	array[second] = temp
@@ -335,11 +337,14 @@ Procedure quick_sort(array, start, end) Begin:
 End Procedure
 ```
 
-This is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method. It makes use of recursive quicksort calls to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the base case for the recursion). This is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised, since they are independent from one another. Quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$. However with Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have worst-case complexity of $O(n \log_2(n))$.
+This is an implementation of the quicksort algorithm, using Hoare's pivot choice and pair-of-pointers method (Hoare, 1962)[^7]. It makes use of recursive quicksort calls to sort a list by swapping items so that they effectively end up grouped (in each sublist) in groups of larger and smaller items; these sublists can then be sorted using the same method, until there is only one item in each sublist (this is the trivial base case for the recursion), as described by Hoare, the designer of the algorithm. This is an example of a divide-and-conquer approach, as the subsequent quicksorts can be parallelised, since they are independent from one another (Esau Taiwo et al., 2020)[^8]. Quicksort, depending on implementation (particularly choice of pivot) as well as how sorted data already is, usually has worst-case complexity $O(n^2)$. Quicksort also has the advantage that the pointer loops inside `partition_array` can be implemented very efficiently on current standard computer architecture (Deshmukh & Bhavsar, 2020)[^9]. With Hoare's partitioning scheme using the middle-pivot (as opposed to pivoting at the start or end value) tends to have average-case complexity of $O(n \log_2(n))$, often better, and rare worst-case complexity of $O(n^2)$; the worst-case can be further avoided by pivoting on the median of the first, middle, and last elements in the list (Fouz et al., 2011)[^10].
+
+\newpage
 
 ## Task 3 - Greedy Strategy
-![Process of traversing the graph using a mass-focused greedy strategy](diagrams/Greedy strategy.png){ width=50% }
+![Process of traversing the graph using a mass-focused greedy strategy](diagrams/greedy_diagram_new.png){ width=85% }
 
+\newpage
 
 Bearing in mind a greedy strategy chooses the best option in the short term and does not look ahead, two different techniques were considered: first, to traverse the graph choosing to move along the **cheapest weighted edge** (excluding any which lead to already visited nodes) at every node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node.
 The second of these produced a resulting route (starting at delta, since it has the lowest cargo mass to collect) of `delta -> alpha -> epsilon -> beta -> gamma`, costing **69000** intergalactic currency, which happens to also be the optimal path found by the brute-force method.
@@ -614,6 +619,8 @@ The output from the second version of the algorithm is, aside from cosmetic modi
 
 The only further optimisation that could be made is using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet, instead just stepping through unvisited planets sequentially and removing the need for linear searching at each iteration. This *might* reduce complexity to $O(n\log_2(n))$ in the best case, if sorted with quicksort.
 
+\newpage
+
 ## Task 4 - Dynamic Programming
 
 For the dynamic programming tables, see the files below.
@@ -653,8 +660,7 @@ const int adjacency[NUM_NODES][NUM_NODES] = { {  0, 10, 15, 12, 20 },
 											  { 10,  0, 12, 25, 14 },
 											  { 15, 12,  0, 16, 28 },
 											  { 12, 25, 16,  0, 17 },
-											  { 20, 14, 28, 17,  0 }
-};
+											  { 20, 14, 28, 17,  0 } };
 
 const int weight[NUM_NODES] = { 20, 40, 70, 10, 30 };
 const string names[NUM_NODES] = { "alpha", "beta", "gamma", "delta", "epsilon" };
@@ -921,6 +927,8 @@ With some calculation, we can find that the number of actual evaluations (i.e. c
 
 The complexity of the process of checking for alternative routes with the same nodes ('ABGD' vs 'AGBD') must also be considered. This implementation uses a simple $O(n^2)$ bubble sort, so overall this implementation has a time complexity of $O(n^2\times n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!})$. The algorithm could be improved with the use of a better method for detecting permutated sequences of planets (ABGD vs AGBD) which doesn't use sorting but instead hashes the sequence, which could potentially be done in linear $O(n)$ time.
 
+\newpage
+
 ## Task 5 - Art Gallery Problem
 
 The art gallery problem is a geometric problem in which an uneven, concave polygon (i.e. 2D shape, though the problem also exists for 3D polyhedra but is much harder to solve) must have the minimum possible number of 'guards' posted at discrete points on or within the polygon such that the entire polygon is 'visible' to the guards (i.e. there is an unbroken ray that leads from any point on any edge to at least one guard). The problem specifically is finding the minimum number of 'guards' needed to 'observe' the space.
@@ -934,10 +942,11 @@ However, the maximum number of guards can be reduced by considering that many tr
 Continuing this train of thought, it is true that a polygon can be triangulated and then coloured, such that all triangles have exactly one of each of three colours on it's vertices. Steve Fisk points out that by taking the total number of vertices of a certain colour, specifically the colour with the fewest instances in the polygon (i.e. in a polygon with 2 red, 1 green and 1 blue vertices, take either 1 green or 1 blue) the maximum number of guards required is reduced (Aigner and Ziegler, 2018)[^2]. This is a geometric description of the 'sharing vertices' concept described in the previous paragraph.
 
 Both of these geometric proofs are useful for reducing the search space in terms of finding solutions for smaller numbers of guards by setting an upper bound. However, these approaches are somewhat naive as they cannot optimise concave shapes where vertices are not shared, since they really only consider topology, and not the actual shape of the polygon in question. Consider the diagram below.
-![An example of a potential gallery layout](diagrams/Complicated Gallery.png){ width=50% }
+
+![An example of a simple but difficult-to-optimise gallery layout](diagrams/Complicated Gallery.png){ width=60% }
 
 
-Chvatal's proof shows that we need a maximum of three guards (since there are seven total vertices, and the formula must round up), and Fisk's proof and the colouring scheme shows that we need at most two guards; these could be placed at the two green vertices, or the two blue ones. However, looking at the polygon, one can clearly see that only a single guard is needed, placed at the highlighted green vertex. Every part of the polygon that the other green vertex can see, can also be seen by the highlighted vertex, plus a bit more.
+Chvatal's proof shows that a maximum of three guards (since there are seven total vertices, and the formula must round up) are needed, and Fisk's proof and the colouring scheme reduces that bound to at most two guards; these could be placed at the two green vertices, or the two blue ones. However, looking at the polygon, one can clearly see that only a single guard is needed, placed at the highlighted green vertex. Every part of the polygon that the other green vertex can see, can also be seen by the highlighted vertex, plus a bit more.
 
 An algorithm to optimise this problem (to minimise the number of guards) would need to be able to look at different combinations of guard placements to see if the number of guards can be reduced (i.e. brute-force). Heuristics could be applied, for example by counting around vertices and looking at their corner angles relative to the origin vertex to see if there are occluded (invisible from that point). Approximation methods might use a grid to check the coverage of the polygon from certain vertices in the shape, which could be resolved to smaller granularities to more precisely map the space.
 
@@ -953,3 +962,7 @@ Depending on constraints, this problem has been shown to be NP-hard, meaning it'
 [^4]: Flood, M. M. (1956), _‘The Traveling-Salesman Problem.’,_  _Operations Research_, 4(1), pp. 61–75. Available at: http://www.jstor.org/stable/167517 (Accessed: 20 November 2023).
 [^5]: Bellman, R. (1962) _‘Dynamic programming treatment of the travelling salesman problem’_, _Journal of the ACM_, 9(1), pp. 61–63. doi:10.1145/321105.321111.
 [^6]: Lee, D. and Lin, A. (1986) _‘Computational complexity of art gallery problems’_, _IEEE Transactions on Information Theory_, 32(2), pp. 276–282. doi:10.1109/TIT.1986.1057165.
+[^7]: Hoare, C. A. R. (1962) _‘Quicksort’_, _The Computer Journal_, 5(1), pp. 10–16. doi: 10.1093/comjnl/5.1.10.
+[^8]: Esau Taiwo, O. _et al._ (2020) _‘Comparative study of two divide and conquer sorting algorithms: Quicksort and Mergesort’_, _Procedia Computer Science_, 171, pp. 2532–2540. doi:10.1016/j.procs.2020.04.274.
+[^9]: Deshmukh, S.M., Bhavsar, A.K. (2020) _‘A Review on Different Quicksort Algorithms’_, _International Journal of Science, Spirituality, Business and Technology_, 7(2), pp. 3–7.
+[^10]: Fouz, M. _et al._ (2011) _‘On smoothed analysis of quicksort and Hoare’s find’_, _Algorithmica_, 62(3–4), pp. 879–905. doi:10.1007/s00453-011-9490-9.
