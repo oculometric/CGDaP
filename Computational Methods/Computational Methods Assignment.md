@@ -342,18 +342,19 @@ This is an implementation of the quicksort algorithm, using Hoare's pivot choice
 \newpage
 
 ## Task 3 - Greedy Strategy
-![Process of traversing the graph using a mass-focused greedy strategy](diagrams/greedy_diagram_new.png){ width=85% }
+
+![Process of traversing the graph using a mass-focused greedy strategy](diagrams/greedy_diagram_new.png){ width=75% }
 
 \newpage
 
-Bearing in mind a greedy strategy chooses the best option in the short term and does not look ahead, two different techniques were considered: first, to traverse the graph choosing to move along the **cheapest weighted edge** (excluding any which lead to already visited nodes) at every node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node.
-The second of these produced a resulting route (starting at delta, since it has the lowest cargo mass to collect) of `delta -> alpha -> epsilon -> beta -> gamma`, costing **69000** intergalactic currency, which happens to also be the optimal path found by the brute-force method.
-The first approach by contrast, starting at the same place, ended up choosing a `delta -> gamma -> beta -> alpha -> epsilon` route, which cost almost double the other method at **126500** intergalactic currency.
-It follows common sense that a mass-focused route would be better, since mass accumulates during the graph traversal, whereas the edge weightings (distances between planets) do not accumulate in the same way.
+A greedy strategy chooses the best option in the short term without looking ahead, so two approaches were considered: first, traversing the graph by moving along the **shortest distance edge** to an adjacent unvisited node; second, to traverse along the edge to the **lowest cargo mass** (using mass here to be distinct from edge weights) **adjacent unvisited** node. Each of these methods would repeat until all nodes have been visited. This produces an $O(n(n-1))$ traversal in both cases, traversing $n$ nodes and checking $n-1$ other nodes at each step to decide where to traverse next, which is much better than the $O(n!)$ offered by brute-force. These strategies represent a variation of the nearest neighbour algorithm, NND, as this task is analogous to TSP (Kizilateş & Nuriyeva, 2013)[^12].
+The second method produced the route (starting at delta, since it has the lowest cargo mass) `delta -> alpha -> epsilon -> beta -> gamma`, costing **69000**, which is coincidentally the optimal path found by brute-force.
+The first approach, starting at the same place, resulted in `delta -> gamma -> beta -> alpha -> epsilon`, which costs almost double the other method at **126500** intergalactic currency.
+It follows common sense that a mass-focused route would be better, since mass accumulates during the journey, whereas the edge weightings (distances between planets) do not accumulate. Although a greedy strategy is not guaranteed to find the optimal solution (Vince, 2002)[^13], it will find a reasonably good solution (a local minimum) in polynomial time (Abdulkarim & Alshammari, 2015)[^11].
+The problem is considerably simplified by the fact that no consideration is needed for the cargo or fuel capacity for the spaceship, as other similar problems (like F-GVRP) must consider refueling (Poonthalir & Nadarajan, 2018)[^14].
 
-The first implementation of this solution used a bubble sort to pre-sort the planet cargo masses, followed by lots of lookups of planet data, as graph data (edge weights, planet cargo masses, etc) was kept in a set of lists. This resulted in a rather unclear $O(n^3)$ algorithm. The $O(n^3)$ complexity could be significantly improved, and the general unclearness of the algorithm was unacceptable, so the greedy strategy was rewritten using the same basic algorithm, but with a better implementation. Planets are now stored as **structures**, containing all the information about them and how they connect, meaning the number of look-ups in lists is significantly reduced.
-
-It was found that, surprisingly, when constructing the list of connections that one node (i.e. planet) has with other nodes, it's actually *better* to not bother sorting the list by cargo mass (i.e. to reduce searching later). This is because the later loop not only needs to find the next lowest cargo mass planet, it needs to *find one which has not already been visited*, meaning it ends up doing a linear search through the connected planets regardless. This means choosing between either an $O(n^3)$ sorting pass with an $O(n^2)$ traversal pass, or an $O(n^2)$ preparation pass with an $O(n^2)$ traversal pass, the latter of which is clearly better. The pseudocode and C++ implementation for the improved method are below.
+In the implementation, planets are stored as **structures**, containing all the information about them and how they connect, eliminating the need for many list lookups.
+It was found that, surprisingly, when constructing the list of connections that each node has with other nodes, it's *better* to not sort the list by cargo mass (which would reduce searching later). The later loop not only needs to find the next lowest cargo mass planet, it needs to *find one which is unvisited*, meaning it performs a linear search through the connected planets regardless. This means choosing between either an $O(n^3)$ sorting pass with an $O(n^2)$ traversal pass, or an $O(n^2)$ preparation pass with an $O(n^2)$ traversal pass, the latter of which is better. Thus the resulting algorithmic complexity of this solution is $O(n^2)$, due to the two occurrences of traversing lists of length $n$, $n$ times over. The pseudocode and C++ implementation are below.
 
 ```
 Let NUM_PLANETS = 5
@@ -615,9 +616,7 @@ Found sequence delta -> alpha -> epsilon -> beta -> gamma
 Costing: 69000
 ```
 
-The output from the second version of the algorithm is, aside from cosmetic modification, exactly the same as from the earlier version. The resulting algorithmic complexity of this solution is $O(n^2)$, due to the two occurrences of traversing lists of length $n$, $n$ times over.
-
-The only further optimisation that could be made is using a system of sorted lookup tables for planet data and cargo masses to eliminate the need for searching for the next lowest *unvisited* cargo mass planet, instead just stepping through unvisited planets sequentially and removing the need for linear searching at each iteration. This *might* reduce complexity to $O(n\log_2(n))$ in the best case, if sorted with quicksort.
+This implementation could be improved, assuming the graph is fully connected. If this is the case, then no traversal is necessary, the planets can be sorted by cargo mass and the greedy route is the immediate result, producing a solution in $O(n\log(n))$ time complexity.
 
 \newpage
 
@@ -966,3 +965,7 @@ Depending on constraints, this problem has been shown to be NP-hard, meaning it'
 [^8]: Esau Taiwo, O. _et al._ (2020) _‘Comparative study of two divide and conquer sorting algorithms: Quicksort and Mergesort’_, _Procedia Computer Science_, 171, pp. 2532–2540. doi:10.1016/j.procs.2020.04.274.
 [^9]: Deshmukh, S.M., Bhavsar, A.K. (2020) _‘A Review on Different Quicksort Algorithms’_, _International Journal of Science, Spirituality, Business and Technology_, 7(2), pp. 3–7.
 [^10]: Fouz, M. _et al._ (2011) _‘On smoothed analysis of quicksort and Hoare’s find’_, _Algorithmica_, 62(3–4), pp. 879–905. doi:10.1007/s00453-011-9490-9.
+[^11]: Abdulkarim, H.A., Alshammari, I.F., (2015) _'Comparison of algorithms for solving traveling salesman problem.'_ _International Journal of Engineering and Advanced Technology_, 4(6), pp.76-79.
+[^12]: Kizilateş, G., Nuriyeva, F. (2013) _‘On the nearest neighbor algorithms for the traveling salesman problem’_, _Advances in Intelligent Systems and Computing_, pp. 111–118. doi:10.1007/978-3-319-00951-3_11.
+[^13]: Vince, A. (2002) _‘A framework for the greedy algorithm’_, _Discrete Applied Mathematics_, 121(1–3), pp. 247–260. doi:10.1016/s0166-218x(01)00362-6.
+[^14]: Poonthalir, G., Nadarajan, R. (2018) _‘A fuel efficient green vehicle routing problem with varying speed constraint (F-GVRP)’_, _Expert Systems with Applications_, 100, pp. 131–144. doi:10.1016/j.eswa.2018.01.052.

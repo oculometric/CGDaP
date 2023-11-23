@@ -13,9 +13,29 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "2b04c8e56da61c63",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Computational Methods/GDEV40015 CRG.pdf"
+              }
+            }
+          },
+          {
+            "id": "b566a290cde4f862",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
               }
             }
           }
@@ -85,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
+                "file": "Computational Methods/Computational Methods Assignment.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md"
+                "file": "Computational Methods/Computational Methods Assignment.md"
               }
             }
           },
@@ -168,8 +188,12 @@
   },
   "active": "88f3149186753fc3",
   "lastOpenFiles": [
-    "Programming Fundamentals/lecture notes/lecture 16 (211123).md",
+    "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods/Computational Methods Assignment.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/Computational Methods Assignment.pdf",
+    "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
+    "Programming Fundamentals/lecture notes/lecture 16 (211123).md",
     "Computational Methods/diagrams/Greedy Diagram New.svg",
     "Computational Methods/diagrams/Assignment planets diagram.md",
     "Computational Methods/diagrams/greedy_diagram_new.png",
@@ -187,9 +211,6 @@
     "Computational Methods/lecture notes/lecture 15 (201123).md",
     "diagrams/Assignment.md",
     "diagrams",
-    "Computational Methods/Computational Methods Assignment.synctex.gz",
-    "Computational Methods/Computational Methods Assignment.pdf",
-    "Computational Methods/Computational Methods Assignment.aux",
     "Computational Methods/diagrams/Complicated Gallery.md",
     "Computational Methods/Art Gallery Problem.md",
     "Assignment.md",
@@ -210,10 +231,8 @@
     "Computational Methods/lecture notes/lecture 13 (131123).md",
     "Computational Methods/tutorial notes/tutorial 9 (071123).md",
     "Programming Fundamentals/lecture notes/lecture 12 (071123).md",
-    "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
     "Computational Methods/lecture notes/lecture 12 (061123).md",
     "Programming Fundamentals/Console Game Redesign.md",
-    "Programming Fundamentals/lecture notes/lecture 11 (061123).md",
     "Untitled.canvas"
   ]
 }
