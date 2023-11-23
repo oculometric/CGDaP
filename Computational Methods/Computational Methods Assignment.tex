@@ -556,48 +556,64 @@ strategy}
 
 \newpage
 
-Bearing in mind a greedy strategy chooses the best option in the short
-term and does not look ahead, two different techniques were considered:
-first, to traverse the graph choosing to move along the \textbf{cheapest
-weighted edge} (excluding any which lead to already visited nodes) at
-every node; second, to traverse along the edge to the \textbf{lowest
+A greedy strategy chooses the best option in the short term without
+looking ahead, so two approaches were considered: first, traversing the
+graph by moving along the \textbf{shortest distance edge} to an adjacent
+unvisited node; second, to traverse along the edge to the \textbf{lowest
 cargo mass} (using mass here to be distinct from edge weights)
-\textbf{adjacent unvisited} node. The second of these produced a
-resulting route (starting at delta, since it has the lowest cargo mass
-to collect) of
+\textbf{adjacent unvisited} node. Each of these methods would repeat
+until all nodes have been visited. This produces an \(O(n(n-1))\)
+traversal in both cases, traversing \(n\) nodes and checking \(n-1\)
+other nodes at each step to decide where to traverse next, which is much
+better than the \(O(n!)\) offered by brute-force. These strategies
+represent a variation of the nearest neighbour algorithm, NND, as this
+task is analogous to TSP (Kizilateş \& Nuriyeva, 2013)\footnote{Kizilateş,
+  G., Nuriyeva, F. (2013) \emph{`On the nearest neighbor algorithms for
+  the traveling salesman problem'}, \emph{Advances in Intelligent
+  Systems and Computing}, pp.~111--118.
+  doi:10.1007/978-3-319-00951-3\_11.}. The second method produced the
+route (starting at delta, since it has the lowest cargo mass)
 \texttt{delta\ -\textgreater{}\ alpha\ -\textgreater{}\ epsilon\ -\textgreater{}\ beta\ -\textgreater{}\ gamma},
-costing \textbf{69000} intergalactic currency, which happens to also be
-the optimal path found by the brute-force method. The first approach by
-contrast, starting at the same place, ended up choosing a
-\texttt{delta\ -\textgreater{}\ gamma\ -\textgreater{}\ beta\ -\textgreater{}\ alpha\ -\textgreater{}\ epsilon}
-route, which cost almost double the other method at \textbf{126500}
+costing \textbf{69000}, which is coincidentally the optimal path found
+by brute-force. The first approach, starting at the same place, resulted
+in
+\texttt{delta\ -\textgreater{}\ gamma\ -\textgreater{}\ beta\ -\textgreater{}\ alpha\ -\textgreater{}\ epsilon},
+which costs almost double the other method at \textbf{126500}
 intergalactic currency. It follows common sense that a mass-focused
-route would be better, since mass accumulates during the graph
-traversal, whereas the edge weightings (distances between planets) do
-not accumulate in the same way.
+route would be better, since mass accumulates during the journey,
+whereas the edge weightings (distances between planets) do not
+accumulate. Although a greedy strategy is not guaranteed to find the
+optimal solution (Vince, 2002)\footnote{Vince, A. (2002) \emph{`A
+  framework for the greedy algorithm'}, \emph{Discrete Applied
+  Mathematics}, 121(1--3), pp.~247--260.
+  doi:10.1016/s0166-218x(01)00362-6.}, it will find a reasonably good
+solution (a local minimum) in polynomial time (Abdulkarim \& Alshammari,
+2015)\footnote{Abdulkarim, H.A., Alshammari, I.F., (2015)
+  \emph{`Comparison of algorithms for solving traveling salesman
+  problem.'}~\emph{International Journal of Engineering and Advanced
+  Technology},~4(6), pp.76-79.}. The problem is considerably simplified
+by the fact that no consideration is needed for the cargo or fuel
+capacity for the spaceship, as other similar problems (like F-GVRP) must
+consider refueling (Poonthalir \& Nadarajan, 2018)\footnote{Poonthalir,
+  G., Nadarajan, R. (2018) \emph{`A fuel efficient green vehicle routing
+  problem with varying speed constraint (F-GVRP)'}, \emph{Expert Systems
+  with Applications}, 100, pp.~131--144. doi:10.1016/j.eswa.2018.01.052.}.
 
-The first implementation of this solution used a bubble sort to pre-sort
-the planet cargo masses, followed by lots of lookups of planet data, as
-graph data (edge weights, planet cargo masses, etc) was kept in a set of
-lists. This resulted in a rather unclear \(O(n^3)\) algorithm. The
-\(O(n^3)\) complexity could be significantly improved, and the general
-unclearness of the algorithm was unacceptable, so the greedy strategy
-was rewritten using the same basic algorithm, but with a better
-implementation. Planets are now stored as \textbf{structures},
-containing all the information about them and how they connect, meaning
-the number of look-ups in lists is significantly reduced.
-
-It was found that, surprisingly, when constructing the list of
-connections that one node (i.e.~planet) has with other nodes, it's
-actually \emph{better} to not bother sorting the list by cargo mass
-(i.e.~to reduce searching later). This is because the later loop not
-only needs to find the next lowest cargo mass planet, it needs to
-\emph{find one which has not already been visited}, meaning it ends up
-doing a linear search through the connected planets regardless. This
-means choosing between either an \(O(n^3)\) sorting pass with an
-\(O(n^2)\) traversal pass, or an \(O(n^2)\) preparation pass with an
-\(O(n^2)\) traversal pass, the latter of which is clearly better. The
-pseudocode and C++ implementation for the improved method are below.
+In the implementation, planets are stored as \textbf{structures},
+containing all the information about them and how they connect,
+eliminating the need for many list lookups. It was found that,
+surprisingly, when constructing the list of connections that each node
+has with other nodes, it's \emph{better} to not sort the list by cargo
+mass (which would reduce searching later). The later loop not only needs
+to find the next lowest cargo mass planet, it needs to \emph{find one
+which is unvisited}, meaning it performs a linear search through the
+connected planets regardless. This means choosing between either an
+\(O(n^3)\) sorting pass with an \(O(n^2)\) traversal pass, or an
+\(O(n^2)\) preparation pass with an \(O(n^2)\) traversal pass, the
+latter of which is better. Thus the resulting algorithmic complexity of
+this solution is \(O(n^2)\), due to the two occurrences of traversing
+lists of length \(n\), \(n\) times over. The pseudocode and C++
+implementation are below.
 
 \begin{verbatim}
 Let NUM_PLANETS = 5
@@ -863,19 +879,11 @@ Found sequence delta -> alpha -> epsilon -> beta -> gamma
 Costing: 69000
 \end{verbatim}
 
-The output from the second version of the algorithm is, aside from
-cosmetic modification, exactly the same as from the earlier version. The
-resulting algorithmic complexity of this solution is \(O(n^2)\), due to
-the two occurrences of traversing lists of length \(n\), \(n\) times
-over.
-
-The only further optimisation that could be made is using a system of
-sorted lookup tables for planet data and cargo masses to eliminate the
-need for searching for the next lowest \emph{unvisited} cargo mass
-planet, instead just stepping through unvisited planets sequentially and
-removing the need for linear searching at each iteration. This
-\emph{might} reduce complexity to \(O(n\log_2(n))\) in the best case, if
-sorted with quicksort.
+This implementation could be improved, assuming the graph is fully
+connected. If this is the case, then no traversal is necessary, the
+planets can be sorted by cargo mass and the greedy route is the
+immediate result, producing a solution in \(O(n\log(n))\) time
+complexity.
 
 \newpage
 
@@ -1279,61 +1287,63 @@ done in linear \(O(n)\) time.
 \subsection{Task 5 - Art Gallery
 Problem}\label{task-5---art-gallery-problem}
 
-The art gallery problem is a geometric problem in which an uneven,
-concave polygon (i.e.~2D shape, though the problem also exists for 3D
-polyhedra but is much harder to solve) must have the minimum possible
-number of `guards' posted at discrete points on or within the polygon
-such that the entire polygon is `visible' to the guards (i.e.~there is
-an unbroken ray that leads from any point on any edge to at least one
-guard). The problem specifically is finding the minimum number of
-`guards' needed to `observe' the space.
+The art gallery problem is a geometric optimisation problem in which an
+uneven, concave 2D polygon must have the minimum possible number of
+`guards' posted at discrete points on or within the polygon such that
+the entire polygon is `visible' to the guards (i.e.~there is an unbroken
+ray that leads from any point on any edge to at least one guard)
+(Michael \& Pinciu, 2016)\footnote{Michael, T.S., Pinciu, V. (2016)
+  \emph{`The orthogonal art gallery theorem with Constrained Guards'},
+  \emph{Electronic Notes in Discrete Mathematics}, 54, pp.~27--32.
+  doi:10.1016/j.endm.2016.09.006.}.
 
-The analogy is referential to an art gallery of course, with various
-rooms of different shapes, which are likely to be concave and possibly
-have disconnected obstacles (pillars) within the gallery. In this
-scenario, the artworks must be kept safe from theft or vandalism, while
-minimising the number of guards required to guard it. We assume that
-each guard has 360 degree vision.
+The analogy is referential to an art gallery, with rooms of different
+shapes, which may be concave and possibly have disconnected obstacles
+(pillars), though this varies between definitions of the problem. The
+artworks must be kept safe from theft or vandalism, while minimising the
+number of guards required to guard it. We assume that guards have 360
+degree vision.
 
-Václav Chvátal showed that the maximum possible number of guards
-required was equal to \(\frac{n}{3}\) , where \(n\) is the number of
-vertices in the polygon. It can be seen that a single guard must be able
-to observe the whole of a convex shape (of which a triangle is the
-simplest and always convex), since no matter where within or on a
-triangle an observation point is placed, direct lines can be drawn to
-all the corners of the triangle. Chvátal's theorem is useful, because if
-the polygon is triangulated (i.e.~the entire polygon is constructed to
-be made up of shapes of only 3 vertices // CITATION FOR PROOF OF
-TRIANGUJLATION HERE) the maximum possible number of triangles a polygon
-could be composed of is \(\frac{n}{3}\) , for the case where the polygon
-is made up of a number of disconnected triangles which share no vertices
-with one another. Since we need exactly one guard per triangle, the
-maximum possible number of guards needed is also \(\frac{n}{3}\)
-(Chvatal, 2004)\footnote{Chvátal, V. (2004) \emph{`A combinatorial
-  theorem in plane geometry'}, \emph{Journal of Combinatorial Theory,
-  Series B}. Available at:
+Chvátal showed that the maximum possible number of guards required was
+equal to \(\frac{n}{3}\) , where \(n\) is the number of vertices in the
+polygon. A single guard is able to observe the whole of a convex shape
+(of which a triangle is the simplest and always convex), since no matter
+where within the shape an observation point is placed, direct lines can
+be drawn to all the corners of the shape. Since any polygon may be
+triangulated (Garey et al., 1978)\footnote{Garey, M.R., Johnson, D.S.,
+  Preparata, F.P., Tarjan, R.E. (1978) \emph{`Triangulating a simple
+  polygon.'},~\emph{Information Processing Letters},~7(4), pp.175-179.},
+and each triangle consumes at most 3 vertices from the polygon
+(e.g.~where the polygon consists of a number of disconnected triangles
+which share no vertices with one another), at most \(\frac{n}{3}\)
+guards are required, or one per triangle (Chvatal, 2004)\footnote{Chvátal,
+  V. (2004) \emph{`A combinatorial theorem in plane geometry'},
+  \emph{Journal of Combinatorial Theory, Series B}. Available at:
   https://www.sciencedirect.com/science/article/pii/0095895675900611
   (Accessed: 29 October 2023).}.
 
-However, the maximum number of guards can be reduced by considering that
-many triangles will share at least one vertex with a neighbour, usually
-sharing two with any particular neighbour, saving one guard each time
-this happens. The difficulty of the art gallery problem lies in
+The number of guards required can be reduced since many triangles will
+share at least one vertex with a neighbour, usually sharing two, saving
+one guard each time two triangles share an edge since a guard can be
+placed at one of the shared vertices and observe both polygons. It is
+true that a polygon can be 3-coloured, such that all triangles have
+exactly one of each of three colours on their vertices (O'Rourke,
+2012)\footnote{O'Rourke, J. (2012) \emph{Art Gallery Theroems and
+  Algorithms}, \emph{Art Gallery theorems and algorithms}. Available at:
+  http://www.science.smith.edu/\textasciitilde jorourke/books/ArtGalleryTheorems/art.html
+  (Accessed: 23 November 2023).}. Fisk points out that by taking the
+total number of vertices coloured with a the colour with the fewest
+instances in the polygon (i.e.~in a polygon with 2 red, 1 green and 1
+blue vertices, take either 1 green or 1 blue) the maximum number of
+guards required is reduced (Aigner and Ziegler, 2018)\footnote{Aigner,
+  M., Ziegler, G.M. (2018). \emph{`How to guard a museum. In: Proofs
+  from THE BOOK'}. Springer, Berlin, Heidelberg.
+  https://doi.org/10.1007/978-3-662-57265-8\_40}. This is a geometric
+presentation of the `sharing vertices' concept described earlier.
+
+// UP TO HERE The difficulty of the art gallery problem lies in
 decomposing a complex shape with many `ins and outs' and placing guards
 optimally.
-
-Continuing this train of thought, it is true that a polygon can be
-triangulated and then coloured, such that all triangles have exactly one
-of each of three colours on it's vertices. Steve Fisk points out that by
-taking the total number of vertices of a certain colour, specifically
-the colour with the fewest instances in the polygon (i.e.~in a polygon
-with 2 red, 1 green and 1 blue vertices, take either 1 green or 1 blue)
-the maximum number of guards required is reduced (Aigner and Ziegler,
-2018)\footnote{Aigner, M., Ziegler, G.M. (2018). \emph{`How to guard a
-  museum. In: Proofs from THE BOOK'}. Springer, Berlin, Heidelberg.
-  https://doi.org/10.1007/978-3-662-57265-8\_40}. This is a geometric
-description of the `sharing vertices' concept described in the previous
-paragraph.
 
 Both of these geometric proofs are useful for reducing the search space
 in terms of finding solutions for smaller numbers of guards by setting
