@@ -945,15 +945,15 @@ Both of these geometric proofs reduce the search space in terms of finding solut
 
 Consider Fig. 3: Chvatal's proof shows that a maximum of three guards (there are seven vertices, and the formula rounds up) are needed, and Fisk's proof reduces that bound to at most two guards (these could be placed at the two green vertices, or the two blue ones). However, looking at the polygon, one can clearly see that only a single guard is needed, placed at the highlighted green vertex. Human viewers can apply a heuristic and observe that although the shape is concave, this vertex can observe all of it. Every part of the polygon that the other green vertex can observe, can also be observed by the highlighted vertex, plus a bit more.
 
-An algorithm to optimise this problem (to minimise the number of guards) would need to be able to look at different combinations of guard placements to see if the number of guards can be reduced (i.e. brute-force). Heuristics could be applied, for example by counting around vertices and looking at their corner angles relative to the origin vertex to see if there are occluded (invisible from that point).
+An algorithm to optimise this problem (to minimise the number of guards) would need to be able to look at different combinations of guard placements to see if the number of guards can be reduced (i.e. brute-force). Heuristics could be applied, for example by counting around vertices and looking at their corner angles relative to the origin vertex to see if there are occluded (invisible from that point). A dynamic approach could be used: checking for each vertex, which other vertices are visible to it, and iteratively eliminating those with poorest visibility to narrow the search space (using Fisk's limit to restrict the search space as well).
 
-Approximation methods might use a grid to check the coverage of the polygon from certain vertices in the shape, which could be resolved to smaller granularities to more precisely map the space as needed, although even this approach has been found to be NP-hard (Biedl et. al., 2012)[^18].
-
-It's important to note that there are several variations of the problem which allow guards to be placed on edges, or even anywhere within the polygon, and which allow/disallow holes in the polygon (which are analogous to pillars in a gallery), affecting the number of possible configurations and methods for verifying solutions. // reference for this
+Approximation methods sometimes use a grid to check the coverage of the polygon from certain vertices in the shape, which could be resolved to smaller granularities to more precisely map the space as needed, although even this approach has been found to be NP-hard (Biedl et. al., 2012)[^18].
 
 One approach presented is to reduce the the overall polygon to a set of convex polygons, each of which may be observed by a single guard (Ghosh, 1987)[^3]. However, even this may not produce optimal results, see Fig. 3 again.
 
-// APPLICATIONS
+It's important to note that there are several variations of the problem which allow guards to be placed on edges, or even anywhere within the polygon, and which allow/disallow holes in the polygon (which are analogous to pillars in a gallery). Polygons may also be restricted to being orthogonal (i.e. having all squared edges); all of these combinations of conditions affect the number of possible configurations and methods for verifying solutions, though nearly all have been proven NP-hard (Kröller et al, 2012)[^19], (Schuchardt and Hecker, 1995)[^20].
+
+One application of the art gallery problem is laser-scanning of interiors, where the goal is to minimise the number of scans taken (Kröller et al, 2012)[^19], which means placing the 'guards' anywhere inside the polygon. Another example is generating navigation routes for autonomous robotics in environments with many obstacles/holes (Lulu & Elnagar, 2007)[^21].
 
 
 [^1]: Chvátal, V. (2004) _'A combinatorial theorem in plane geometry'_, _Journal of Combinatorial Theory, Series B_. Available at: https://www.sciencedirect.com/science/article/pii/0095895675900611 (Accessed: 29 October 2023).
@@ -974,3 +974,6 @@ One approach presented is to reduce the the overall polygon to a set of convex p
 [^16]: Garey, M.R., Johnson, D.S., Preparata, F.P., Tarjan, R.E. (1978) _'Triangulating a simple polygon.'_, _Information Processing Letters_, 7(4), pp. 175-179.
 [^17]: O’Rourke, J. (2012) _Art Gallery Theroems and Algorithms_, _Art Gallery theorems and algorithms_. Available at: http://www.science.smith.edu/~jorourke/books/ArtGalleryTheorems/art.html (Accessed: 23 November 2023).
 [^18]: Biedl, T. _et al._ (2012) _'The Art Gallery Theorem for Polyominoes.'_ _Discrete & Computational Geometry_, 48, pp. 711–720. https://doi.org/10.1007/s00454-012-9429-1
+[^19]: Kröller, A. _et al._ (2012) _‘Exact Solutions and Bounds for General Art Gallery Problems’_, _ACM J. Exp. Algorithmics_. New York, NY, USA: Association for Computing Machinery, 17. doi:10.1145/2133803.2184449.
+[^20]: Schuchardt, D., Hecker, H.D. (1995). _'Two NP‐Hard Art‐Gallery Problems for Ortho‐Polygons.'_ _Mathematical Logic Quarterly_, 41(2), pp. 261-267. doi:10.1002/malq.19950410212.
+[^21]: Lulu, L., Elnagar, A. (2007) _‘An art gallery-based approach: Roadmap construction and path planning in global environments’_, _International Journal of Robotics and Automation_, 22(4). doi:10.2316/journal.206.2007.4.206-3059.

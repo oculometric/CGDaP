@@ -513,7 +513,7 @@ End Procedure
 This is an implementation of the quicksort algorithm, using Hoare's
 pivot choice and pair-of-pointers method (Hoare, 1962)\footnote{Hoare,
   C. A. R. (1962) \emph{`Quicksort'},~\emph{The Computer Journal}, 5(1),
-  pp.~10--16. doi: 10.1093/comjnl/5.1.10.}. It makes use of recursive
+  pp.~10--16. doi:10.1093/comjnl/5.1.10.}. It makes use of recursive
 quicksort calls to sort a list by swapping items so that they
 effectively end up grouped (in each sublist) in groups of larger and
 smaller items; these sublists can then be sorted using the same method,
@@ -591,7 +591,7 @@ solution (a local minimum) in polynomial time (Abdulkarim \& Alshammari,
 2015)\footnote{Abdulkarim, H.A., Alshammari, I.F., (2015)
   \emph{`Comparison of algorithms for solving traveling salesman
   problem.'}~\emph{International Journal of Engineering and Advanced
-  Technology},~4(6), pp.76-79.}. The problem is considerably simplified
+  Technology},~4(6), pp.~76-79.}. The problem is considerably simplified
 by the fact that no consideration is needed for the cargo or fuel
 capacity for the spaceship, as other similar problems (like F-GVRP) must
 consider refueling (Poonthalir \& Nadarajan, 2018)\footnote{Poonthalir,
@@ -1295,7 +1295,13 @@ ray that leads from any point on any edge to at least one guard)
 (Michael \& Pinciu, 2016)\footnote{Michael, T.S., Pinciu, V. (2016)
   \emph{`The orthogonal art gallery theorem with Constrained Guards'},
   \emph{Electronic Notes in Discrete Mathematics}, 54, pp.~27--32.
-  doi:10.1016/j.endm.2016.09.006.}.
+  doi:10.1016/j.endm.2016.09.006.}. Depending on constraints, this
+problem has been shown to be NP-hard, meaning it's both difficult to
+solve and difficult to verify in polynomial time (Lee and Lin,
+1986)\footnote{Lee, D. and Lin, A. (1986) \emph{`Computational
+  complexity of art gallery problems'},~\emph{IEEE Transactions on
+  Information Theory}, 32(2), pp.~276--282.
+  doi:10.1109/TIT.1986.1057165.}.
 
 The analogy is referential to an art gallery, with rooms of different
 shapes, which may be concave and possibly have disconnected obstacles
@@ -1312,7 +1318,7 @@ where within the shape an observation point is placed, direct lines can
 be drawn to all the corners of the shape. Since any polygon may be
 triangulated (Garey et al., 1978)\footnote{Garey, M.R., Johnson, D.S.,
   Preparata, F.P., Tarjan, R.E. (1978) \emph{`Triangulating a simple
-  polygon.'},~\emph{Information Processing Letters},~7(4), pp.175-179.},
+  polygon.'},~\emph{Information Processing Letters},~7(4), pp.~175-179.},
 and each triangle consumes at most 3 vertices from the polygon
 (e.g.~where the polygon consists of a number of disconnected triangles
 which share no vertices with one another), at most \(\frac{n}{3}\)
@@ -1326,10 +1332,11 @@ The number of guards required can be reduced since many triangles will
 share at least one vertex with a neighbour, usually sharing two, saving
 one guard each time two triangles share an edge since a guard can be
 placed at one of the shared vertices and observe both polygons. It is
-true that a polygon can be 3-coloured, such that all triangles have
-exactly one of each of three colours on their vertices (O'Rourke,
-2012)\footnote{O'Rourke, J. (2012) \emph{Art Gallery Theroems and
-  Algorithms}, \emph{Art Gallery theorems and algorithms}. Available at:
+true that a triangulated polygon can be 3-coloured, such that all
+triangles have exactly one of each of three colours on their vertices
+(O'Rourke, 2012)\footnote{O'Rourke, J. (2012) \emph{Art Gallery Theroems
+  and Algorithms}, \emph{Art Gallery theorems and algorithms}. Available
+  at:
   http://www.science.smith.edu/\textasciitilde jorourke/books/ArtGalleryTheorems/art.html
   (Accessed: 23 November 2023).}. Fisk points out that by taking the
 total number of vertices coloured with a the colour with the fewest
@@ -1341,16 +1348,13 @@ guards required is reduced (Aigner and Ziegler, 2018)\footnote{Aigner,
   https://doi.org/10.1007/978-3-662-57265-8\_40}. This is a geometric
 presentation of the `sharing vertices' concept described earlier.
 
-// UP TO HERE The difficulty of the art gallery problem lies in
-decomposing a complex shape with many `ins and outs' and placing guards
-optimally.
-
-Both of these geometric proofs are useful for reducing the search space
-in terms of finding solutions for smaller numbers of guards by setting
-an upper bound. However, these approaches are somewhat naive as they
-cannot optimise concave shapes where vertices are not shared, since they
-really only consider topology, and not the actual shape of the polygon
-in question. Consider the diagram below.
+Both of these geometric proofs reduce the search space in terms of
+finding solutions for smaller numbers of guards by setting an upper
+bound. Fisk's proof even provides a starting point of candidate guard
+placements. However, these approaches are somewhat naive as they cannot
+optimise concave shapes where vertices are not shared, since they really
+only consider topology, and not the actual shape of the polygon in
+question.
 
 \begin{figure}
 \centering
@@ -1359,14 +1363,16 @@ in question. Consider the diagram below.
 layout}
 \end{figure}
 
-Chvatal's proof shows that a maximum of three guards (since there are
-seven total vertices, and the formula must round up) are needed, and
-Fisk's proof and the colouring scheme reduces that bound to at most two
-guards; these could be placed at the two green vertices, or the two blue
-ones. However, looking at the polygon, one can clearly see that only a
-single guard is needed, placed at the highlighted green vertex. Every
-part of the polygon that the other green vertex can see, can also be
-seen by the highlighted vertex, plus a bit more.
+Consider Fig. 3: Chvatal's proof shows that a maximum of three guards
+(there are seven vertices, and the formula rounds up) are needed, and
+Fisk's proof reduces that bound to at most two guards (these could be
+placed at the two green vertices, or the two blue ones). However,
+looking at the polygon, one can clearly see that only a single guard is
+needed, placed at the highlighted green vertex. Human viewers can apply
+a heuristic and observe that although the shape is concave, this vertex
+can observe all of it. Every part of the polygon that the other green
+vertex can observe, can also be observed by the highlighted vertex, plus
+a bit more.
 
 An algorithm to optimise this problem (to minimise the number of guards)
 would need to be able to look at different combinations of guard
@@ -1374,29 +1380,54 @@ placements to see if the number of guards can be reduced
 (i.e.~brute-force). Heuristics could be applied, for example by counting
 around vertices and looking at their corner angles relative to the
 origin vertex to see if there are occluded (invisible from that point).
-Approximation methods might use a grid to check the coverage of the
+A dynamic approach could be used: checking for each vertex, which other
+vertices are visible to it, and iteratively eliminating those with
+poorest visibility to narrow the search space (using Fisk's limit to
+restrict the search space as well).
+
+Approximation methods sometimes use a grid to check the coverage of the
 polygon from certain vertices in the shape, which could be resolved to
-smaller granularities to more precisely map the space.
+smaller granularities to more precisely map the space as needed,
+although even this approach has been found to be NP-hard (Biedl et. al.,
+2012)\footnote{Biedl, T.~\emph{et al.}~(2012) \emph{`The Art Gallery
+  Theorem for Polyominoes.'}~\emph{Discrete \& Computational
+  Geometry},~48, pp.~711--720. https://doi.org/10.1007/s00454-012-9429-1}.
 
-It's important to note that we have an additional constraint in this
-problem: keeping guards on vertices. However, there are variations of
-the problem (and indeed, real-world applications light lighting a stage
-would be less constrained) which allow guards to be placed on edges, or
-even anywhere within the polygon, vastly increasing the number of
-possible configurations. // reference for this
+One approach presented is to reduce the the overall polygon to a set of
+convex polygons, each of which may be observed by a single guard (Ghosh,
+1987)\footnote{Ghosh, S. K. (1987), \emph{`Approximation algorithms for
+  art gallery problems'},~\emph{Proc. Canadian Information Processing
+  Society Congress}, pp.~429--434.}. However, even this may not produce
+optimal results, see Fig. 3 again.
 
-One approach presented by Ghosh is to reduce the the overall polygon to
-a set of convex polygons, each of which may be observed by a single
-guard (Ghosh, 1987)\footnote{Ghosh, S. K. (1987), \emph{`Approximation
-  algorithms for art gallery problems'},~\emph{Proc. Canadian
-  Information Processing Society Congress}, pp.~429--434.}. However,
-even this may not produce optimal results, see the diagram above again.
+It's important to note that there are several variations of the problem
+which allow guards to be placed on edges, or even anywhere within the
+polygon, and which allow/disallow holes in the polygon (which are
+analogous to pillars in a gallery). Polygons may also be restricted to
+being orthogonal (i.e.~having all squared edges); all of these
+combinations of conditions affect the number of possible configurations
+and methods for verifying solutions, though nearly all have been proven
+NP-hard (Kröller et al, 2012)\footnote{Kröller, A.~\emph{et al.}~(2012)
+  \emph{`Exact Solutions and Bounds for General Art Gallery
+  Problems'},~\emph{ACM J. Exp. Algorithmics}. New York, NY, USA:
+  Association for Computing Machinery, 17. doi:10.1145/2133803.2184449.},
+(Schuchardt and Hecker, 1995)\footnote{Schuchardt, D., Hecker, H.D.
+  (1995). \emph{`Two NP‐Hard Art‐Gallery Problems for
+  Ortho‐Polygons.'}~\emph{Mathematical Logic Quarterly},~41(2),
+  pp.~261-267. doi:10.1002/malq.19950410212.}.
 
-Depending on constraints, this problem has been shown to be NP-hard,
-meaning it's both difficult to solve and difficult to verify in
-polynomial time (Lee and Lin, 1986)\footnote{Lee, D. and Lin, A. (1986)
-  \emph{`Computational complexity of art gallery problems'},~\emph{IEEE
-  Transactions on Information Theory}, 32(2), pp.~276--282.
-  doi:10.1109/TIT.1986.1057165.}.
+One application of the art gallery problem is laser-scanning of
+interiors, where the goal is to minimise the number of scans taken
+(Kröller et al, 2012)\footnote{Kröller, A.~\emph{et al.}~(2012)
+  \emph{`Exact Solutions and Bounds for General Art Gallery
+  Problems'},~\emph{ACM J. Exp. Algorithmics}. New York, NY, USA:
+  Association for Computing Machinery, 17. doi:10.1145/2133803.2184449.},
+which means placing the `guards' anywhere inside the polygon. Another
+example is generating navigation routes for autonomous robotics in
+environments with many obstacles/holes (Lulu \& Elnagar,
+2007)\footnote{Lulu, L., Elnagar, A. (2007) \emph{`An art gallery-based
+  approach: Roadmap construction and path planning in global
+  environments'}, \emph{International Journal of Robotics and
+  Automation}, 22(4). doi:10.2316/journal.206.2007.4.206-3059.}.
 
 \end{document}
