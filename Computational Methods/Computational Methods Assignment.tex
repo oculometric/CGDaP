@@ -79,11 +79,13 @@
 
 \begin{document}
 
+\section{Computational Methods}\label{computational-methods}
+
 \subsection{Task 1 - Brute Force}\label{task-1---brute-force}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth,height=\textheight]{diagrams/Assignment planets diagram.png}
+\includegraphics[width=0.5\textwidth,height=\textheight]{diagrams/bruteforce_diagram.png}
 \caption{Diagram of the planets as a graph}
 \end{figure}
 
@@ -1203,18 +1205,27 @@ the program only prunes routes which visit the \textbf{same planets}
 (and thus have the same weight), and \textbf{end at the same planet}
 (i.e.~have the same options/edge costs for future traversal steps) but
 with a \textbf{worse cost than other routes satisfying the same
-conditions}.
+conditions}. The dynamic approach solves subproblems recursively, and it
+can be considered that each `block' in the table is a sub-level of
+optimisation where the optimal solutions are found for that particular
+number of nodes, before another node is added and the problem is
+optimised again (Rust, 2008)\footnote{Rust, J. (2008) \emph{`Dynamic
+  programming.'}~\emph{The new Palgrave dictionary of economics},~1,
+  p.8.}.
 
 In terms of complexity, it can be seen that this is faster than the
 brute force approach, for two reasons, which correspond to the two main
 techniques the dynamic approach uses: 1. Memoisation - each time the
-cost of a route is calculated, the program doesn't recalculate the
-entire cost, just the progression from the previously accumulated cost,
-and calculations are saved and reused (reducing time cost to calculate
-multiple branching routes) 2. Pruning - by pruning provably inferior
-routes at early stages, the search space is massively reduced. In fact,
-this method reduces our search space all the way down to just 60 full
-routes covered, from 120 before
+cost of a route is calculated, only the progression from the previously
+accumulated cost is calculated, not the entire route cost, reducing time
+cost to calculate multiple branching routes by caching route costs 2.
+Pruning - by pruning provably inferior routes at early stages, the
+search space is massively reduced, eliminating checking of many routes
+early on (Montero et al., 2017)\footnote{Montero, A., Méndez-Díaz, I.,
+  Miranda-Bront, J.J. (2017) \emph{`An integer programming approach for
+  the time-dependent traveling salesman problem with time windows'},
+  \emph{Computers \& Operations Research}, 88, pp.~280--289.
+  doi:10.1016/j.cor.2017.06.026.}
 
 Writing code for this allowed for testing of different numbers of nodes,
 and the results are displayed below.
@@ -1229,13 +1240,13 @@ and the results are displayed below.
 \begin{minipage}[b]{\linewidth}\raggedright
 n
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-routes checked to completion
+Routes checked to completion
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-nodes evaluated
+Nodes evaluated
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-total possible routes
+Total possible routes
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-nodes evaluated in brute force (equivalent)
+Nodes evaluated in brute force (equivalent)
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
@@ -1255,32 +1266,31 @@ step, we prune such that the number of routes to examine in the next
 block is halved, then thirded, etc, leaving only
 \(n(n-1)(n-2)=\frac{n!}{(n-3)!}\) routes checked to completion.
 
-With some calculation, we can find that the number of actual evaluations
-(i.e.~calculating the cost of a node, and deciding if it should be
-pruned or carried forward) is equal to
-\(\sum_{r=0}^{r=n-2} \frac{n!}{(n-(r+2))!|r-1|!}\); this represents the
-total number of rows in the table multiplied by the number of filled
-cells in each row, block by block (where \(r\) is the index of the
-block). This can be simplified to
-\(n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!}\), and the effect of
-pruning represents multiplying the \(n!\) total number of routes by
-summed fractions, where each fraction is representing 1 divided by the
-ratio of nodes we can prune at each step in the table. The equivalent
-number of evaluations in the brute-force approach equals the number of
-routes multiplied by the number of nodes, representing the time taken to
-calculate the cost of a particular route (\(n!\) routes, each of length
-\(n\)), so \(n!\times n\). This shows that the dynamic approach has much
-better time complexity than brute-force.
+We can find that the number of evaluations (i.e.~calculating the cost of
+a node, and deciding if it should be pruned or carried forward) is
+\(n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!}\). This represents the
+total number of filled cells in the table, and the effect of pruning
+means multiplying the \(n!\) total number of routes by summed fractions,
+where each fraction is representing 1 divided by the ratio of nodes we
+prune at each step. The equivalent number of evaluations in the
+brute-force approach equals the number of routes multiplied by the
+number of nodes, considering time taken to calculate the cost of a
+particular route, totaling \(n!\times n\). This shows that the dynamic
+approach has much better time complexity than brute-force, and this
+complexity approximates reasonably well in rate of increase when
+compared to that found by Bellman's findings (Bellman, 1962)\footnote{Bellman,
+  R. (1962) \emph{`Dynamic programming treatment of the travelling
+  salesman problem'}, \emph{Journal of the ACM}, 9(1), pp.~61--63.
+  doi:10.1145/321105.321111.}.
 
-The complexity of the process of checking for alternative routes with
-the same nodes (`ABGD' vs `AGBD') must also be considered. This
-implementation uses a simple \(O(n^2)\) bubble sort, so overall this
-implementation has a time complexity of
+The complexity of checking for alternative routes with the same nodes
+(`ABGD' vs `AGBD') must also be considered. This implementation uses an
+\(O(n^2)\) bubble sort, so overall this implementation has a time
+complexity of
 \(O(n^2\times n!\sum_{r=0}^{r=n-2} \frac{1}{(n-(r+2))!|r-1|!})\). The
-algorithm could be improved with the use of a better method for
-detecting permutated sequences of planets (ABGD vs AGBD) which doesn't
-use sorting but instead hashes the sequence, which could potentially be
-done in linear \(O(n)\) time.
+algorithm could be improved with the use of a better method for route
+comparison which instead hashes the sequence, potentially reducing this
+to linear \(O(n)\) time.
 
 \newpage
 
@@ -1429,5 +1439,107 @@ environments with many obstacles/holes (Lulu \& Elnagar,
   approach: Roadmap construction and path planning in global
   environments'}, \emph{International Journal of Robotics and
   Automation}, 22(4). doi:10.2316/journal.206.2007.4.206-3059.}.
+
+\newpage
+
+\subsection{Bibliography}\label{bibliography}
+
+Chvátal, V. (2004) \emph{`A combinatorial theorem in plane geometry'},
+\emph{Journal of Combinatorial Theory, Series B}. Available at:
+https://www.sciencedirect.com/science/article/pii/0095895675900611
+(Accessed: 29 October 2023).
+
+Aigner, M., Ziegler, G.M. (2018). \emph{`How to guard a museum. In:
+Proofs from THE BOOK'}. Springer, Berlin, Heidelberg.
+https://doi.org/10.1007/978-3-662-57265-8\_40.
+
+Ghosh, S. K. (1987), \emph{`Approximation algorithms for art gallery
+problems'},~\emph{Proc. Canadian Information Processing Society
+Congress}, pp.~429--434.
+
+Flood, M. M. (1956), \emph{`The Traveling-Salesman Problem.',}
+\emph{Operations Research}, 4(1), pp.~61--75. Available at:
+http://www.jstor.org/stable/167517 (Accessed: 20 November 2023).
+
+Bellman, R. (1962) \emph{`Dynamic programming treatment of the
+travelling salesman problem'}, \emph{Journal of the ACM}, 9(1),
+pp.~61--63. doi:10.1145/321105.321111.
+
+Lee, D. and Lin, A. (1986) \emph{`Computational complexity of art
+gallery problems'},~\emph{IEEE Transactions on Information Theory},
+32(2), pp.~276--282. doi:10.1109/TIT.1986.1057165.
+
+Hoare, C. A. R. (1962) \emph{`Quicksort'},~\emph{The Computer Journal},
+5(1), pp.~10--16. doi:10.1093/comjnl/5.1.10.
+
+Esau Taiwo, O. \emph{et al.} (2020) \emph{`Comparative study of two
+divide and conquer sorting algorithms: Quicksort and Mergesort'},
+\emph{Procedia Computer Science}, 171, pp.~2532--2540.
+doi:10.1016/j.procs.2020.04.274.
+
+Deshmukh, S.M., Bhavsar, A.K. (2020) \emph{`A Review on Different
+Quicksort Algorithms'}, \emph{International Journal of Science,
+Spirituality, Business and Technology}, 7(2), pp.~3--7.
+
+Fouz, M. \emph{et al.} (2011) \emph{`On smoothed analysis
+of~quicksort~and~Hoare's find'}, \emph{Algorithmica}, 62(3--4),
+pp.~879--905. doi:10.1007/s00453-011-9490-9.
+
+Abdulkarim, H.A., Alshammari, I.F., (2015) \emph{`Comparison of
+algorithms for solving traveling salesman problem.'}~\emph{International
+Journal of Engineering and Advanced Technology},~4(6), pp.~76-79.
+
+Kizilateş, G., Nuriyeva, F. (2013) \emph{`On the nearest neighbor
+algorithms for the traveling salesman problem'}, \emph{Advances in
+Intelligent Systems and Computing}, pp.~111--118.
+doi:10.1007/978-3-319-00951-3\_11.
+
+Vince, A. (2002) \emph{`A framework for the greedy algorithm'},
+\emph{Discrete Applied Mathematics}, 121(1--3), pp.~247--260.
+doi:10.1016/s0166-218x(01)00362-6.
+
+Poonthalir, G., Nadarajan, R. (2018) \emph{`A fuel efficient green
+vehicle routing problem with varying speed constraint (F-GVRP)'},
+\emph{Expert Systems with Applications}, 100, pp.~131--144.
+doi:10.1016/j.eswa.2018.01.052.
+
+Michael, T.S., Pinciu, V. (2016) \emph{`The orthogonal art gallery
+theorem with Constrained Guards'}, \emph{Electronic Notes in Discrete
+Mathematics}, 54, pp.~27--32. doi:10.1016/j.endm.2016.09.006.
+
+Garey, M.R., Johnson, D.S., Preparata, F.P., Tarjan, R.E. (1978)
+\emph{`Triangulating a simple polygon.'},~\emph{Information Processing
+Letters},~7(4), pp.~175-179.
+
+O'Rourke, J. (2012) \emph{Art Gallery Theorems and Algorithms},
+\emph{Art Gallery theorems and algorithms}. Available at:
+http://www.science.smith.edu/\textasciitilde jorourke/books/ArtGalleryTheorems/art.html
+(Accessed: 23 November 2023).
+
+Biedl, T.~\emph{et al.}~(2012) \emph{`The Art Gallery Theorem for
+Polyominoes.'}~\emph{Discrete \& Computational Geometry},~48,
+pp.~711--720. https://doi.org/10.1007/s00454-012-9429-1.
+
+Kröller, A.~\emph{et al.}~(2012) \emph{`Exact Solutions and Bounds for
+General Art Gallery Problems'},~\emph{ACM J. Exp. Algorithmics}. New
+York, NY, USA: Association for Computing Machinery, 17.
+doi:10.1145/2133803.2184449.
+
+Schuchardt, D., Hecker, H.D. (1995). \emph{`Two NP‐Hard Art‐Gallery
+Problems for Ortho‐Polygons.'}~\emph{Mathematical Logic
+Quarterly},~41(2), pp.~261-267. doi:10.1002/malq.19950410212.
+
+Lulu, L., Elnagar, A. (2007) \emph{`An art gallery-based approach:
+Roadmap construction and path planning in global environments'},
+\emph{International Journal of Robotics and Automation}, 22(4).
+doi:10.2316/journal.206.2007.4.206-3059.
+
+Rust, J. (2008) \emph{`Dynamic programming.'}~\emph{The new Palgrave
+dictionary of economics},~1, p.~8.
+
+Montero, A., Méndez-Díaz, I., Miranda-Bront, J.J. (2017) \emph{`An
+integer programming approach for the time-dependent traveling salesman
+problem with time windows'}, \emph{Computers \& Operations Research},
+88, pp.~280--289. doi:10.1016/j.cor.2017.06.026.
 
 \end{document}

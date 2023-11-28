@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "238f8756e6833ff6",
+        "id": "a2f1bd14cac09264",
         "type": "tabs",
         "children": [
           {
-            "id": "88f3149186753fc3",
+            "id": "0bdc47fea0877955",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -16,26 +16,6 @@
                 "file": "Computational Methods/Computational Methods Assignment.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "2b04c8e56da61c63",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Computational Methods/GDEV40015 CRG.pdf"
-              }
-            }
-          },
-          {
-            "id": "b566a290cde4f862",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Computational Methods/GDVE40015 Computational Methods Assignment.pdf"
               }
             }
           }
@@ -53,7 +33,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "69b045ff856069ec",
+            "id": "53cce327454a01d2",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -186,8 +166,26 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "88f3149186753fc3",
+  "active": "0bdc47fea0877955",
   "lastOpenFiles": [
+    "Computational Methods/c025180n_brute_force.xlsx",
+    "Computational Methods/c025180n_dynamic_programming.xlsx",
+    "Computational Methods/c025180n_dynamic_programming_gamma.csv",
+    "Computational Methods/c025180n_dynamic_programming_epsilon.csv",
+    "Computational Methods/c025180n_dynamic_programming_delta.csv",
+    "Computational Methods/c025180n_dynamic_programming_alpha.csv",
+    "Computational Methods/c025180n_dynamic_programming_beta.csv",
+    "Computational Methods/c025180n_brute_force.csv",
+    "diagrams/Assignment.md",
+    "Computational Methods/Computational Methods Assignment.md",
+    "diagrams",
+    "Computational Methods/diagrams/bruteforce_diagram.svg",
+    "Computational Methods/diagrams/bruteforce_diagram.png",
+    "Computational Methods/diagrams/Assignment planets diagram.png",
+    "Computational Methods/diagrams/Greedy Diagram New.svg",
+    "Computational Methods/diagrams/Greedy strategy.md",
+    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
+    "Computational Methods/GDEV40015 CRG.pdf",
     "Computational Methods/tutorial notes/tutorial 6 (241023).md",
     "Computational Methods/tutorial notes/tutorial 5 (191023).md",
     "Computational Methods/tutorial notes/tutorial 4 (121023).md",
@@ -199,41 +197,23 @@
     "Computational Methods/lecture notes/lecture 7 (231023).md",
     "Computational Methods/lecture notes/lecture 11 (061123).md",
     "Computational Methods/lecture notes/lecture 10 (301023).md",
-    "Computational Methods/Computational Methods Assignment.md",
     "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
-    "Programming Fundamentals/Programming Fundamentals Assignment 1.synctex.gz",
-    "Programming Fundamentals/Programming Fundamentals Assignment 1.pdf",
-    "Programming Fundamentals/Programming Fundamentals Assignment 1.tex",
-    "Computational Methods/GDEV40015 CRG.pdf",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
-    "Computational Methods/Computational Methods Assignment.pdf",
     "Programming Fundamentals/lecture notes/lecture 16 (211123).md",
-    "Computational Methods/diagrams/Greedy Diagram New.svg",
     "Computational Methods/diagrams/Assignment planets diagram.md",
     "Computational Methods/diagrams/greedy_diagram_new.png",
     "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
     "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
     "Computational Methods/Untitled.md",
-    "Computational Methods/beta.csv",
-    "Computational Methods/alpha.csv",
-    "Computational Methods/gamma.csv",
-    "Computational Methods/epsilon.csv",
     "harvaard citation order.md",
     "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
     "Computational Methods/lecture notes/lecture 15 (201123).md",
-    "diagrams/Assignment.md",
     "Computational Methods/diagrams/Complicated Gallery.md",
     "Computational Methods/Art Gallery Problem.md",
-    "Assignment.md",
-    "Computational Methods/diagrams/Greedy strategy.md",
     "Computational Methods/diagrams/Greedy strategy.png",
     "Computational Methods/diagrams/Complicated Gallery.png",
-    "Computational Methods/diagrams/Assignment planets diagram.png",
     "Computational Methods/diagrams/Pasted image 20231102122921.png",
     "Pasted image 20231017180611.png",
     "Pasted image 20231017174919.png",
-    "Pasted image 20231017174526.png",
-    "Pasted image 20231017173329.png",
     "Untitled.canvas"
   ]
 }
