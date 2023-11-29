@@ -280,9 +280,9 @@ file.close()
 See the CSV file which is produced by the python program, and a more
 formatted Excel conversion.
 
-\url{brute_force.csv}
+\url{c025180n_brute_force.csv}
 
-\url{brute_force.xlsx}
+\url{c025180n_brute_force.xlsx}
 
 Reading from the generated files, it can be seen that the cheapest route
 is
@@ -894,22 +894,22 @@ Programming}\label{task-4---dynamic-programming}
 
 For the dynamic programming tables, see the files below.
 
-\url{alpha.csv}
+\url{c025180n_dynamic_programming_alpha.csv}
 
-\url{beta.csv}
+\url{c025180n_dynamic_programming_beta.csv}
 
-\url{delta.csv}
+\url{c025180n_dynamic_programming_delta.csv}
 
-\url{epsilon.csv}
+\url{c025180n_dynamic_programming_epsilon.csv}
 
-\url{gamma.csv}
+\url{c025180n_dynamic_programming_gamma.csv}
 
 A C++ program was written to produce these tables, again eliminating the
 need to traverse the graph by hand. The raw exported CSV files are
 detailed above, and then the assembled and formatted Excel spreadsheet
 is can be viewed in this file.
 
-\url{dynamic_programming.xlsx}
+\url{c025180n_dynamic_programming.xlsx}
 
 The code primarily makes use of a \textbf{tree structure} representing
 the data which is eventually placed in the table, but which is
@@ -1183,22 +1183,31 @@ same number of previously visited planets shown in the far left column,
 so block 0 has `A' in the left column, block 1 will have `AB', `AG',
 `AD', `AE', etc), the cheapest route starting at the origin node of the
 table can be found. Thus there will be a single optimal route for each
-of the 5 generated tables (or however many planets are defined). -
-starting at alpha: 69750 (alpha -\textgreater{} delta -\textgreater{}
-epsilon -\textgreater{} beta -\textgreater{} gamma) - starting at beta:
-105250 (beta -\textgreater{} epsilon -\textgreater{} delta
--\textgreater{} alpha -\textgreater{} gamma) - starting at gamma: 12600
-(gamma -\textgreater{} delta -\textgreater{} alpha -\textgreater{} beta
--\textgreater{} epsilon) - starting at delta: 69000 (delta
--\textgreater{} alpha -\textgreater{} epsilon -\textgreater{} beta
--\textgreater{} gamma) - starting at epsilon: 69750 (epsilon
--\textgreater{} delta -\textgreater{} alpha -\textgreater{} beta
--\textgreater{} gamma) The \emph{best route overall} can be found by
-taking the cheapest of these optimal routes, \texttt{DAEBG\ for\ 69000}.
-This is the same optimal route found by brute force, as would be
-expected (in fact, the optimal route costs starting from other planets
-can be verified as the cheapest by looking at the results of the brute
-force method).
+of the 5 generated tables (or however many planets are defined).
+
+\begin{itemize}
+\item
+  starting at alpha: 69750 (alpha -\textgreater{} delta -\textgreater{}
+  epsilon -\textgreater{} beta -\textgreater{} gamma)
+\item
+  starting at beta: 105250 (beta -\textgreater{} epsilon -\textgreater{}
+  delta -\textgreater{} alpha -\textgreater{} gamma)
+\item
+  starting at gamma: 12600 (gamma -\textgreater{} delta -\textgreater{}
+  alpha -\textgreater{} beta -\textgreater{} epsilon)
+\item
+  starting at delta: 69000 (delta -\textgreater{} alpha -\textgreater{}
+  epsilon -\textgreater{} beta -\textgreater{} gamma)
+\item
+  starting at epsilon: 69750 (epsilon -\textgreater{} delta
+  -\textgreater{} alpha -\textgreater{} beta -\textgreater{} gamma)
+\end{itemize}
+
+The \emph{best route overall} can be found by taking the cheapest of
+these optimal routes, \texttt{DAEBG\ for\ 69000}. This is the same
+optimal route found by brute force, as would be expected (in fact, the
+optimal route costs starting from other planets can be verified as the
+cheapest by looking at the results of the brute force method).
 
 This dynamic approach is guaranteed to find the optimal route, because
 the program only prunes routes which visit the \textbf{same planets}
@@ -1215,17 +1224,24 @@ optimised again (Rust, 2008)\footnote{Rust, J. (2008) \emph{`Dynamic
 
 In terms of complexity, it can be seen that this is faster than the
 brute force approach, for two reasons, which correspond to the two main
-techniques the dynamic approach uses: 1. Memoisation - each time the
-cost of a route is calculated, only the progression from the previously
-accumulated cost is calculated, not the entire route cost, reducing time
-cost to calculate multiple branching routes by caching route costs 2.
-Pruning - by pruning provably inferior routes at early stages, the
-search space is massively reduced, eliminating checking of many routes
-early on (Montero et al., 2017)\footnote{Montero, A., Méndez-Díaz, I.,
-  Miranda-Bront, J.J. (2017) \emph{`An integer programming approach for
-  the time-dependent traveling salesman problem with time windows'},
-  \emph{Computers \& Operations Research}, 88, pp.~280--289.
-  doi:10.1016/j.cor.2017.06.026.}
+techniques the dynamic approach uses:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Memoisation - each time the cost of a route is calculated, only the
+  progression from the previously accumulated cost is calculated, not
+  the entire route cost, reducing time cost to calculate multiple
+  branching routes by caching route costs
+\item
+  Pruning - by pruning provably inferior routes at early stages, the
+  search space is massively reduced, eliminating checking of many routes
+  early on (Montero et al., 2017)\footnote{Montero, A., Méndez-Díaz, I.,
+    Miranda-Bront, J.J. (2017) \emph{`An integer programming approach
+    for the time-dependent traveling salesman problem with time
+    windows'}, \emph{Computers \& Operations Research}, 88,
+    pp.~280--289. doi:10.1016/j.cor.2017.06.026.}
+\end{enumerate}
 
 Writing code for this allowed for testing of different numbers of nodes,
 and the results are displayed below.

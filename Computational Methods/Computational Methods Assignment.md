@@ -898,17 +898,25 @@ int main()
 ```
 
 By looking at the *lowest cost table cell* in the *last block of each table* (a block can be defined as a set of rows which have the same number of previously visited planets shown in the far left column, so block 0 has 'A' in the left column, block 1 will have 'AB', 'AG', 'AD', 'AE', etc), the cheapest route starting at the origin node of the table can be found. Thus there will be a single optimal route for each of the 5 generated tables (or however many planets are defined).
+
 - starting at alpha: 69750 (alpha -> delta -> epsilon -> beta -> gamma)
+
 - starting at beta: 105250 (beta -> epsilon -> delta -> alpha -> gamma)
+
 - starting at gamma: 12600 (gamma -> delta -> alpha -> beta -> epsilon)
+
 - starting at delta: 69000 (delta -> alpha -> epsilon -> beta -> gamma)
+
 - starting at epsilon: 69750 (epsilon -> delta -> alpha -> beta -> gamma)
+
 The *best route overall* can be found by taking the cheapest of these optimal routes, `DAEBG for 69000`. This is the same optimal route found by brute force, as would be expected (in fact, the optimal route costs starting from other planets can be verified as the cheapest by looking at the results of the brute force method).
 
 This dynamic approach is guaranteed to find the optimal route, because the program only prunes routes which visit the **same planets** (and thus have the same weight), and **end at the same planet** (i.e. have the same options/edge costs for future traversal steps) but with a **worse cost than other routes satisfying the same conditions**. The dynamic approach solves subproblems recursively, and it can be considered that each 'block' in the table is a sub-level of optimisation where the optimal solutions are found for that particular number of nodes, before another node is added and the problem is optimised again (Rust, 2008)[^22].
 
 In terms of complexity, it can be seen that this is faster than the brute force approach, for two reasons, which correspond to the two main techniques the dynamic approach uses:
+
 1. Memoisation - each time the cost of a route is calculated, only the progression from the previously accumulated cost is calculated, not the entire route cost, reducing time cost to calculate multiple branching routes by caching route costs
+
 2. Pruning - by pruning provably inferior routes at early stages, the search space is massively reduced, eliminating checking of many routes early on (Montero et al., 2017)[^23]
 
 Writing code for this allowed for testing of different numbers of nodes, and the results are displayed below.
