@@ -1352,7 +1352,9 @@ guards are required, or one per triangle (Chvatal, 2004)\footnote{Chvátal,
   V. (2004) \emph{`A combinatorial theorem in plane geometry'},
   \emph{Journal of Combinatorial Theory, Series B}. Available at:
   https://www.sciencedirect.com/science/article/pii/0095895675900611
-  (Accessed: 29 October 2023).}.
+  (Accessed: 29 October 2023).}, which leaves a brute-force time
+complexity of \(O(\sum^{r=\frac{n}{3}}_{r=1}{^nC_r})\), equivalent to
+the number of arrangements of guards.
 
 The number of guards required can be reduced since many triangles will
 share at least one vertex with a neighbour, usually sharing two, saving
@@ -1372,19 +1374,25 @@ guards required is reduced (Aigner and Ziegler, 2018)\footnote{Aigner,
   M., Ziegler, G.M. (2018). \emph{`How to guard a museum. In: Proofs
   from THE BOOK'}. Springer, Berlin, Heidelberg.
   https://doi.org/10.1007/978-3-662-57265-8\_40}. This is a geometric
-presentation of the `sharing vertices' concept described earlier.
+presentation of the `sharing vertices' concept described earlier, and
+further reduces the number of arrangements, and thus lowering the upper
+bound of the sum in complexity expression described above. However, this
+adds the complexity of 3-colouring the graph, which is still an
+NP-complete problem in itself (Bensmail et al., 2019)\footnote{Bensmail,
+  J.~\emph{et al.}~(2019) \emph{`Backbone colouring and algorithms for
+  TDMA scheduling'},~\emph{Discrete Mathematics \& Theoretical Computer
+  Science}, 21(3). doi:10.23638/DMTCS-21-3-24.}.
 
 Both of these geometric proofs reduce the search space in terms of
 finding solutions for smaller numbers of guards by setting an upper
 bound. Fisk's proof even provides a starting point of candidate guard
 placements. However, these approaches are somewhat naive as they cannot
 optimise concave shapes where vertices are not shared, since they really
-only consider topology, and not the actual shape of the polygon in
-question.
+only consider topology, not the actual shape of the polygon.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth,height=\textheight]{diagrams/Complicated Gallery.png}
+\includegraphics[width=0.6\textwidth,height=\textheight]{diagrams/complicated_gallery.png}
 \caption{An example of a simple but difficult-to-optimise gallery
 layout}
 \end{figure}
@@ -1400,16 +1408,15 @@ can observe all of it. Every part of the polygon that the other green
 vertex can observe, can also be observed by the highlighted vertex, plus
 a bit more.
 
-An algorithm to optimise this problem (to minimise the number of guards)
-would need to be able to look at different combinations of guard
-placements to see if the number of guards can be reduced
-(i.e.~brute-force). Heuristics could be applied, for example by counting
-around vertices and looking at their corner angles relative to the
-origin vertex to see if there are occluded (invisible from that point).
-A dynamic approach could be used: checking for each vertex, which other
-vertices are visible to it, and iteratively eliminating those with
-poorest visibility to narrow the search space (using Fisk's limit to
-restrict the search space as well).
+An algorithm to optimise this problem (minimising the number of guards)
+would look at every combination of guard placements to see if the number
+of guards can be reduced (a brute-force approach). Heuristics could be
+applied, for example by counting around vertices and considering corner
+angles relative to the origin vertex to see if they are occluded
+(invisible from that point). A dynamic approach could also be used:
+checking for each vertex, which other vertices are visible to it, and
+iteratively eliminating those with poorest visibility to narrow the
+search space (using Fisk's limit to restrict the search space as well).
 
 Approximation methods sometimes use a grid to check the coverage of the
 polygon from certain vertices in the shape, which could be resolved to
@@ -1557,5 +1564,9 @@ Montero, A., Méndez-Díaz, I., Miranda-Bront, J.J. (2017) \emph{`An
 integer programming approach for the time-dependent traveling salesman
 problem with time windows'}, \emph{Computers \& Operations Research},
 88, pp.~280--289. doi:10.1016/j.cor.2017.06.026.
+
+Bensmail, J.~\emph{et al.}~(2019) \emph{`Backbone colouring and
+algorithms for TDMA scheduling'},~\emph{Discrete Mathematics \&
+Theoretical Computer Science}, 21(3). doi:10.23638/DMTCS-21-3-24.
 
 \end{document}
