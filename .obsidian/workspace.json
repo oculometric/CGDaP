@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ebf1a85246b744bd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Journey to the Past.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Journey to the Past.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
+                "file": "Journey to the Past.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md"
+                "file": "Journey to the Past.md"
               }
             }
           },
@@ -166,8 +179,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "53cce327454a01d2",
+  "active": "ebf1a85246b744bd",
   "lastOpenFiles": [
+    "Computational Methods/Computational Methods Assignment.md",
+    "Journey to the Past.md",
     "Computational Methods/Computational Methods Assignment.docx",
     "Computational Methods/c025180n_brute_force.xlsx",
     "Computational Methods/c025180n_dynamic_programming.xlsx",
@@ -178,14 +193,12 @@
     "Computational Methods/c025180n_dynamic_programming_beta.csv",
     "Computational Methods/c025180n_brute_force.csv",
     "diagrams/Assignment.md",
-    "Computational Methods/Computational Methods Assignment.md",
     "diagrams",
     "Computational Methods/diagrams/bruteforce_diagram.svg",
     "Computational Methods/diagrams/bruteforce_diagram.png",
     "Computational Methods/diagrams/Assignment planets diagram.png",
     "Computational Methods/diagrams/Greedy Diagram New.svg",
     "Computational Methods/diagrams/Greedy strategy.md",
-    "Computational Methods/GDVE40015 Computational Methods Assignment.pdf",
     "Computational Methods/tutorial notes/tutorial 6 (241023).md",
     "Computational Methods/tutorial notes/tutorial 5 (191023).md",
     "Computational Methods/tutorial notes/tutorial 4 (121023).md",
