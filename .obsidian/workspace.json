@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computational Methods/Computational Methods Assignment.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ebf1a85246b744bd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Journey to the Past.md",
+                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Journey to the Past.md",
+                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Journey to the Past.md",
+                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Journey to the Past.md"
+                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md"
               }
             }
           },
@@ -175,25 +162,31 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "obsidian-advanced-slides:Show Slide Preview": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "ebf1a85246b744bd",
+  "active": "0bdc47fea0877955",
   "lastOpenFiles": [
+    "Csharp Scripting/lecture notes/lecture 2 (080124).md",
+    "Csharp Scripting/lecture notes/lecture 4 (160124).md",
+    "Csharp Scripting/game ideas.md",
+    "Csharp Scripting/lecture notes/lecture 1 (020124).md",
+    "Mechanic Prototyping/lecture notes/lecture 1 (020124).md",
+    "Csharp Scripting/lecture notes",
+    "Untitled",
+    "Mechanic Prototyping/weekly task ideas.md",
     "Computational Methods/Computational Methods Assignment.md",
+    "Mechanic Prototyping/lecture notes",
     "Journey to the Past.md",
+    "Csharp Scripting",
+    "Mechanic Prototyping",
+    "Untitled.md",
     "Computational Methods/Computational Methods Assignment.docx",
     "Computational Methods/c025180n_brute_force.xlsx",
     "Computational Methods/c025180n_dynamic_programming.xlsx",
     "Computational Methods/c025180n_dynamic_programming_gamma.csv",
     "Computational Methods/c025180n_dynamic_programming_epsilon.csv",
-    "Computational Methods/c025180n_dynamic_programming_delta.csv",
-    "Computational Methods/c025180n_dynamic_programming_alpha.csv",
-    "Computational Methods/c025180n_dynamic_programming_beta.csv",
-    "Computational Methods/c025180n_brute_force.csv",
     "diagrams/Assignment.md",
-    "diagrams",
     "Computational Methods/diagrams/bruteforce_diagram.svg",
     "Computational Methods/diagrams/bruteforce_diagram.png",
     "Computational Methods/diagrams/Assignment planets diagram.png",
@@ -215,13 +208,6 @@
     "Computational Methods/diagrams/Assignment planets diagram.md",
     "Computational Methods/diagrams/greedy_diagram_new.png",
     "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
-    "Programming Fundamentals/lecture notes/lecture 9 (301023).md",
-    "Computational Methods/Untitled.md",
-    "harvaard citation order.md",
-    "Programming Fundamentals/lecture notes/lecture 15 (201123).md",
-    "Computational Methods/lecture notes/lecture 15 (201123).md",
-    "Computational Methods/diagrams/Complicated Gallery.md",
-    "Computational Methods/Art Gallery Problem.md",
     "Computational Methods/diagrams/Greedy strategy.png",
     "Computational Methods/diagrams/complicated_gallery.png",
     "Computational Methods/diagrams/Pasted image 20231102122921.png",
