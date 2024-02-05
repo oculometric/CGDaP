@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md",
+                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md",
+                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md",
+                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 4 (160124).md"
+                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md"
               }
             }
           },
@@ -167,15 +167,19 @@
   },
   "active": "0bdc47fea0877955",
   "lastOpenFiles": [
-    "Csharp Scripting/lecture notes/lecture 2 (080124).md",
+    "Csharp Scripting/lecture notes/lecture 6 (230124).md",
+    "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
+    "Csharp Scripting/lecture notes/lecture 5 (220124).md",
+    "Computational Methods/Computational Methods Assignment.pdf",
+    "Computational Methods/Computational Methods Assignment.md",
     "Csharp Scripting/lecture notes/lecture 4 (160124).md",
+    "Csharp Scripting/lecture notes/lecture 2 (080124).md",
     "Csharp Scripting/game ideas.md",
     "Csharp Scripting/lecture notes/lecture 1 (020124).md",
     "Mechanic Prototyping/lecture notes/lecture 1 (020124).md",
     "Csharp Scripting/lecture notes",
     "Untitled",
     "Mechanic Prototyping/weekly task ideas.md",
-    "Computational Methods/Computational Methods Assignment.md",
     "Mechanic Prototyping/lecture notes",
     "Journey to the Past.md",
     "Csharp Scripting",
@@ -185,7 +189,6 @@
     "Computational Methods/c025180n_brute_force.xlsx",
     "Computational Methods/c025180n_dynamic_programming.xlsx",
     "Computational Methods/c025180n_dynamic_programming_gamma.csv",
-    "Computational Methods/c025180n_dynamic_programming_epsilon.csv",
     "diagrams/Assignment.md",
     "Computational Methods/diagrams/bruteforce_diagram.svg",
     "Computational Methods/diagrams/bruteforce_diagram.png",
@@ -204,10 +207,7 @@
     "Computational Methods/lecture notes/lecture 11 (061123).md",
     "Computational Methods/lecture notes/lecture 10 (301023).md",
     "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
-    "Programming Fundamentals/lecture notes/lecture 16 (211123).md",
-    "Computational Methods/diagrams/Assignment planets diagram.md",
     "Computational Methods/diagrams/greedy_diagram_new.png",
-    "Programming Fundamentals/tutorial notes/tutorial 3 (101023).md",
     "Computational Methods/diagrams/Greedy strategy.png",
     "Computational Methods/diagrams/complicated_gallery.png",
     "Computational Methods/diagrams/Pasted image 20231102122921.png",
