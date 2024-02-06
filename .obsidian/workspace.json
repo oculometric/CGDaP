@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
+                "file": "Csharp Scripting/lecture notes/lecture 9 (060224).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
+                "file": "Csharp Scripting/lecture notes/lecture 9 (060224).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
+                "file": "Csharp Scripting/lecture notes/lecture 9 (060224).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 8 idk (050224).md"
+                "file": "Csharp Scripting/lecture notes/lecture 9 (060224).md"
               }
             }
           },
@@ -167,8 +167,9 @@
   },
   "active": "0bdc47fea0877955",
   "lastOpenFiles": [
-    "Csharp Scripting/lecture notes/lecture 6 (230124).md",
     "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
+    "Csharp Scripting/lecture notes/lecture 9 (060224).md",
+    "Csharp Scripting/lecture notes/lecture 6 (230124).md",
     "Csharp Scripting/lecture notes/lecture 5 (220124).md",
     "Computational Methods/Computational Methods Assignment.pdf",
     "Computational Methods/Computational Methods Assignment.md",
@@ -206,7 +207,6 @@
     "Computational Methods/lecture notes/lecture 7 (231023).md",
     "Computational Methods/lecture notes/lecture 11 (061123).md",
     "Computational Methods/lecture notes/lecture 10 (301023).md",
-    "Programming Fundamentals/Programming Fundamentals Assignment 1 Reflective Journal.md",
     "Computational Methods/diagrams/greedy_diagram_new.png",
     "Computational Methods/diagrams/Greedy strategy.png",
     "Computational Methods/diagrams/complicated_gallery.png",
