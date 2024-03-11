@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "a2f1bd14cac09264",
+        "id": "10501c5a59a5cb49",
         "type": "tabs",
         "children": [
           {
-            "id": "0bdc47fea0877955",
+            "id": "8646b3ca28578af1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 12 (200224).md",
+                "file": "Graphics Programming/lecture 1 (110324).md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 321.5
+    "width": 200
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 12 (200224).md",
+                "file": "Graphics Programming/lecture 1 (110324).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 12 (200224).md",
+                "file": "Graphics Programming/lecture 1 (110324).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Csharp Scripting/lecture notes/lecture 12 (200224).md"
+                "file": "Graphics Programming/lecture 1 (110324).md"
               }
             }
           },
@@ -165,10 +165,24 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "0bdc47fea0877955",
+  "active": "8646b3ca28578af1",
   "lastOpenFiles": [
-    "Csharp Scripting/lecture notes/lecture 11 (130224).md",
+    "course people.md",
+    "Graphics Programming/lecture 1 (110324).md",
+    "beacon codes.md",
+    "Game Prototyping/lecture 1 (110324).md",
+    "temp.md",
+    "Pasted image 20231017180611.png",
+    "Untitled.md",
+    "Pasted image 20231017174919.png",
+    "Pasted image 20231017174526.png",
+    "Pasted image 20231017173329.png",
+    "Pasted image 20231017172304.png",
+    "harvaard citation order.md",
+    "Game Prototyping",
+    "Graphics Programming",
     "Csharp Scripting/lecture notes/lecture 12 (200224).md",
+    "Csharp Scripting/lecture notes/lecture 11 (130224).md",
     "Csharp Scripting/lecture notes/lecture 10 (120224).md",
     "Csharp Scripting/lecture notes/lecture 9 (060224).md",
     "Csharp Scripting/lecture notes/lecture 8 idk (050224).md",
@@ -182,17 +196,14 @@
     "Csharp Scripting/lecture notes/lecture 1 (020124).md",
     "Mechanic Prototyping/lecture notes/lecture 1 (020124).md",
     "Csharp Scripting/lecture notes",
-    "Untitled",
     "Mechanic Prototyping/weekly task ideas.md",
     "Mechanic Prototyping/lecture notes",
     "Journey to the Past.md",
     "Csharp Scripting",
     "Mechanic Prototyping",
-    "Untitled.md",
     "Computational Methods/Computational Methods Assignment.docx",
     "Computational Methods/c025180n_brute_force.xlsx",
     "Computational Methods/c025180n_dynamic_programming.xlsx",
-    "Computational Methods/c025180n_dynamic_programming_gamma.csv",
     "diagrams/Assignment.md",
     "Computational Methods/diagrams/bruteforce_diagram.svg",
     "Computational Methods/diagrams/bruteforce_diagram.png",
@@ -201,18 +212,7 @@
     "Computational Methods/diagrams/Greedy strategy.md",
     "Computational Methods/tutorial notes/tutorial 6 (241023).md",
     "Computational Methods/tutorial notes/tutorial 5 (191023).md",
-    "Computational Methods/tutorial notes/tutorial 4 (121023).md",
-    "Computational Methods/tutorial notes/tutorial 3 (101023).md",
-    "Computational Methods/tutorial notes/tutorial 2 (051023).md",
-    "Computational Methods/tutorial notes/tutorial 1 (031023).md",
-    "Computational Methods/tutorial notes/tutorial 8 (021123).md",
-    "Computational Methods/tutorial notes/tutorial 7 (261023).md",
     "Computational Methods/diagrams/greedy_diagram_new.png",
-    "Computational Methods/diagrams/Greedy strategy.png",
-    "Computational Methods/diagrams/complicated_gallery.png",
-    "Computational Methods/diagrams/Pasted image 20231102122921.png",
-    "Pasted image 20231017180611.png",
-    "Pasted image 20231017174919.png",
     "Untitled.canvas"
   ]
 }
