@@ -5,5 +5,6 @@
   "baseFontSize": 19,
   "enabledCssSnippets": [],
   "nativeMenus": false,
-  "translucency": false
+  "translucency": false,
+  "theme": "obsidian"
 }
