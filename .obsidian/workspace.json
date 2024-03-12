@@ -13,24 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graphics Programming/lecture 1 (110324).md",
+                "file": "Game Prototyping/assignment 1 prototype description.md",
                 "mode": "source",
                 "source": false
               }
             }
-          },
-          {
-            "id": "7003a9249ca6e150",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.5.8"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -80,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 248.5110321044922
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -96,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Graphics Programming/lecture 1 (110324).md",
+                "file": "Game Prototyping/assignment 1 prototype description.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Graphics Programming/lecture 1 (110324).md",
+                "file": "Game Prototyping/assignment 1 prototype description.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Graphics Programming/lecture 1 (110324).md"
+                "file": "Game Prototyping/assignment 1 prototype description.md"
               }
             }
           },
@@ -176,13 +165,15 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "7003a9249ca6e150",
+  "active": "8646b3ca28578af1",
   "lastOpenFiles": [
     "Game Prototyping/assignment 1 prototype ideas.md",
-    "course people.md",
-    "Graphics Programming/lecture 1 (110324).md",
-    "beacon codes.md",
+    "Game Prototyping/Pasted image 20240312115945.png",
+    "Game Prototyping/assignment 1 prototype description.md",
     "Game Prototyping/lecture 1 (110324).md",
+    "Graphics Programming/lecture 1 (110324).md",
+    "course people.md",
+    "beacon codes.md",
     "temp.md",
     "Pasted image 20231017180611.png",
     "Untitled.md",
@@ -221,9 +212,6 @@
     "Computational Methods/diagrams/bruteforce_diagram.png",
     "Computational Methods/diagrams/Assignment planets diagram.png",
     "Computational Methods/diagrams/Greedy Diagram New.svg",
-    "Computational Methods/diagrams/Greedy strategy.md",
-    "Computational Methods/tutorial notes/tutorial 6 (241023).md",
-    "Computational Methods/diagrams/greedy_diagram_new.png",
     "Untitled.canvas"
   ]
 }
