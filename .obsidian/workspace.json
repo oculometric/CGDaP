@@ -4,18 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "10501c5a59a5cb49",
+        "id": "7bf0c58124561831",
         "type": "tabs",
         "children": [
           {
-            "id": "8646b3ca28578af1",
+            "id": "7065d63b5aaf5d57",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Graphics Programming/lecture 2 (130324).md",
-                "mode": "source",
-                "source": false
+                "file": "Game Prototyping/input_state.png"
               }
             }
           }
@@ -69,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 248.5110321044922
+    "width": 321.5
   },
   "right": {
     "id": "70ea6a2f3c02c36d",
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Graphics Programming/lecture 2 (130324).md",
+                "file": "Game Prototyping/input_state.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Graphics Programming/lecture 2 (130324).md",
+                "file": "Game Prototyping/input_state.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Graphics Programming/lecture 2 (130324).md"
+                "file": "Game Prototyping/input_state.png"
               }
             }
           },
@@ -165,27 +163,18 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "8646b3ca28578af1",
+  "active": "7065d63b5aaf5d57",
   "lastOpenFiles": [
-    "Game Prototyping/assignment 1 prototype description.md",
-    "Graphics Programming/lecture 2 (130324).md",
-    "Game Prototyping/assignment 1 prototype ideas.md",
-    "Game Prototyping/Pasted image 20240312115945.png",
     "Game Prototyping/lecture 1 (110324).md",
-    "Graphics Programming/lecture 1 (110324).md",
-    "course people.md",
-    "beacon codes.md",
-    "temp.md",
-    "Pasted image 20231017180611.png",
-    "Untitled.md",
-    "Pasted image 20231017174919.png",
-    "Pasted image 20231017174526.png",
-    "Pasted image 20231017173329.png",
-    "Pasted image 20231017172304.png",
-    "harvaard citation order.md",
-    "Game Prototyping",
-    "Graphics Programming",
+    "Game Prototyping/input_state.png",
+    "Graphics Programming/lecture 2 (130324).md",
+    "Game Prototyping/assignment 1 prototype description.md",
+    "Game Prototyping/Pasted image 20240312115945.png",
+    "Game Prototyping/assignment 1 prototype ideas.md",
     "Csharp Scripting/lecture notes/lecture 12 (200224).md",
+    "Graphics Programming/lecture 1 (110324).md",
+    "Graphics Programming",
+    "Game Prototyping",
     "Csharp Scripting/lecture notes/lecture 11 (130224).md",
     "Csharp Scripting/lecture notes/lecture 10 (120224).md",
     "Csharp Scripting/lecture notes/lecture 9 (060224).md",
@@ -200,19 +189,27 @@
     "Csharp Scripting/lecture notes/lecture 1 (020124).md",
     "Mechanic Prototyping/lecture notes/lecture 1 (020124).md",
     "Csharp Scripting/lecture notes",
+    "Untitled",
     "Mechanic Prototyping/weekly task ideas.md",
     "Mechanic Prototyping/lecture notes",
     "Journey to the Past.md",
     "Csharp Scripting",
     "Mechanic Prototyping",
+    "Untitled.md",
     "Computational Methods/Computational Methods Assignment.docx",
     "Computational Methods/c025180n_brute_force.xlsx",
-    "Computational Methods/c025180n_dynamic_programming.xlsx",
     "diagrams/Assignment.md",
     "Computational Methods/diagrams/bruteforce_diagram.svg",
     "Computational Methods/diagrams/bruteforce_diagram.png",
     "Computational Methods/diagrams/Assignment planets diagram.png",
     "Computational Methods/diagrams/Greedy Diagram New.svg",
+    "Computational Methods/diagrams/Greedy strategy.md",
+    "Computational Methods/tutorial notes/tutorial 6 (241023).md",
+    "Computational Methods/tutorial notes/tutorial 5 (191023).md",
+    "Computational Methods/diagrams/greedy_diagram_new.png",
+    "Computational Methods/diagrams/Greedy strategy.png",
+    "Computational Methods/diagrams/complicated_gallery.png",
+    "Computational Methods/diagrams/Pasted image 20231102122921.png",
     "Untitled.canvas"
   ]
 }
