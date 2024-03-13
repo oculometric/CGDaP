@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Prototyping/assignment 1 prototype description.md",
+                "file": "Graphics Programming/lecture 2 (130324).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Game Prototyping/assignment 1 prototype description.md",
+                "file": "Graphics Programming/lecture 2 (130324).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Game Prototyping/assignment 1 prototype description.md",
+                "file": "Graphics Programming/lecture 2 (130324).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Game Prototyping/assignment 1 prototype description.md"
+                "file": "Graphics Programming/lecture 2 (130324).md"
               }
             }
           },
@@ -167,9 +167,10 @@
   },
   "active": "8646b3ca28578af1",
   "lastOpenFiles": [
+    "Game Prototyping/assignment 1 prototype description.md",
+    "Graphics Programming/lecture 2 (130324).md",
     "Game Prototyping/assignment 1 prototype ideas.md",
     "Game Prototyping/Pasted image 20240312115945.png",
-    "Game Prototyping/assignment 1 prototype description.md",
     "Game Prototyping/lecture 1 (110324).md",
     "Graphics Programming/lecture 1 (110324).md",
     "course people.md",
