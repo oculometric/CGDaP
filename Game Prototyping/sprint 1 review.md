@@ -43,7 +43,9 @@ my session length ranged **between 50 minutes and 2 hours**, which seems fitting
 i found that having concrete goals, particularly having goals that were well-broken-down into manageable tasks helped me keep track of what i needed to be doing as well as not feeling overwhelmed by things.
 
 ## sprint 2
-for my second sprint, i'll probably also try to stick to a 5-day schedule, since that worked quite well (and i do have another module to push on too) and it gives me time to reflect in detail. here are the tasks i've assigned myself in Trello for my second sprint:
+for my second sprint, i'll probably also try to stick to a 5-day schedule, since that worked quite well (and i do have another module to push on too) and it gives me time to reflect in detail. however, having just read that the CRG expects *two sprints per week* (i understood from lectures that we were expected to complete 3 sprints in total over 3 weeks), i'll instead have to do 2-day sprints. unfortunately this makes burndown charts a bit less meaningful but i can do a longer one at the end of the project. here are the tasks i've assigned myself in Trello for my second sprint:
 ![[Pasted image 20240318120207.png]]
 this totals 5.5 hours of work, but i'm anticipating that some of these might end up taking more time than expected (then again, that could be wrong, and i may re-scope and assign more tasks mid-sprint if that seems reasonable).
-the groundwork i did in the last sprint should help a lot with making these tasks manageable.
+the groundwork i did in the last sprint should help a lot with making these tasks manageable. 
+
+since i have to do more sprints and thus more crunching, i believe i should have time to expand the scope of the project. i have some potential features such as adding a difficulty slider and level progression which i'll decide whether or not i have time to introduce after this sprint.
