@@ -109,6 +109,9 @@ This now gives us all our points expressed as positions relative to the camera's
 
 Congratulations, we did it! We made it to camera space!
 
+### About Camera Orientation
+<TODO: this>
+
 ### One More Note
 Since we can combine matrices together to create compound transformations for a single object-to-world transform. However, we can also combine those into even more compounded transformations. If you have nested objects, 'objects within objects', and you want to get from the sub-object space into world space, you first apply the object's transformation, then the sub-object's transformation. You can imagine it like you're peeling the layers off of an onion. Apply the outer object transform, and everything on that layer is now in world space. If there's another layer (a child object), apply its transform to all of its children, and then they're in world space too. Repeat until you've reached the bottom of the chain. Shrek would be so proud rn.
 
@@ -117,7 +120,7 @@ Since we can combine matrices together to create compound transformations for a 
 # Geometry (dun dun duuuun)
 In this section I'm going to talk about geometry in the narrow, triangle-mesh sense. However, there are other ways geometry can be expressed, lots of ways in fact, but they require cleverer algorithms and aren't what we're focussing on with this module.
 
-A **triangle mesh** is composed of **triangles**, that's obvious. *Why?* Because triangles are the simplest 3D shape, they are guaranteed to be flat (think of a chair with three legs: no way to have one leg too short!), and maths with them is easy.
+A **triangle mesh** is composed of **triangles**, that's obvious. *Why?* Because triangles are the simplest 3D shape, they are guaranteed to be flat (think of a chair with three legs: there's no way to have one leg too short!), and doing maths with them is easy.
 
 **Triangles** are bounded by **edges** which are composed of **vertices**. A triangle having three corners means it has three vertices.
 
@@ -194,6 +197,19 @@ Now, we've defined our triangle to have the vertices `{a,b,c}`, in that order. *
 <TODO: diagram of clockwise/counter-clockwise winding orders and their normals>
 
 # Interpolation and Barycentric Coordinates
+In a general sense, interpolation is the process of guessing how stuff should look based on two values and how far you are between them. For instance, if we have a line with a '1' mark at one end and a '5' mark at the other, we could subdivide the distance between them with other numbers (2-4, equally spaced). This is, in it's simplest form, interpolation.
+
+We can describe interpolation in **one dimension** mathematically, with a fairly simple formula. Let's let $A$ be the first value and $B$ be the second value. We're also going to define $x$, which is how far along the line from $A$ to $B$ we are as a fraction:
+$$C = xB + (1-x)A$$
+Essentially we're taking some of $B$ and some of $A$. When $x=0$, we just get $A$. When $x=1$, we get $B$. Anything between those two and we get something between $A$ and $B$. If we allow $x$ to go outside the $0..1$ range, we're doing extrapolation, which is useful sometimes.
+
+> It's worth keeping in mind that $A$ and $B$ don't have to just be numbers. They can be `Vector2`s, `Vector3`s, etc. As long as you can perform scalar multiplication and component-wise addition, you can do this kind of interpolation, since you're really just performing interpolation on each individual component of your vector, and recombining them at the end.
+
+Interpolation is really useful for filling an area with a gradient (among many other things), because it lets us **blend** between two discrete values to create a continuous field of values. Interpolation may also be called **lerping** (linear interpolation; there are other types of interpolation actually) or **blending** or **mixing** (only in certain contexts).
+
+A specific example of this is with **texture coordinates**. In the last section we talked about how we can attach UV coordinates to face corners, and we'll talk more about what those coordinates do later on. In order to meaningfully texture the face of an object, we need to know the UV coordinate of not just the three corners of a triangle, but for every point within that triangle. Thus, we need to interpolate between the texture coordinates given at the face corners based on where we're looking in the triangle. *"How do we do that if we have three values to work with, not two?"* Enter, **barycentric coordinates**.
+
+<TODO: barycentric coords>
 
 # Textures and Texture Coordinates
 
@@ -204,7 +220,6 @@ Now, we've defined our triangle to have the vertices `{a,b,c}`, in that order. *
 # How Do I Do This in OpenGL?
 
 projection
-geometry and models, normals, vertices, triangles
 interpolation
 textures and texture coordinates (minifcation, magnification, mipmapping and filtering)
 aliasing
