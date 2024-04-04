@@ -34,7 +34,7 @@ the game should keep a counter of how many plants the player has discovered and 
 
 >*the user is rewarded upon watering all plants on the map by being called back to the office to continue their work*
 
-there is no real 'lose condition', the game simply continues until the 'win condition' (watering all plants in the map) is met, though the game should also keep track of how long the user has taken to complete the objective.
+there is no real 'lose condition', the game simply continues until the 'win condition' (watering all plants in the map) is met, though the game should also **keep track of how long the user has taken** to complete the objective.
 
 >*when the user has watered all plants, and subsequently returned to the office, the game will end*
 
@@ -55,4 +55,29 @@ watering cans may be refilled from water sources such as taps or fountains.
 the limited carrying volume of watering cans encourages the user to search for water sources close to the plants they are trying to water.
 
 ### procedural map generation
-// TODO: here
+the map generation of the game should be procedural/semi-random, which will create variety. generation will based on the wave function collapse algorithm.
+```
+flowchart TD
+    AA[Generate Map]
+    AA --> A(Decide map size, seed)
+    A --> B(Insert initial chunk patterns)
+    B --> C(Pick the chunk with the fewest\n possible pattern options)
+    C --> D(Randomly decide a \npattern for the chunk based\n on the surrounding chunks)
+    D --> E{Have all \nchunks been given \npatterns?}
+    E --> |yes|F[Map is complete]
+    E --> |no|C
+```
+![[Pasted image 20240404124429.png]]
+plants will be placed randomly within each chunk, based on the same seed. a flood filling algorithm will ensure that plants are always placed somewhere that is accessible to the player.
+hoses and taps will also be placed randomly within the map, but in a way that guarantees a minimum and maximum distance from one another.
+
+### blocked off areas
+// TODO:
+
+## inspiration
+Cloud Gardens - for its relaxed style and pastel, pixel-art art style
+![[Pasted image 20240404125440.png]]
+Power Washing Simulator - for its use of water to alter the environment in order to achieve an objective
+![[Pasted image 20240404125904.png]]
+Slime Rancher - for its forcing the user to carry water they need from a source, rather than just having it on tap wherever they are (like in PWS)
+![[Pasted image 20240404131356.png]]
