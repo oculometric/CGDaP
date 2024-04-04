@@ -72,7 +72,10 @@ plants will be placed randomly within each chunk, based on the same seed. a floo
 hoses and taps will also be placed randomly within the map, but in a way that guarantees a minimum and maximum distance from one another.
 
 ### blocked off areas
-// TODO:
+the player's access to the map should be limited, challenging their access to other areas of the map. this could be done via:
+- key and lock pairs
+- crowbar and boards
+items like keys and crowbars might be hidden under moveable objects, or simply placed innocuously around the map.
 
 ## inspiration
 Cloud Gardens - for its relaxed style and pastel, pixel-art art style
