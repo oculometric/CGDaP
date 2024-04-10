@@ -216,7 +216,59 @@ A specific example of this is with **texture coordinates**. In the last section 
 # Lighting
 
 # Aliasing and Culling
+Ok so we know what meshes are and what they're (usually) made of. *"Why would we want to cull parts of them?"* Well, a few reasons:
+1. Performance. It's pretty self-evident that if you can eliminate half of the triangles in the world before you even start doing other maths on them, you can save a lot of time
+2. Aesthetics or effects. Some games deliberately want to use objects which are only visible from one side. Backface cullling is a way we can do this
+3. Sometimes due to limitations of buffers
 
+### Backface Culling
+If you're looking at the back of a face, that means that its **normal is facing away** from you. Aside from clever usages of this technique for effects, backface culling can discard vast swathes of your geometric world which don't need to be rendered.
+
+Say you have a sphere: only the faces facing the camera (or those almost-facing-the-camera ones on the side) are going to be visible, the rest will be hidden (or **occluded** if you want to be fancy) by the front ones. We can make an assumption that faces pointing away from the camera are going to be occluded, and so discard from further rendering steps.
+
+This works very well for enclosed meshes (like our sphere), but breaks down when meshes aren't closed (like the ability to look through a wall from the back which shows up in a lot of games). However, we probably don't care in those cases since the player is probably never meant to see that.
+
+### Depth Culling
+We do depth culling for two reasons. The first reason is performance: really far away objects probably don't need to be rendered, since they're tiny, or can be hidden with fog or clever level design. Likewise, very close objects are probably either inside or behind the camera, and so shouldn't be rendered.
+
+However, there's actually another problem with rendering depth. The depth buffer, which stores the distance from the camera to the nearest thing in the world, has limited precision. After all, it's just a floating point number for each pixel on the screen, and `float`s have upper and precision limits. Floats can only measure increments of a certain precision (for 32-bit floats, that's about $1.17549\times10^{-38}$), and can only measure up to a certain value (for 32-bit floats, it's about $3.4028237\times10^{38}$). More importantly, the depth buffer is mapped between $0$ and $1$, meaning when the depth is equal to our far-clip-depth, we get $1$ and when it's equal to the near-clip-depth, we get $0$, and things rendering outside that range would break the $0..1$ logic. *And* the depth buffer gets less precise the further you are from the camera, so we need to limit how far away and how close things are allowed to be rendered to avoid artefacts.
+
+So, we **cull** very far away objects because of precision problems and because those objects are probably too far to see clearly, we cull very close objects because they're probably inside the camera and because of precision problems, and we cull things behind the camera because they're obviously not going to be visible (remember that the depth value for a particular vertex might have a negative value, which means it's behind the camera).
+
+### Frustrum Culling
+We can also do what's called frustrum culling. If something (an object, a triangle) is completely outside the view of the camera (remember the frustrum from the projection section), then it'll be offscreen. If we can discover this quickly and easily, then we can cull even more geometry and optimise our game even more.
+
+### The Drawbacks
+So, **culling** is great, but it has some limitations. First, we're cutting corners. Maybe some objects will be see-through from behind. Maybe some objects will pop in and out of existence when far from the camera. Those might look silly or embarrassing in a cinematic game.
+
+Secondly, and more importantly, the checks necessary to implement culling *also take time*. For instance, if checking to see if a triangle is onscreen takes 2 milliseconds, but rendering that triangle takes 10 milliseconds, that's going to add up over a lot of triangles. Unless that check saves us from rendering about 1 in 5 triangles, it isn't going to be worth having the check. This means we need to balance when we cull, and what we cull.
+Frustrum culling is a bit complex and involves bounds checking (i.e. does the bounding box of this thing intersect the camera frustrum?), which can be time-consuming. Best to do it on bigger things, like entire objects. That way we only do one bounds check for perhaps tens of thousands of triangles (and we can even cache the object's bounds alongside its geometry to speed up even more. Yes you could technically do this with every single triangle but that means a *tonne* more data to cart around).
+Backface culling is very easy to check with some multiplication and addition, and it's quite likely to exclude geometry (assuming it will discard 50% of the scene's geometry, that's a HUGE saving for such a cheap check), we can only really do it per-triangle, so we do this before we do any other math on a particular triangle.
+Most of all, consider at what point in the pipline you're going to have the data at hand to decide whether or not to render something. If you have to do a bunch of maths to figure out if something should even be drawn, it might be a waste of time. If you're using values that already exist (like the normal of a triangle for backface culling), you're probably saving time. Overall, if you're building something like this, the best solution is to try it out, then profile it: *does solution X make it run faster?*
+You get the picture.
+
+### Aliasing
+Aliasing is something that happens due to the granularity of the space we're working within. By granularity, we mean **pixels**. Things in the real world aren't perfectly square, or perfectly vertical or horizontal, which causes problems when you try and quantize that and squeeze it into a grid.
+When you take a photo, each pixel is affected by a bunch of different light rays, so you get a natural blurring effect in camera, but when you're 3D-rendering something, you lose that, since the rendering process only samples discrete objects (i.e. one object per pixel). This leads to nasty, hard, crinkly edges on objects or triangles which look really ugly.
+
+Enter, **anti-aliasing**. Anti-aliasing encompasses various methods to minimise aliasing, and they span a spectrum from super-fast to slow-but-looks-great.
+
+The most basic of these is probably one you're already thinking of: just do more than one sample per pixel! For each pixel, instead of doing one sample through the 'middle' of that pixel, divide the pixel into 4 sub-pixels, and render each sub-pixel, then average the results together to get the value for the pixel as a whole. This sounds great, and looks great (in fact, the more samples and subdivision you do, the better it looks), but as you'd expect, can get horrendously slow (I mean, you're quadrupling the number of pixels you have to render, of course it's slow). There are clever ways to make it less horribly slow, like **MSAA** and **SSAA**, but the problem persists.
+
+Another way of doing this is just to stick with the data you have and blur the whole image. If you do this to the entire image it obviously looks like you've just applied a blur filter over the image, but algorithms like **FXAA** and **MLAA** are clever enough to perform edge detection and only blur the image a small amount and in particular places to preserve edges while smoothing out hard lines. These algorithms are *very* cheap, but they aren't amazing and are subject to artefacts, and do make edges look a bit blurry in some cases.
+
+Techniques like **SMAA** blend some of these two approaches together to get a better result, which makes them somewhere in between on both performance and quality. Generally speaking, you can come up with better or worse algorithms for doing anti-aliasing, but the more maths your algorithm has to do, the worse its performance will be. If you can get a lot of quality in limited maths, well done.
+
+Kind of in a class of its own is **TAA**, which works kind of like multi-sampling, but by using data from previous frames to stand in for extra samples. This works great, and is cheap as hell, *but* breaks down quickly when you have significant motion on screen, or when fading between two completely different images.
+
+Of course, all of these methods are implemented various different ways across different platforms, engines, hardware, etc.
+
+### Where Does Aliasing Happen?
+Well, pretty much any rendered buffer. Imagine you're looking at a particular object, like a teapot. In order to render it, you're casting a ray out through the center of each pixel on your screen, and each of those rays will either hit the teapot, or miss it. In reality, there are trillions of light rays hitting your retina, to the point that the edge of the object is defined extremely finely, and the transition from teapot to background is blurred by the sheer amount of data coming in, so that for an 'eye-pixel', we might find a 'the object is sorta visible' case. In a computer, we only know whether the middle of a pixel can see the teapot or not, locking us into the rigid alias-ridden grid that is the digital world.
+
+This means aliasing happens in the depth buffer, colour buffer, pretty much anything in fact. It's inescapable! AAAAAAA-
+
+# Buffers and Applying All This Stuff
 # How Do I Do This in OpenGL?
 
 projection
