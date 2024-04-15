@@ -213,7 +213,43 @@ A specific example of this is with **texture coordinates**. In the last section 
 
 # Textures and Texture Coordinates
 
-# Lighting
+# Lighting and Materials
+Usually we want to do something interesting with 3D models, and thus we need to light them somehow.
+
+### In the Real World
+Light in the real world travels in little packets, photons, which can be absorbed, reflected or refracted by surfaces and materials. Let's not think about refraction or any quantum mechanics bullshit, and focus on the absorption and reflection bit.
+Materials will reflect or absorb photons based on their wavelength and the properties of the surface:
+> A red surface under a white light means that the surface is absorbing all wavelengths except the red ones
+
+### In Computers
+In computers, we can use multiplication to represent this absorption/reflection of light. Since the colour of the surface and the colour of the light are each represented by a set of three floating-point, RGB values (a `Vector3`):
+> A white light, `Vector3{ 1.0f,1.0f,1.0f }` shining on a red surface, `Vector3{ 1.0f, 0.0f, 0.0f }`, means that the surface colour is being multiplied by the light colour to produce the resulting red
+
+Doing things like this means that we can change the light colour and it will appropriately affect the surface. For instance, if the light colour contains no red light, and the surface only reflects red light, then the surface will appear black as we'd expect. If the light colour is less bright, then the surface red will also appear a darker red.
+
+### Why Are We Using Floating Points
+Most **colour** representations describe colours with three components (**red**, **green**, and **blue**) which can vary between $0$ and $255$. This is useful when we're talking about storing image colours with a single **byte** for each component. However, when we want to do maths with colours, we use **floating point** numbers instead, saving division at every single step in our calculations. Less efficient to store, but easier (and **more precise**) to work with.
+
+### Lighting A Scene
+In reality, a photon might bounce back and forth between hundreds of surfaces before reaching the viewer. That means lots of maths, and raytracing which is *very slow*. We won't go into detail about more complex lighting schemes which try to emulate this, but these are called **global illumination**, the idea being that everything can cast light and shadows against everything else in the scene. What we're looking at instead is **local illumination**.
+
+Local illumination is a calculation performed usually in the **fragment shader** (see below), meaning it's being evaluated per-pixel for a surface. This **shading** is calculated by taking into account different material parameters and different lights. Multiple lights may affect a single surface, and their light contributions are added together (again, this is how light behaves in the real world).
+
+Lighting a surface is a mathematical affair. There are lots of complex surface lighting models, but for realtime lighting like this, we use a model called **Phong lighting**, which separates light contribution into three parts:
+1. Diffuse - this is light which reflects in all directions when it hits a surface. This kind of shading depends on the angle at which the light ray hits the surface (if it hits at a more oblique angle, the light energy is being spread out over a greater area, and thus appears less bright). This kind of shading also depends on the distance to the light source (the inverse square law tells us that as the distance to the source doubles, the area over which the light energy has to spread quadruples, and thus the light energy delivered per area is quartered)
+2. Specular - this is light which reflects in a particular direction (specifically it is reflected in the normal vector of a surface) when it hits a surface. This shading depends on the angle between the light ray and the surface, and the angle between the viewer and the reflected ray (the maximum brightness is achieved when the viewing ray is identical to the reflected ray, i.e. we're looking directly into the reflection of the light source). This kind of shading is also affected by the distance to the light source, as above. Importantly, this kind of shading is also affected by an attenuation factor of the surface, which controls how concentrated the specular reflection is (more concentrated reflection appears as a smaller, brighter spot, as if it were a smoother, shinier surface)
+3. Ambient - this is light which just exists magically in the world, travelling in all directions from all points, and thus gives the surface some light contribution no matter where that surface is or the direction it's facing
+The fourth, more sinister form of shading (which is not part of Phong illumination) is emissive shading which involves adding some extra colour to a surface.
+
+In order to evaluate the colour of a pixel involves evaluating the light contributions for different kinds of lighting. We multiply the incoming light ray colour with by different factors for the diffuse, specular, and ambient contributions, and then by the *colour which the material provides for those different forms of shading*, and finally we add the results of all of those. The equation for this might take a form like this:
+
+Shaded colour $=$ $($light colour $\times$ diffuse colour $\times$ normal direction$\cdot$ray direction$) + ($light colour $\times$ specular colour $\times$ reflected direction$\cdot$view direction$) + ($light colour $\times$ ambient colour$)$ $+$ emissive colour
+
+I know that looks like a mess, and it's fairly simplified, but it should give you an idea of how lighting is calculated. Perform that equation for each different light to calculate their individual contributions, and then add them all together to get the overall surface colour.
+
+Some lighting systems will also let you separate the colour contributions at the **light source** level: as well as specifying diffuse, specular, and ambient colour factors on each material, you can specify them on the light source as well, and corresponding factors will be multiplied together (light diffuse with material diffuse, etc etc).
+
+<TODO: diagrams needed>
 
 # Aliasing and Culling
 Ok so we know what meshes are and what they're (usually) made of. *"Why would we want to cull parts of them?"* Well, a few reasons:
@@ -268,12 +304,28 @@ Well, pretty much any rendered buffer. Imagine you're looking at a particular ob
 
 This means aliasing happens in the depth buffer, colour buffer, pretty much anything in fact. It's inescapable! AAAAAAA-
 
+# Shaders
+Shaders are a useful way of conveying the maths we want to do on our scenes in order to render it. They're a way of encapsulating a block of code as data which can be passed around (most importantly passed to, and understood by, the GPU). A shader normally takes some parameters, and outputs a single value (a single float, a colour, etc).
+
+The three types of shaders are
+1. **Vertex shaders** - executed per-vertex, on every vertex in a mesh
+2. **Fragment shaders** - aka pixel shaders, executed per pixel on every triangle on screen
+3. **Compute shaders** - not directly relevant to this pipeline, a useful way of shifting computation onto the GPU
+
+Vertex shaders are executed first in the pipeline. As input, they often access vertex position, current time, vertex colours, vertex normals, and so on. They may store new properties on the vertex, like calculating some new extra special value based on the position and time, and may overwrite data like normals, position, and colours.
+
+Fragment shaders are executed after vertices are transformed into view space, and is where the real 'rendering' happens. Data stored on vertices (like normals, UVs, and so on) is **interpolated** (see above) across the triangle and the interpolated value for a particular pixel is passed into the fragment shader. Fragment shaders may sample **textures**, perform **lighting** calculations, and so on, and usually only output a colour, to be drawn to the screen buffer.
+
+The key difference to keep in mind is that vertex shaders are computed per-vertex, and fragment shaders per-pixel. Data can be passed from one to the other.
+
+> While it's not useful for this module, something that's worth understanding is that the power of shaders come from their ability to be executed in parallel. The GPU's strength in computation primarily comes from the fact that although its processor clock is slow, it has many, many shading cores available to work in parallel.
+> GPUs execute shaders by spinning up all those different cores, and assigning each one a particular pixel or vertex to execute the shader on. Because of this scheduling, the GPU has to wait for all the pixels to finish calculating before it can assign a bunch more pixels/vertices to the cores to be calculated.
+> This means that, when writing shaders, you need to try and ensure that all your shaders execute in similar time. That means being careful with loops because if a couple of pixels take 10x as long as the rest, you're going to waste a lot of GPU time while the scheduling system waits for those last pixels to finish before assigning more work, meanwhile most of the GPU cores are just idle.
+
 # Buffers and Applying All This Stuff
 # How Do I Do This in OpenGL?
 
 projection
-interpolation
 textures and texture coordinates (minifcation, magnification, mipmapping and filtering)
-aliasing
 GL architecutre/pipeline
  AAAAAAA
