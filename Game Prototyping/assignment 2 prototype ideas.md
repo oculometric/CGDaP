@@ -1,7 +1,7 @@
 player moves in 'open world' between block tiles. only a 3x3 area is visible at a time, when the player moves into one of the tiles to the side, relevant tiles pop up or disappear.
 
 player's task is to walk around doing something (watering plants? picking stuff up?).
-watering plants:
+watering plants:[[assignment 2 design document]]
 - the player needs to fill up a watering can, requires knowing where taps are
 - as they explore further from the start, they'll want to find more taps/water sources, so these should be dotted around
 - endless? if the map is procedural the player can keep exploring further and further to water more plants. the game should keep a counter of how many plants have been watered vs how many have been seen (i.e. you enter a new chunk, 3 more chunks get loaded on the side, they probably contain plants that need watering, so the 'seen plants' counter goes up, when those plants have been watered, the 'watered plants' counter goes up, but by entering those 3 new chunks the player has likely encountered even more plants that need watering)
