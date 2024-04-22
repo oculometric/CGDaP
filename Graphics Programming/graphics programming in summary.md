@@ -10,6 +10,8 @@ Thus we define a point in 3D space as having X, Y, and Z components. Let's defin
 ### Vectors
 The follow-up question to this is *"what is a vector?"*. Conceptually, **a vector is a line between two points**, and is represented by the distance between those points as specified by individual $XYZ$ components (i.e. it has direction and magnitude, ayyyy). So a vector has the same structure as a point: three numbers, one for each axis. Conversely, we can also say that **a point is really just a vector which starts at the origin** (and ends at the point). This gives a bit more context to the idea that a point is represented by a sum of the three axis vectors.
 
+I also want to introduce the concept of a **unit vector**, which is a vector which has a **magnitude** of $1$. **Normalisation** is the process of forcing a vector to have length $1$, by dividing all of it's components by it's magnitude, and is where the term 'normal vector' comes from.
+
 ### Magnitude of a Vector
 Let $v$ be some vector, then the magnitude of $v$ is given by $$|v| = \sqrt{(v.x)^2 + (v.y)^2 + (v.z)^2}$$
 ### Dot Product Between Two Vectors
@@ -32,9 +34,11 @@ The cross product cannot be generalised to higher/lower dimensions (at least, no
 $$v \times w = -(w \times v)$$
 <TODO: diagram of cross product handedness>
 ### The Origin
-In a previous paragraph we said that a point is conceptually a vector which starts at the origin. Well, *what happens if we move the origin?* If we do that, then we're effectively creating our own **coordinate space**. All our points are still measured from the origin, and described by a set of three axis vectors, so if we change the definition of the coordinate space by moving, rotating, or scaling that origin, **the same set of transformations are applied to the points defined within that space**.
+In a previous paragraph we said that a point is conceptually a vector which starts at the origin. Well, *what happens if we move the origin?* If we do that, then we're effectively creating our own **coordinate space**. All our points are still measured from the origin, and described by a set of three axis vectors, so if we change the definition of the coordinate space by moving, rotating, or scaling that origin, **we are effectively applying the same set of transformations to all the points defined within that space**.
 
-Here is as good a place as any to emphasise that all coordinate systems are relative. For instance, it doesn't actually matter which axis you treat as the 'up' axis, whether it's $Z$, $Y$, or even $X$, *as long as you're consistent within your software, it doesn't matter*. I don't wish to make this existential but coordinate systems are really just a useful concept for concretising an abstract non-existent space with numbers, and as long as you handle those numbers, you can kinda do whatever you want.
+Here is as good a place as any to emphasise that all coordinate systems are relative. For instance, it doesn't actually matter which axis you treat as the 'up' axis, whether it's $Z$, $Y$, or even $X$, *as long as you're consistent within your software, it doesn't matter*. I don't wish to make this existential but coordinate systems are really just a useful concept for concretising an abstract non-existent space with numbers, and as long as you handle those numbers consistently, you can kinda do whatever you want.
+
+Likewise, moving the origin doesn't really mean anything if everything else is also relative to that origin. If you move the world origin in your 3D scene, then you're moving your camera by the same amount as you're moving the geometry and everything else, so to all intents and purposes, nothing has changed.
 
 ### Transforming Between Coordinate Spaces
 In 3D graphics we mostly are talking about 3 different coordinate spaces, which here I'll call **Object Space** (aka local space, model space), **World Space** (aka global space), and **Camera Space**. Let's set the last one aside for now and consider object and world space.
@@ -116,6 +120,8 @@ Congratulations, we did it! We made it to camera space!
 Since we can combine matrices together to create compound transformations for a single object-to-world transform. However, we can also combine those into even more compounded transformations. If you have nested objects, 'objects within objects', and you want to get from the sub-object space into world space, you first apply the object's transformation, then the sub-object's transformation. You can imagine it like you're peeling the layers off of an onion. Apply the outer object transform, and everything on that layer is now in world space. If there's another layer (a child object), apply its transform to all of its children, and then they're in world space too. Repeat until you've reached the bottom of the chain. Shrek would be so proud rn.
 
 # Projection: Perspective and Orthographic
+model/object coords --modelview matrix--> eye coordinates --projection matrix--> clip coordinates --perspective division--> NDCs --viewport transformation--> window coordinates.
+// TODO
 
 # Geometry (dun dun duuuun)
 In this section I'm going to talk about geometry in the narrow, triangle-mesh sense. However, there are other ways geometry can be expressed, lots of ways in fact, but they require cleverer algorithms and aren't what we're focussing on with this module.
@@ -124,7 +130,7 @@ A **triangle mesh** is composed of **triangles**, that's obvious. *Why?* Because
 
 **Triangles** are bounded by **edges** which are composed of **vertices**. A triangle having three corners means it has three vertices.
 
-When storing a triangle mesh, the first way to think about it is as a list of triangles, each of which contains three points, each of which contains three coordinates (so 9 numbers in total). However, the vast majority of those points are going to be shared between two or more triangles, so it makes much more sense to store the vertices elsewhere. Thus version two of our data storage consists of two lists:
+When storing a triangle mesh, the first way to think about it is as a list of **triangles**, each of which contains three points, each of which contains three coordinates (so 9 numbers in total per triangle). However, the vast majority of those points are going to be shared between two or more triangles, so it makes much more sense to store the vertices elsewhere. Thus version two of our data storage consists of two lists:
 - A list of triangles, each of which contains three numbers, which are indices into the second list
 - A list of vertices, each of which contains three numbers, which are its coordinates in object space
 So a triangle might be defined as `{0,1,2}` which means, look at the first, second, and third items in the vertex list, and make a triangle between those three points.

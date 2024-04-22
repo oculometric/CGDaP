@@ -2,3 +2,5 @@ Tuesday 16/04 - 3:05 (project setup, world control, world look and feel, ~map ge
 Wednesday 17/04 - 2:20 (more work on world control, ~map gen)
 Thursday 18/04 - 1:40 (~map gen)
 Friday 19/04 - 1:30 (map gen)
+
+Monday 22/04 - 1:20 (~object types, ~object pickup)
