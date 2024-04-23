@@ -5,4 +5,4 @@ Friday 19/04 - 1:30 (map gen)
 Saturday 20/04 - 4:30 (chunk meshes)
 
 Monday 22/04 - 1:20 (~object types, ~object pickup)
-Tuesday 23/04 - 2:50 (object types, run mechanic, chunk colliders, physics player movement)
+Tuesday 23/04 - 3:30 (object types, run mechanic, chunk colliders, physics player movement, better camera movement)
