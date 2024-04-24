@@ -6,3 +6,4 @@ Saturday 20/04 - 4:30 (chunk meshes)
 
 Monday 22/04 - 1:20 (~object types, ~object pickup)
 Tuesday 23/04 - 3:30 (object types, run mechanic, chunk colliders, physics player movement, better camera movement)
+Wednesday 24/04 - 0:45 (object pickup)
