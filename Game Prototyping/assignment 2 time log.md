@@ -9,3 +9,5 @@ Tuesday 23/04 - 3:30 (object types, run mechanic, chunk colliders, physics playe
 Wednesday 24/04 - 0:45 (object pickup)
 Friday 26/04 - 3:35 (watering mechanic, ~plant UI overlay)
 Saturday 27/04 - 0:30 (plant UI overlay)
+
+Monday 29/04 - 1:50 (plant counter/timing UI, edge of map colliders, ~missing chunk bug)

@@ -329,6 +329,9 @@ The key difference to keep in mind is that vertex shaders are computed per-verte
 > This means that, when writing shaders, you need to try and ensure that all your shaders execute in similar time. That means being careful with loops because if a couple of pixels take 10x as long as the rest, you're going to waste a lot of GPU time while the scheduling system waits for those last pixels to finish before assigning more work, meanwhile most of the GPU cores are just idle.
 
 # Buffers and Applying All This Stuff
+
+# A Few Programming Concepts
+
 # How Do I Do This in OpenGL?
 
 projection
