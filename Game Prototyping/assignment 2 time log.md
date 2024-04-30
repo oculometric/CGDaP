@@ -11,4 +11,4 @@ Friday 26/04 - 3:35 (watering mechanic, ~plant UI overlay)
 Saturday 27/04 - 0:30 (plant UI overlay)
 
 Monday 29/04 - 1:50 (plant counter/timing UI, edge of map colliders, ~missing chunk bug)
-Tuesday 30/04 - 1:45 (missing chunk bug, ~plant meshes)
+Tuesday 30/04 - 2:15 (missing chunk bug, ~plant meshes)
