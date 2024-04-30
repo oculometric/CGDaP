@@ -2,8 +2,7 @@
 # Coordinate Systems and 3D Space
 A coordinate system is just a way of representing transformations in a particular coordinate space. That might seem like a circular definition, but roll with it for a minute. This section covers important stuff about what vectors and matrices are, how they interact, and how those mathematical building blocks are combined to implement the 3D world in games. Brace yourself for a detour into matrices.
 
-In our 3D, we represent our dimensions as the sum of three different axis vectors, the $X$ axis, $Y$ axis, and $Z$ axis. By default these have the values:
-$$X = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, Y = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, Z = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
+In our 3D, we represent our dimensions as the sum of three different axis vectors, the $X$ axis, $Y$ axis, and $Z$ axis. By default these have the values: $$X = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, Y = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, Z = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
 This might seem redundant but it is a useful concept.
 Thus we define a point in 3D space as having X, Y, and Z components. Let's define a point $p=\begin{bmatrix} 1 \\ 4 \\ 3 \end{bmatrix}$. We can say for this that $p = 1X + 4Y + 3Z$, where $X$, $Y$, and $Z$ are our axis vectors.
 
