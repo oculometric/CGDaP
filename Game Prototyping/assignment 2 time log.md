@@ -14,3 +14,4 @@ Monday 29/04 - 1:50 (plant counter/timing UI, edge of map colliders, ~missing ch
 Tuesday 30/04 - 2:45 (missing chunk bug, ~plant meshes, bugfixing)
 Wednesday 01/05 - 1:30 (~plant meshes)
 Thursday 02/05 - 2:10 (~plant meshes)
+Friday 03/05 - 4:00 (win condition, ~random prop placement)
