@@ -18,4 +18,4 @@ Friday 03/05 - 4:00 (win condition, ~random prop placement)
 Saturday 04/05 - 1:40 (random prop placement)
 
 Monday 06/05 - 0:0
-Tuesday 07/05 - 2:00 (~save files, ~random holdable placement)
+Tuesday 07/05 - 3:00 (~save files, random holdable placement)
