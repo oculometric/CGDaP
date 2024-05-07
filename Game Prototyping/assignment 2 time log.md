@@ -16,3 +16,6 @@ Wednesday 01/05 - 1:30 (~plant meshes)
 Thursday 02/05 - 2:10 (~plant meshes)
 Friday 03/05 - 4:00 (win condition, ~random prop placement)
 Saturday 04/05 - 1:40 (random prop placement)
+
+Monday 06/05 - 0:0
+Tuesday 07/05 - 1:20 (~save files, ~random holdable placement)
