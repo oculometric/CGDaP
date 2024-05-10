@@ -20,3 +20,5 @@ Saturday 04/05 - 1:40 (random prop placement)
 Monday 06/05 - 0:0
 Tuesday 07/05 - 3:00 (~save files, random holdable placement)
 Wednesday 08/05 - 0:50 (plant meshes)
+Thursday 09/05 - 0:0
+Friday 10/05 - 1:30 (top bar messages, ~menus)
