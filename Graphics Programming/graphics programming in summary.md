@@ -332,6 +332,86 @@ The key difference to keep in mind is that vertex shaders are computed per-verte
 # A Few Programming Concepts
 
 # How Do I Do This in OpenGL?
+**IMPORTANT NOTE: THIS STUFF ONLY APPLIES TO OPENGL 1.x; WHILE SOME OF IT MAY APPLY TO LATER VERSIONS, BE WARY WHEN RESEARCHING. MOST OF YOUR RESULTS WILL BE FOR NEWER VERSIONS WHICH MAY BEHAVE DIFFERENTLY OR HAVE FUNCTIONALITY WHICH DOESN'T EXIST IN 1.x. BE WARNED**
+Explaining fully how to use OpenGL in detail is difficult, so I'm gonna start by just doing a bit of a summary of the functions you probably need to use and what they actually do. But first, a few things.
+
+## What is OpenGL Doing?
+OpenGL's job is twofold: handle the low-level rendering of triangles; and talk to the graphics card in order to get that done.
+It's useful to remember this when you consider how OpenGL 1.x works. OpenGL is a **state machine**, which means that rather than just telling it to do things outright, you tell it what state to go into, and then provide it with some extra stuff which is handled depending on that state. That means that you need to be careful when writing code that you know exactly what state OpenGL is in at any given time. For instance, before you perform a transformation (like `glTranslate` or `glRotate`) consider whether you're using the `GL_MODELVIEW` matrix stack, or the `GL_PROJECTION` matrix stack.
+
+## What The Hell is a Matrix Stack?
+Since OpenGL is a state machine, one of its states is the current matrix, applied to vertices in order to transform them. Remember all the way back in the first two sections or so, we talked about **matrices**, the mathematical objects which can transform **vectors** between coordinate spaces? You may also remember that we can combine matrix transformations into a single matrix using matrix multiplication. This is very useful. Consider a hierarchical scene structure, like you have in Unity or Unreal or Godot or basically any other engine or 3D software: when _object a_ is a child of _object b_, _object a_ will inherit the transformations of _object b_ (i.e. if _object b_ is offset from the origin by $\begin{bmatrix} 1 \\ 3 \\ -4 \end{bmatrix}$, then all of its children will inherit that offset, plus their own individual offset).
+Now, when we want to transform _object a_'s geometry from model space into world space, we'd have to apply the _object a_-to-_object b_ matrix, then apply the _object b_-to-world matrix (and then the other stuff, but don't worry about that for now).
+
+Now, although OpenGL only lets us have one active matrix at a time, the stack allows us to save and store matrices which we can later revert back to. This is *super* useful for a hierarchical scene, since it means we can easily apply parent object transforms to child objects something like this:
+1. Apply the transformations of the current object (position, rotation, scale)
+2. Draw the current object
+3. Push the current matrix down the stack
+4. Recursively jump to step one, but for each child object
+5. When done, pop the current matrix
+This careful pushing and popping of matrices before applying transformations means that we can safely undo transformations so that transforms from one object don't affect transforms of another object (unless we want them to, in the case of child objects).
+
+When we push to the stack, everything gets shifted down and an identical copy of the matrix that was on the top of the stack before is inserted at the new top. Conversely, when we pop the stack, the topmost matrix is discarded and everything is shifted up. **Transformations are always applied to the matrix at the top of the stack.**
+
+## On Operation Ordering
+Cast your mind back to the first two sections, where I explained that transformations are actually applied to vertices in the opposite order in which they are issued as commands (i.e via `glTranslate` or `glRotate`). In matrix terms, a compound transformation looks something like this:
+$$translation \times rotation \times other...$$
+and every additional transformation is being multiplied onto the right hand side. However, when that transformation is applied to a vector, the vector is also on the right hand side, so the effective order to transformations is reversed:
+$$translation \times (rotation \times (scale \times \begin{bmatrix} x \\ y \\ z \end{bmatrix}))$$
+and we end up doing the scale first, then the rotation, then the translation. In practice all of this is combined into a single matrix but this ordering remains the same.
+
+## Actually There Are Two Stacks
+As you've noticed, OpenGL actually has *two* matrix stacks: the **modelview** stack and the **projection** stack. These are pretty much what they sound like: two separate stacks, one of which you should use for model-to-view transformation (i.e. the position/rotation/scale of your camera, objects), moving from object-local space into world space, and then into camera space (see the earlier section on projection for more info); the other of which you should use for the projection transform whether perspective or orthographic, or some hideous abomination of something else.
+OpenGL does this so that you can separate the two and just make your life easier. Remember that transformations are applied in the opposite order to that in which they are given, so since the projection transform must happen last, it must be inserted first. If you wanted to change your perspective transform mid-frame, you'd need to pop all the way down the stack in order to get at the projection matrix, and then reapply all your other transforms again. Separating the two also helps prevent you fucking up the stack in some horrible Lovecraftian fashion.
+
+## The OpenGL Cheatsheet
+// TODO: big ol todo here
+Ok I hope I get all of this right. I won't cover every variation of every function here, just enough to give a solid overview of what different things are doing. A few definitions:
+Currently active matrix - the topmost matrix in whichever matrix stack is currently active
+Identity matrix - a matrix which represents 'no transformation'
+
+### Matrices and Transformations
+Remember that these commands **don't directly transform the geometry**, they transform the **matrix** which is **then applied to the geometry** in order to transform it.
+
+`glTranslatef(float x, float y, float z)` - translate/offset the currently active matrix by a given direction vector
+`glRotatef(float angle, float axis_x, float axis_y, float axis_z)` - rotate the currently active matrix around the axis (i.e. direction vector) described by the last three arguments, by the specified angle
+`glScalef(float x, float y, float z)` - stretch/scale the currently active matrix by given amounts in each axis
+`glPushMatrix()` - pushes the currently active matrix stack down by one (see above), leaving a copy of the previously active matrix at the top
+`glPopMatrix()` - pops the top of the currently active matrix stack, removing whatever is currently at the top and shifting everything else up by one to replace it
+`glMatrixMode(/* either GL_MODELVIEW or GL_PROJECTION */)` - switches the currently active stack to whichever is specified, so that all subsequent transformations are applied to the top of the specified stack
+`glLoadIdentity()` - replaces the currently active matrix with the identity matrix, equivalent to resetting the transformation
+`gluLookAt`
+`gluPerspective`
+`gluOrtho`
+`glViewport`
+### Drawing Geometry
+`glBegin()`
+`glEnd()`
+`glDrawElements`
+`glEnableClientState`
+`glDisableClientState`
+`glVertexPointer`
+`glColorPointer`
+`glNormalPointer`
+`glTexCoordPointer`
+`glVertex3f`
+`glNormal3f`
+`glColor3f`
+`glTexCoord2f`
+### Textures
+`glGenTextures(int how_many, int* where_to_put_the_ids)`
+`glBindTexture(/* for these purposes, should always be GL_TEXTURE_2D */, int texture_id)`
+`glTexImage2D(/* for these purposes, should always be GL_TEXTURE_2D */, ... TODO`
+`glTexParameterf`
+### Lighting
+
+### Initialisation
+`glEnable`
+`glDisable`
+`glClearColor`
+`glClear`
+`glFlush`
+`glCullFace`
 
 projection
 textures and texture coordinates (minifcation, magnification, mipmapping and filtering)
