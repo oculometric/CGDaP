@@ -354,7 +354,7 @@ This careful pushing and popping of matrices before applying transformations mea
 When we push to the stack, everything gets shifted down and an identical copy of the matrix that was on the top of the stack before is inserted at the new top. Conversely, when we pop the stack, the topmost matrix is discarded and everything is shifted up. **Transformations are always applied to the matrix at the top of the stack.**
 
 ## On Operation Ordering
-Cast your mind back to the first two sections, where I explained that transformations are actually applied to vertices in the opposite order in which they are issued as commands (i.e via `glTranslate` or `glRotate`). In matrix terms, a compound transformation looks something like this:
+Cast your mind back to the first two sections, where I explained that transformations are actually applied to vertices in the opposite order in which they are issued as commands (i.e. via `glTranslate` or `glRotate`). In matrix terms, a compound transformation looks something like this:
 $$translation \times rotation \times other...$$
 and every additional transformation is being multiplied onto the right hand side. However, when that transformation is applied to a vector, the vector is also on the right hand side, so the effective order to transformations is reversed:
 $$translation \times (rotation \times (scale \times \begin{bmatrix} x \\ y \\ z \end{bmatrix}))$$
