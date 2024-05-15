@@ -24,6 +24,7 @@ Thursday 09/05 - 0:0
 Friday 10/05 - 2:25 (top bar messages, ~menus)
 Saturday 11/05 - 2:30 (menus, save files)
 
-Monday 14/05 - 0:0
-Tuesday 15/05 - 2:30 (resource loading redo, timer state & plant counts saved)
+Monday 13/05 - 0:0
+Tuesday 14/05 - 2:30 (resource loading redo, timer state & plant counts saved)
+Wednesday 15/05 - 2:00 (~office sets)
 
