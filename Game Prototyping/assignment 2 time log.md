@@ -26,5 +26,5 @@ Saturday 11/05 - 2:30 (menus, save files)
 
 Monday 13/05 - 0:0
 Tuesday 14/05 - 2:30 (resource loading redo, timer state & plant counts saved)
-Wednesday 15/05 - 2:00 (~office sets)
-
+Wednesday 15/05 - 2:00 (~office room intro)
+Thursday 16/05 - 2:00 (office room intro, ~game completion)
