@@ -29,3 +29,5 @@ Tuesday 14/05 - 2:30 (resource loading redo, timer state & plant counts saved)
 Wednesday 15/05 - 2:00 (~office room intro)
 Thursday 16/05 - 2:00 (office room intro, ~game completion)
 Friday 17/05 - 1:30 (game completion)
+
+Saturday 18/05 - 1:00 (fix message, save confirm, save camera angle, plant watering overlay)
