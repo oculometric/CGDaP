@@ -31,4 +31,5 @@ Thursday 16/05 - 2:00 (office room intro, ~game completion)
 Friday 17/05 - 1:30 (game completion)
 
 Saturday 18/05 - 1:00 (fix message, save confirm, save camera angle, plant watering overlay)
-Sunday 19/05 - 1:25 (saving held item, duplicated watering cans, plant generation placement, poor tap generation)
+Sunday 19/05 - 2:25 (saving held item, duplicated watering cans, plant generation placement, poor tap generation)
+Monday 20/05 - 2:00 (interaction UI, post processing effect)
