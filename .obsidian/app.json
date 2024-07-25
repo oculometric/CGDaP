@@ -7,5 +7,6 @@
     "margin": "2",
     "downscalePercent": 100
   },
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "rightToLeft": false
 }
