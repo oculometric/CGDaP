@@ -1,8 +1,0 @@
-flowchart TD
-    A(Discover plants which need watering)
-    A --> B(Search for water source)
-    B --> D(Look for closer water source)
-    D --> C
-    B --> C(Return and water plant)
-    C --> E(New chunks become visible)
-    E --> A
