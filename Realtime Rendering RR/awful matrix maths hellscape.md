@@ -17,3 +17,6 @@ however, HLSL when initialised, initialises in a row-major way (i.e. 0,1,2,3... 
 ![[Pasted image 20241025000057.png]]
 ![[Pasted image 20241025000104.png]]
 what an unbelievably relatable interaction.
+
+$M3 \cdot M2 \cdot M1 \cdot v$  ---> this is a *column-major* transformation mathematically.
+$v \cdot M1 \cdot M2 \cdot M3$  ---> this is a *row-major* transformation.
